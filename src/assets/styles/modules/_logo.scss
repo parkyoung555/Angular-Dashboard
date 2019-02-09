@@ -1,0 +1,8 @@
+@mixin logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    i.logo {
+        //background-color: map-get($_theme-foreground, text);
+        background-color: $_theme-primary-color;
+        color: map-get($_theme-background, card);
+    }
+}

@@ -1,0 +1,32 @@
+@import "~src/assets/styles/modules/mixins";
+@import "~src/assets/styles/modules/variables";
+
+$_color-swatch__size: 24px;
+
+.swatch {
+    border-radius: $roundness;
+    border-style: solid;
+    border-width: 1px;
+    height: $_color-swatch__size;
+    min-height: $_color-swatch__size;
+    min-width: $_color-swatch__size;
+    overflow: hidden;
+    position: relative;
+    width: $_color-swatch__size;
+
+    .colors {
+        filter: blur(3px);
+        height: 100%;
+        transform: rotate(45deg) scale(2);
+        width: 100%;
+
+        > div {
+            height: 50%;
+            width: 100%;
+        }
+    }
+
+    .mat-icon {
+        @include center-absolute();
+    }
+}

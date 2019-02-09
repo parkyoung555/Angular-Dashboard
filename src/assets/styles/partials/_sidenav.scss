@@ -1,0 +1,24 @@
+@import "../modules/variables";
+
+.mat-sidenav-container {
+
+    .mat-sidenav {
+        //background-color: $navigation__background-color;
+        //color: $navigation__primary-text__color;
+
+        .mat-toolbar {
+            background-color: unset;
+        }
+    }
+}
+
+//[class*="#{$dark-theme__postfix}"] {
+//
+//    .mat-sidenav-container {
+//
+//        .mat-sidenav {
+//            background-color: unset;
+//            color: unset;
+//        }
+//    }
+//}

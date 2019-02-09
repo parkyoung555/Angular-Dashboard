@@ -1,0 +1,61 @@
+@import "~@angular/material/theming";
+@import "~src/assets/styles/modules/mixins";
+@import "~src/assets/styles/modules/variables";
+@import "~src/assets/styles/modules/typography";
+
+.mat-sidenav-container {
+    height: 100%;
+
+    .mat-sidenav {
+        max-width: calc(100% - 54px);
+
+        /deep/ .mat-drawer-inner-container {
+            flex-direction: column;
+            overflow: hidden;
+        }
+    }
+
+    &.#{$navigation__visible__class} {
+
+        .mat-sidenav {
+
+            &.mat-drawer-side {
+                transition: $swift-ease-out;
+                width: $navigation__collapsed__width;
+            }
+        }
+
+        &.#{$navigation__locked__class},
+        &.#{$navigation__hovered__class} {
+
+            .mat-sidenav {
+
+                &.mat-drawer-side {
+                    width: $navigation__expanded__width;
+                }
+            }
+        }
+
+        &.#{$navigation__hovered__class}:not(.#{$navigation__locked__class}) {
+
+            .mat-sidenav {
+                @include mat-elevation(8);
+                border: none;
+            }
+        }
+
+        &.#{$navigation__locked__class} {
+
+            .mat-sidenav-content {
+                margin-left: $navigation__expanded__width !important;
+            }
+        }
+
+        &:not(.#{$navigation__locked__class}) {
+
+            .mat-sidenav-content {
+                margin-left: $navigation__collapsed__width !important;
+            }
+        }
+    }
+}

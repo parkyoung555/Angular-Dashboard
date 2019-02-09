@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Colors and theming
+        </mat-card-title>
+        <mat-card-subtitle>Choose your favorite colors. Lights out mode is also available for each color set.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-accordion displayMode="flat">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>color_lens</mat-icon>
+                        Themes
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{currentTheme}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-setting-row [value]="currentTheme">
+                    <app-color-swatch *ngFor="let theme of themes" [theme]="theme" (click)="setTheme(theme)" [selected]="currentTheme === theme.name"></app-color-swatch>
+                </app-setting-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>wb_incandescent</mat-icon>
+                        Lights out
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{darkMode ? 'Enabled': 'Disabled'}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-setting-row [value]="darkMode ? 'Enabled': 'Disabled'">
+                    <mat-slide-toggle [(ngModel)]="darkMode" (change)="toggleDarkMode()"></mat-slide-toggle>
+                </app-setting-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,44 @@
+<div class="sidenav-content" fxLayout="column">
+    <mat-toolbar class="header">
+        <mat-toolbar-row>
+            <!--<img class="profile-pic" alt="profile image" [src]="profileImageUrl" />-->
+            <!--<mat-icon class="logo" svgIcon="angular"></mat-icon>-->
+            <app-dynamic-logo-icon [brandLetter]="brandLetter"></app-dynamic-logo-icon>
+            <label fxFlex="1 1 auto">{{appName}}</label>
+            <!--<div class="details" fxFlex="1 1 auto">-->
+            <!--<h4>{{name}}</h4>-->
+            <!--<h5>{{description}}</h5>-->
+            <!--</div>-->
+            <div class="actions">
+                <button mat-icon-button matTooltip="{{navLockedOpen ? 'Collapse menu' : 'Lock menu open'}}" (click)="toggleMenuLock()" *ngIf="showNavLockAction | async">
+                    <mat-icon>{{navLockedOpen ? 'chevron_left' : 'last_page'}}</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="links" fxLayout="column" fxFlex="1 1 auto" cdkDropList (cdkDropListDropped)="drop($event)">
+        <button *ngFor="let link of menuLinks"
+                mat-button
+                fxFlex="0 0 auto"
+                role="menuitem"
+                routerLinkActive="active"
+                #rla="routerLinkActive"
+                routerLink="{{link.path}}"
+                cdkDrag>
+        <span fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon>{{link.icon}}</mat-icon>
+            <span fxFlex="1 1 auto">{{link.title}}</span>
+            <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag"></mat-icon>
+        </span>
+            <!--<span class="drag-placeholder" *cdkDragPlaceholder></span>-->
+        </button>
+    </div>
+    <mat-toolbar class="footer">
+        <mat-toolbar-row>
+            <div class="search mat-body-1" fxLayout="row" fxLayoutAlign="start center" [class.focused]="searchFocused">
+                <mat-icon>search</mat-icon>
+                <input fxFlex="1 1 auto" type="text" placeholder="Search for menu item" (focus)="searchFocused = true" (blur)="searchFocused = false" />
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

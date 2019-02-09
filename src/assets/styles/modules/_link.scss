@@ -1,0 +1,29 @@
+@mixin link-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    $_link__active__background-color: transparentize($_theme-accent-color, .88);
+
+    a,
+    .active,
+    a.active,
+    .mat-nav-list a.active {
+        color: $_theme-accent-color;
+    }
+
+    .active,
+    a.active,
+    .mat-nav-list a.active {
+        background-color: $_link__active__background-color;
+
+        &:hover,
+        &:focus {
+            background-color: $_link__active__background-color;
+        }
+
+        &:not(button) {
+
+            .mat-ripple-element {
+                background-color: $_link__active__background-color;
+            }
+        }
+    }
+}

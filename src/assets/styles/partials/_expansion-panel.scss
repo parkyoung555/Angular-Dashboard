@@ -1,0 +1,80 @@
+@import "~@angular/material/theming";
+@import "../modules/typography";
+@import "../modules/variables";
+
+.mat-expansion-panel {
+    border-radius: $roundness;
+
+    .mat-expansion-panel-header {
+
+        .mat-expansion-panel-header-title {
+            align-items: center;
+
+            .mat-icon:first-child {
+                margin: 0 $layout-unit__sm 0 0;
+            }
+        }
+
+        .mat-expansion-panel-header-description {
+            align-items: center;
+            transition: $swift-ease-out;
+        }
+
+        &.mat-expanded {
+
+            .mat-expansion-panel-header-description {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+.mat-accordion .mat-expansion-panel {
+
+    &:first-of-type {
+        border-top-right-radius: $roundness;
+        border-top-left-radius: $roundness;
+    }
+
+    &:last-of-type {
+        border-bottom-right-radius: $roundness;
+        border-bottom-left-radius: $roundness;
+    }
+}
+
+.mat-card {
+
+    .mat-card-content {
+
+        > .mat-accordion {
+
+            .mat-expansion-panel {
+                margin: 0 (-$layout-unit__sm);
+
+                &:not([class*='mat-elevation-z']) {
+                    border-radius: 0;
+                    border-width: 0 0 1px;
+                    border-style: solid;
+                    box-shadow: none;
+
+                    &.mat-expanded {
+                        //border-width: 1px;
+
+                        + .mat-expansion-panel {
+                            //border-top: 1px solid $app__border-color;
+                        }
+                    }
+
+                    &:first-child {
+                        //border-top: 1px solid $app__border-color;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}

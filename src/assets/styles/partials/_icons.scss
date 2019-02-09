@@ -1,0 +1,14 @@
+@import url(~material-design-icons/iconfont/material-icons.css);
+
+$_mat-icon-sizes: 18, 24, 36, 48;
+
+@each $_mat-icon-size in $_mat-icon-sizes {
+
+    .material-icons.md-#{$_mat-icon-size} {
+        font-size: #{$_mat-icon-size}px;
+        height: #{$_mat-icon-size}px;
+        min-height: #{$_mat-icon-size}px;
+        min-width: #{$_mat-icon-size}px;
+        width: #{$_mat-icon-size}px;
+    }
+}

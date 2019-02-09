@@ -1,0 +1,14 @@
+<mat-toolbar color="{{theme}}" class="mat-elevation-z2">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleMenu()" *ngIf="!showNavLockAction">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span fxFlex="1 1 auto"></span>
+        <app-account-menu></app-account-menu>
+        <!--<div class="links">-->
+            <!--<button mat-icon-button matTooltip="{{link.title}}" routerLink="{{link.path}}" *ngFor="let link of headerLinks">-->
+                <!--<mat-icon>{{link.icon}}</mat-icon>-->
+            <!--</button>-->
+        <!--</div>-->
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,13 @@
+@import "../modules/typography";
+@import "../modules/variables";
+
+.mat-card {
+
+    .mat-card-header-text {
+        margin: 0 $layout-unit__base;
+
+        .mat-card-title {
+            @include mat-typography-level-to-styles($header-typography, title);
+        }
+    }
+}

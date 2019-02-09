@@ -1,0 +1,11 @@
+@import "../modules/variables";
+
+.layout-padding {
+    padding: $layout-unit__md;
+}
+
+.layout-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $layout__max-width;
+}

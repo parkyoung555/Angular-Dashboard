@@ -1,0 +1,61 @@
+@import "~@angular/material/theming";
+
+// Default theme
+$app-color-primary: mat-palette($mat-grey, 900);
+$app-color-accent: mat-palette($mat-blue, A700);
+$app-color-warn: mat-palette($mat-red);
+
+$app-theme: mat-light-theme($app-color-primary, $app-color-accent, $app-color-warn);
+
+
+$app-color-primary__dark: mat-palette($mat-grey, 200);
+$app-color-accent__dark: mat-palette($mat-blue, A100);
+$app-color-warn__dark: mat-palette($mat-red, A100);
+
+$app-theme__dark: mat-dark-theme($app-color-primary__dark, $app-color-accent__dark, $app-color-warn__dark);
+
+// Watermelon theme
+$app-color-primary__watermelon: mat-palette($mat-pink, 500);
+$app-color-accent__watermelon: mat-palette($mat-green, A700);
+$app-color-warn__watermelon: mat-palette($mat-red);
+
+$app-theme__watermelon: mat-light-theme($app-color-primary__watermelon, $app-color-accent__watermelon, $app-color-warn__watermelon);
+
+$app-color-primary__watermelon__dark: mat-palette($mat-pink, 300);
+$app-color-accent__watermelon__dark: mat-palette($mat-green, A100);
+$app-color-warn__watermelon__dark: mat-palette($mat-red, A100);
+
+$app-theme__watermelon__dark: mat-dark-theme($app-color-primary__watermelon__dark, $app-color-accent__watermelon__dark, $app-color-warn__watermelon__dark);
+
+// Sunset theme
+$app-color-primary__sunset: mat-palette($mat-blue, 500);
+$app-color-accent__sunset: mat-palette($mat-orange, A700);
+$app-color-warn__sunset: mat-palette($mat-pink);
+
+$app-theme__sunset: mat-light-theme($app-color-primary__sunset, $app-color-accent__sunset, $app-color-warn__sunset);
+
+$app-color-primary__sunset__dark: mat-palette($mat-blue, 300);
+$app-color-accent__sunset__dark: mat-palette($mat-orange, A100);
+$app-color-warn__sunset__dark: mat-palette($mat-pink, A100);
+
+$app-theme__sunset__dark: mat-dark-theme($app-color-primary__sunset__dark, $app-color-accent__sunset__dark, $app-color-warn__sunset__dark);
+
+// Dan dan theme
+$app-color-primary__dan-dan: mat-palette($mat-deep-purple, 400);
+$app-color-accent__dan-dan: mat-palette($mat-blue, A100);
+$app-color-warn__dan-dan: mat-palette($mat-pink);
+
+$app-theme__dan-dan: mat-light-theme($app-color-primary__dan-dan, $app-color-accent__dan-dan, $app-color-warn__dan-dan);
+
+$app-color-primary__dan-dan__dark: mat-palette($mat-deep-purple, 200);
+$app-color-accent__dan-dan__dark: mat-palette($mat-blue, A100);
+$app-color-warn__dan-dan__dark: mat-palette($mat-pink, A100);
+
+$app-theme__dan-dan__dark: mat-dark-theme($app-color-primary__dan-dan__dark, $app-color-accent__dan-dan__dark, $app-color-warn__dan-dan__dark);
+
+$app-themes: (
+    "": ( $app-theme, $app-theme__dark ),
+    "watermelon": ( $app-theme__watermelon, $app-theme__watermelon__dark ),
+    "sunset": ( $app-theme__sunset, $app-theme__sunset__dark ),
+    "dan-dan": ( $app-theme__dan-dan, $app-theme__dan-dan__dark )
+);

@@ -1,0 +1,40 @@
+@import "~src/assets/styles/modules/mixins";
+@import "~src/assets/styles/modules/variables";
+
+$account-menu__image-size: 24px;
+
+:host {
+    border-style: solid;
+    border-width: 0 1px;
+    height: 100%;
+}
+
+.account-button {
+    @include reset-button-styles;
+    border-radius: 0;
+    color: inherit;
+    cursor: pointer;
+    height: 100%;
+    padding: 0 $layout-unit__sm;
+
+    img {
+        background-color: $header__border__color;
+        border-radius: 50%;
+        height: $account-menu__image-size;
+        min-height: $account-menu__image-size;
+        min-width: $account-menu__image-size;
+        width: $account-menu__image-size;
+    }
+
+    mat-icon {
+        margin-left: -$layout-unit__xs;
+
+        + span {
+            margin: 0 0 0 $layout-unit__sm;
+
+            + img {
+                margin: 0 0 0 $layout-unit__base;
+            }
+        }
+    }
+}

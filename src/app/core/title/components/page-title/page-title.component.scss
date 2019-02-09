@@ -1,0 +1,23 @@
+@import "~src/assets/styles/modules/variables";
+@import "~src/assets/styles/modules/typography";
+
+:host {
+
+    &.align-center {
+        text-align: center;
+    }
+
+    &.align-left {
+        text-align: left;
+    }
+
+    &.align-right {
+        text-align: right;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @include mat-typography-level-to-styles($header-typography, headline);
+
+    margin: $layout-unit__base 0 $layout-unit__md;
+}

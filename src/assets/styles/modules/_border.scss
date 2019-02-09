@@ -1,0 +1,17 @@
+@mixin border-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .mat-toolbar {
+
+        .mat-toolbar-row {
+
+            > * {
+                border-color: map-get($_theme-foreground, divider);
+            }
+        }
+    }
+
+    .swatch,
+    .mat-expansion-panel {
+        border-color: map-get($_theme-foreground, divider);
+    }
+}

@@ -1,0 +1,23 @@
+@import "../../../../assets/styles/modules/variables";
+
+.mat-toolbar {
+    //background-color: $header__background-color;
+    //color: $header__primary-text__color;
+
+    .mat-toolbar-row {
+
+        > {
+
+            button {
+
+                &:first-child {
+                    margin-right: $layout-unit__sm;
+                }
+            }
+
+            .links {
+                margin: 0 0 0 $layout-unit__sm;
+            }
+        }
+    }
+}

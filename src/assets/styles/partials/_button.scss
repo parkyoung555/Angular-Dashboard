@@ -1,0 +1,8 @@
+@import "../modules/variables";
+
+.mat-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-stroked-button {
+    border-radius: $roundness;
+}

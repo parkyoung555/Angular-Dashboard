@@ -1,0 +1,66 @@
+@import "~@angular/material/theming";
+@import "~src/assets/styles/modules/theme";
+@import "~src/assets/styles/modules/color-contrast";
+
+// Classes
+$dark-theme__postfix: "dark-theme";
+
+// Layout
+$layout-unit__base: 8px;
+
+$layout-unit__xs: $layout-unit__base / 2;
+$layout-unit__sm: $layout-unit__base * 2;
+$layout-unit__md: $layout-unit__base * 3;
+$layout-unit__lg: $layout-unit__base * 4;
+$layout-unit__xl: $layout-unit__base * 5;
+
+$layout__max-width: 1400px;
+
+// Roundness
+$roundness: 6px;
+
+// Text colors
+$color__dark__primary: rgba(0, 0, 0, .87);
+$color__dark__secondary: rgba(0, 0, 0, .54);
+$color__dark__disabled: rgba(0, 0, 0, .38);
+$color__dark__inactive: rgba(0, 0, 0, .24);
+$color__dark__border: rgba(0, 0, 0, .12);
+
+$color__light__primary: rgba(255, 255, 255, 1);
+$color__light__secondary: rgba(255, 255, 255, .7);
+$color__light__disabled: rgba(255, 255, 255, .5);
+$color__light__inactive: rgba(255, 255, 255, .24);
+$color__light__border: rgba(255, 255, 255, .12);
+
+// Content colors
+$app__background-color: map-get(map-get($app-theme, background), background);
+$app__border-color: contrast-color($app__background-color, $color__dark__border, $color__light__border);
+
+// Navigation
+$navigation__hovered__class: nav-hovered;
+$navigation__locked__class: nav-locked-open;
+$navigation__visible__class: nav-side;
+
+$navigation__collapsed__width: 56px;
+$navigation__expanded__width: 320px;
+$navigation-item__collapsed__width: 40px;
+$navigation-item__height: 40px;
+
+//$navigation__background-color: darken(desaturate(map-get($app-color-accent, 500), 50), 40);
+$navigation__background-color: map-get($mat-grey, 800);
+//$navigation__accent__color: contrast-color($navigation__background-color, $theme-accent-dark, $theme-accent-light);
+$navigation__primary-text__color: contrast-color($navigation__background-color, $color__dark__primary, $color__light__primary);
+$navigation__secondary-text__color: contrast-color($navigation__background-color, $color__dark__secondary, $color__light__secondary);
+$navigation__disabled-text__color: contrast-color($navigation__background-color, $color__dark__disabled, $color__light__disabled);
+$navigation__border__color: contrast-color($navigation__background-color, $color__dark__border, $color__light__border);
+$navigation__accent__color: map-get($app-color-accent, A100);
+$navigation__warn__color: map-get($app-color-warn, A100);
+
+// Header
+$header__background-color: map-get($mat-grey, 100);
+$header__primary-text__color: contrast-color($header__background-color, $color__dark__primary, $color__light__primary);
+$header__secondary-text__color: contrast-color($header__background-color, $color__dark__secondary, $color__light__secondary);
+$header__disabled-text__color: contrast-color($header__background-color, $color__dark__disabled, $color__light__disabled);
+$header__border__color: contrast-color($header__background-color, $color__dark__border, $color__light__border);
+$header__accent__color: map-get($app-color-accent, A700);
+$header__warn__color: map-get($app-color-warn, A700);

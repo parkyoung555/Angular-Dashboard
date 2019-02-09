@@ -1,0 +1,26 @@
+@import "../../../assets/styles/modules/variables";
+
+.navigation {
+    min-width: 200px;
+    padding: $layout-unit__md 0;
+    position: sticky;
+
+    .mat-nav-list {
+        padding: 0 0;
+
+        .mat-list-item {
+            border-radius: 0 $roundness $roundness 0;
+            height: $navigation-item__height;
+            margin: $layout-unit__base 0 0;
+            overflow: hidden;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.content {
+    margin-top: 0;
+}

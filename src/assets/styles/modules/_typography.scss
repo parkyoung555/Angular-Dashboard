@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+$base-typography: mat-typography-config();
+
+$header-typography: mat-typography-config(
+    $font-family: 'Noto serif, serif'
+    //$body-2: mat-typography-level(14px, 24px, 500)
+);
+
+@mixin typography-overline() {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,15 @@
+@import "partials/icons";
+@import "partials/layout";
+@import "partials/reset";
+
+// All angular material specific overrides need to go here to increase specificity of style selector
+:root {
+    @import "partials/button";
+    @import "partials/card";
+    @import "partials/expansion-panel";
+    @import "partials/list";
+    @import "partials/sidenav";
+    @import "partials/typography";
+
+    @import "partials/theme";
+}

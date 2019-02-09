@@ -1,0 +1,20 @@
+@mixin color-swatch-theme-styles($_theme-name, $_theme-primary-color, $_theme-accent-color, $_theme-background) {
+
+    .swatch#{if($_theme-name != "", "." + $_theme-name, "")} {
+
+        .colors {
+
+            .primary {
+                background-color: $_theme-primary-color;
+            }
+
+            .accent {
+                background-color: $_theme-accent-color;
+            }
+        }
+
+        .mat-icon {
+            color: map-get($_theme-background, background);
+        }
+    }
+}

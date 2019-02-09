@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-admin-dashboard": {
+    "angular-dashboard": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-admin-dashboard",
+            "outputPath": "dist/angular-dashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-admin-dashboard:build"
+            "browserTarget": "angular-dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-admin-dashboard:build:production"
+              "browserTarget": "angular-dashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-admin-dashboard:build"
+            "browserTarget": "angular-dashboard:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "angular-admin-dashboard-e2e": {
+    "angular-dashboard-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-admin-dashboard:serve"
+            "devServerTarget": "angular-dashboard:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-admin-dashboard:serve:production"
+              "devServerTarget": "angular-dashboard:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "angular-admin-dashboard"
+  "defaultProject": "angular-dashboard"
 }

@@ -1,0 +1,14 @@
+@mixin sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .cdk-drag-preview {
+        background-color: map-get($_theme-background, card);
+        color: map-get($_theme-foreground, text);
+    }
+
+    .mat-sidenav-container {
+
+        .mat-sidenav {
+
+        }
+    }
+}

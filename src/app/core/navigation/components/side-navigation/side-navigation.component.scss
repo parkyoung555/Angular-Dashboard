@@ -1,0 +1,221 @@
+@import "~@angular/material/theming";
+@import "~src/assets/styles/modules/mixins";
+@import "~src/assets/styles/modules/theme";
+@import "~src/assets/styles/modules/typography";
+@import "~src/assets/styles/modules/variables";
+
+:host {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidenav-content {
+    height: 100%;
+}
+
+.links {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.#{$navigation__hovered__class},
+.#{$navigation__locked__class} {
+
+    :host {
+
+        button {
+
+            &[role="menuitem"] {
+                max-width: unset;
+                min-width: unset;
+            }
+        }
+    }
+}
+
+.search {
+    border-radius: $roundness;
+    //box-shadow: inset 0 0 0 1px $navigation__border__color;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    transition: $swift-ease-out;
+    width: 100%;
+
+    &.focused {
+        //box-shadow: inset 0 0 0 2px $navigation__accent__color;
+    }
+
+    .mat-icon {
+        @include center-vertically-absolute();
+        //color: $navigation__primary-text__color;
+        margin: 0 $layout-unit__base;
+    }
+
+    input {
+        @include reset-input-styles();
+        //color: $navigation__primary-text__color;
+        padding: 0 $layout-unit__base 0 56px;
+        z-index: 1;
+    }
+}
+
+.mat-toolbar {
+    background-color: unset;
+    //color: $navigation__primary-text__color;
+
+    .mat-toolbar-row {
+
+        .actions {
+            margin: 0 (-$layout-unit__base) 0 $layout-unit__sm;
+        }
+
+        > {
+
+            label,
+            .details {
+                margin: 0 0 0 $layout-unit__lg;
+            }
+
+            label {
+                @include mat-typography-level-to-styles($header-typography, title);
+            }
+
+            .details {
+
+                > {
+                    $config: mat-typography-config();
+
+                    h4 {
+                        @include mat-typography-level-to-styles($config, body-2);
+                    }
+
+                    h5 {
+                        //color: $navigation__secondary-text__color;
+
+                        @include mat-typography-level-to-styles($config, caption);
+                    }
+
+                    h4, h5 {
+                        line-height: 20px;
+                    }
+                }
+            }
+
+            button {
+
+                &:first-child {
+                    margin-right: $layout-unit__base;
+                }
+            }
+        }
+    }
+
+    &.footer {
+
+        .mat-toolbar-row {
+            padding: 0 (($navigation__collapsed__width - $navigation-item__collapsed__width) / 2);
+        }
+    }
+}
+
+button {
+    //color: $navigation__primary-text__color;
+
+    &[role="menuitem"] {
+        height: $navigation-item__height;
+        min-width: 0;
+        padding: 0 $layout-unit__base 0 $layout-unit__base;
+        text-align: left;
+
+        &:not(.cdk-drag-preview) {
+            margin: $layout-unit__xs (($navigation__collapsed__width - $navigation-item__collapsed__width) / 2);
+            max-width: $navigation-item__collapsed__width;
+        }
+
+        &.active {
+            //color: $navigation__accent__color;
+        }
+
+        .mat-icon {
+            position: relative;
+
+            + span {
+                margin: 0 0 0 $layout-unit__lg;
+            }
+
+            &.cdk-drag-handle {
+                //color: $navigation__disabled-text__color;
+                display: none;
+                overflow: hidden;
+                transition: $swift-ease-out;
+            }
+
+            &:first-child:not(.cdk-drag-handle)::before {
+                @include mat-elevation(4);
+                //background-color: $navigation__warn__color;
+                border-radius: 50%;
+                content: '';
+                height: 8px;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 8px;
+            }
+        }
+
+        &:hover {
+
+            .mat-icon {
+
+                &.cdk-drag-handle {
+                    display: unset;
+
+                    &:hover {
+                        //color: $navigation__secondary-text__color;
+                    }
+
+                    &:active {
+                        //color: $navigation__primary-text__color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cdk-drag-placeholder,
+.drag-placeholder {
+    //background-color: $navigation__border__color;
+    //border: 1px dashed $navigation__border__color;
+    border-radius: $roundness;
+    display: block;
+    height: 36px;
+    margin: $layout-unit__xs $layout-unit__base;
+
+    * {
+        opacity: 0;
+    }
+}
+
+.cdk-drag-preview {
+    @include mat-elevation(8);
+    //background-color: $navigation__background-color;
+    cursor: move;
+
+    .cdk-drag-handle {
+        display: unset !important;
+    }
+}
+
+.cdk-drag-animating {
+    transition: $swift-ease-out;
+}
+
+.links {
+    padding: $layout-unit__xs 0;
+
+    &.cdk-drop-list-dragging button[role="menuitem"]:not(.cdk-drag-placeholder) {
+        transition: $swift-ease-out;
+    }
+}
