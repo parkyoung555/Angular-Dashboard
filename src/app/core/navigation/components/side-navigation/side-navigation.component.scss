@@ -18,16 +18,20 @@
     overflow-y: auto;
 }
 
-.#{$navigation__hovered__class},
-.#{$navigation__locked__class} {
+.mat-sidenav-container {
 
-    :host {
+    &.#{$navigation__hovered__class},
+    &.#{$navigation__locked__class},
+    &:not(.#{$navigation__visible__class}) {
 
-        button {
+        :host {
 
-            &[role="menuitem"] {
-                max-width: unset;
-                min-width: unset;
+            button {
+
+                &[role="menuitem"] {
+                    max-width: unset;
+                    min-width: unset;
+                }
             }
         }
     }
@@ -35,26 +39,20 @@
 
 .search {
     border-radius: $roundness;
-    //box-shadow: inset 0 0 0 1px $navigation__border__color;
     height: 40px;
     overflow: hidden;
     position: relative;
     transition: $swift-ease-out;
     width: 100%;
 
-    &.focused {
-        //box-shadow: inset 0 0 0 2px $navigation__accent__color;
-    }
-
     .mat-icon {
         @include center-vertically-absolute();
-        //color: $navigation__primary-text__color;
         margin: 0 $layout-unit__base;
     }
 
     input {
         @include reset-input-styles();
-        //color: $navigation__primary-text__color;
+        color: inherit;
         padding: 0 $layout-unit__base 0 56px;
         z-index: 1;
     }
@@ -62,7 +60,6 @@
 
 .mat-toolbar {
     background-color: unset;
-    //color: $navigation__primary-text__color;
 
     .mat-toolbar-row {
 
@@ -91,8 +88,6 @@
                     }
 
                     h5 {
-                        //color: $navigation__secondary-text__color;
-
                         @include mat-typography-level-to-styles($config, caption);
                     }
 

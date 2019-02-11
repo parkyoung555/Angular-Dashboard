@@ -14,4 +14,12 @@
     .mat-expansion-panel {
         border-color: map-get($_theme-foreground, divider);
     }
+
+    .outline {
+        box-shadow: inset 0 0 0 1px map-get($_theme-foreground, divider);
+
+        &.focused {
+            box-shadow: inset 0 0 0 2px $_theme-accent-color;
+        }
+    }
 }

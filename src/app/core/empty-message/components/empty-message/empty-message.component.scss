@@ -1,0 +1,16 @@
+@import "~src/assets/styles/modules/variables";
+
+$_empty-message__icon-size: 48px;
+
+:host {
+    padding: $layout-unit__sm;
+    text-align: center;
+}
+
+.mat-icon {
+    font-size: $_empty-message__icon-size;
+    height: $_empty-message__icon-size;
+    min-height: $_empty-message__icon-size;
+    min-width: $_empty-message__icon-size;
+    width: $_empty-message__icon-size;
+}

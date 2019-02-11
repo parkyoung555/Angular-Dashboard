@@ -17,7 +17,9 @@
         </mat-toolbar-row>
     </mat-toolbar>
     <div class="links" fxLayout="column" fxFlex="1 1 auto" cdkDropList (cdkDropListDropped)="drop($event)">
-        <button *ngFor="let link of menuLinks"
+        <!--<h4 class="empty-message mat-caption" *ngIf="!visibleMenuLinks.length">No menu items found.</h4>-->
+        <app-empty-message icon="menu" *ngIf="!visibleMenuLinks.length">No menu items found.</app-empty-message>
+        <button *ngFor="let link of visibleMenuLinks"
                 mat-button
                 fxFlex="0 0 auto"
                 role="menuitem"
@@ -35,9 +37,11 @@
     </div>
     <mat-toolbar class="footer">
         <mat-toolbar-row>
-            <div class="search mat-body-1" fxLayout="row" fxLayoutAlign="start center" [class.focused]="searchFocused">
+            <div class="outline search mat-body-1" fxLayout="row" fxLayoutAlign="start center" [class.focused]="searchFocused">
                 <mat-icon>search</mat-icon>
-                <input fxFlex="1 1 auto" type="text" placeholder="Search for menu item" (focus)="searchFocused = true" (blur)="searchFocused = false" />
+                <input #navigationItemSearchInput fxFlex="1 1 auto" type="text" placeholder="Search for menu item"
+                       (ngModelChange)="updateVisibleMenuItems($event)"
+                       [(ngModel)]="menuItemSearchQuery" (focus)="searchFocused = true" (blur)="searchFocused = false" />
             </div>
         </mat-toolbar-row>
     </mat-toolbar>

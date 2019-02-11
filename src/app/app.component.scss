@@ -58,4 +58,11 @@
             }
         }
     }
+
+    .mat-sidenav {
+
+        &.mat-drawer-over {
+            width: $navigation__expanded__width;
+        }
+    }
 }

@@ -1,4 +1,5 @@
 @import "../modules/color-swatch";
+@import "../modules/empty-message";
 @import "../modules/link";
 @import "../modules/logo";
 @import "../modules/sidenav";
@@ -15,8 +16,8 @@
     $_theme-primary-color: mat-color(map-get($_theme, primary));
     $_theme-accent-color: mat-color(map-get($_theme, accent));
 
-    //@include color-swatch-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground, $_theme-name);
     @include border-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include empty-message-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include link-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);

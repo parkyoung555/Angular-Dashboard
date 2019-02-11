@@ -6,9 +6,13 @@
         #mainNav
         [mode]="sideNavMode"
         [opened]="showNavLockAction"
+        (opened)="sideNavClosed = false"
+        (closed)="sideNavClosed = true"
         (mouseenter)="navHovered = true"
         (mouseleave)="navHovered = false">
-        <app-side-navigation (sideNavMode)="sideNavMode = $event" (showNavLockAction)="showNavLockAction = $event"></app-side-navigation>
+        <app-side-navigation [navClosed]="sideNavClosed"
+                             (sideNavMode)="sideNavMode = $event"
+                             (showNavLockAction)="showNavLockAction = $event" [navHovered]="navHovered"></app-side-navigation>
     </mat-sidenav>
     <mat-sidenav-content>
         <app-header [mainNav]="mainNav" [showNavLockAction]="showNavLockAction"></app-header>

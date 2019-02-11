@@ -14,6 +14,7 @@ import {Subscription} from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  sideNavClosed: boolean;
   navHovered: boolean;
   navLockedOpen: boolean;
   showNavLockAction: boolean;

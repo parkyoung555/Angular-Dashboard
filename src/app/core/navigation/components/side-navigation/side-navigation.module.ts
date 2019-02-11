@@ -6,6 +6,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatButtonModule, MatIconModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {DynamicLogoIconModule} from '../../../logo/components/dynamic-logo-icon/dynamic-logo-icon.module';
+import {FormsModule} from '@angular/forms';
+import {EmptyMessageModule} from '../../../empty-message/components/empty-message/empty-message.module';
 
 @NgModule({
   declarations: [SideNavigationComponent],
@@ -13,7 +15,9 @@ import {DynamicLogoIconModule} from '../../../logo/components/dynamic-logo-icon/
     CommonModule,
     DragDropModule,
     DynamicLogoIconModule,
+    EmptyMessageModule,
     FlexLayoutModule,
+    FormsModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,

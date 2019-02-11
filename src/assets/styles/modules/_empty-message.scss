@@ -1,0 +1,6 @@
+@mixin empty-message-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    app-empty-message {
+        color: map-get($_theme-foreground, hint-text);
+    }
+}

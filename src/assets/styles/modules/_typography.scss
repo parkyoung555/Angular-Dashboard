@@ -1,14 +1,19 @@
 @import "~@angular/material/theming";
 
+$body-font-family: 'Roboto, "Helvetica Neue", sans-serif';
+$display-font-family: 'Noto serif, serif';
+
 $base-typography: mat-typography-config();
 
 $header-typography: mat-typography-config(
-    $font-family: 'Noto serif, serif'
+    $font-family: $display-font-family
     //$body-2: mat-typography-level(14px, 24px, 500)
 );
 
 @mixin typography-overline() {
+    font-family: #{$body-font-family};
     font-size: 10px;
+    font-weight:  400;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }

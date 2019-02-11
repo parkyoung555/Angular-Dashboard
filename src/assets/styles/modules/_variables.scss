@@ -45,22 +45,3 @@ $navigation__collapsed__width: 56px;
 $navigation__expanded__width: 320px;
 $navigation-item__collapsed__width: 40px;
 $navigation-item__height: 40px;
-
-//$navigation__background-color: darken(desaturate(map-get($app-color-accent, 500), 50), 40);
-$navigation__background-color: map-get($mat-grey, 800);
-//$navigation__accent__color: contrast-color($navigation__background-color, $theme-accent-dark, $theme-accent-light);
-$navigation__primary-text__color: contrast-color($navigation__background-color, $color__dark__primary, $color__light__primary);
-$navigation__secondary-text__color: contrast-color($navigation__background-color, $color__dark__secondary, $color__light__secondary);
-$navigation__disabled-text__color: contrast-color($navigation__background-color, $color__dark__disabled, $color__light__disabled);
-$navigation__border__color: contrast-color($navigation__background-color, $color__dark__border, $color__light__border);
-$navigation__accent__color: map-get($app-color-accent, A100);
-$navigation__warn__color: map-get($app-color-warn, A100);
-
-// Header
-$header__background-color: map-get($mat-grey, 100);
-$header__primary-text__color: contrast-color($header__background-color, $color__dark__primary, $color__light__primary);
-$header__secondary-text__color: contrast-color($header__background-color, $color__dark__secondary, $color__light__secondary);
-$header__disabled-text__color: contrast-color($header__background-color, $color__dark__disabled, $color__light__disabled);
-$header__border__color: contrast-color($header__background-color, $color__dark__border, $color__light__border);
-$header__accent__color: map-get($app-color-accent, A700);
-$header__warn__color: map-get($app-color-warn, A700);
