@@ -9,6 +9,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { SettingsModule } from './settings/settings.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AccountModule} from './account/account.module';
+import {MailModule} from './mail/mail.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {AccountModule} from './account/account.module';
     FlexLayoutModule,
     DashboardModule,
     MatSidenavModule,
+    MailModule,
     SettingsModule,
 
     AppRoutingModule // Must be last since it contains "Catch All" route

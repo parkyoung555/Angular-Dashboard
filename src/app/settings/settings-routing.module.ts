@@ -12,7 +12,6 @@ const routes: Routes = [
     data: {
       title: 'Settings',
       icon: 'settings',
-      includeInHeader: 2,
       includeInSideNavigation: 1,
       theme: ''
     },
