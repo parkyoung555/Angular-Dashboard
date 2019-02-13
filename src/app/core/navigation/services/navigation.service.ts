@@ -26,10 +26,10 @@ export class NavigationService {
     }
   }
 
-  getMenuLinks() {
+  getMenuLinks(flat = false) {
     const routes = this.router.config,
       res: NavigationItemModel[] = [];
-    let parentItem;
+    let parentItem, childMenuItem;
 
     for (const route of routes) {
       if (route.data && route.data.includeInSideNavigation !== void(0)) {
@@ -43,17 +43,23 @@ export class NavigationService {
         if (route.children) {
           for (const childRoute of route.children) {
             if (childRoute.data && childRoute.data.includeInSideNavigation !== void(0)) {
-              parentItem.children = parentItem.children || [];
-              parentItem.children.push({
+              childMenuItem = {
                 icon: childRoute.data.icon || defaultIcon,
                 path: `${route.path}/${childRoute.path}`,
                 position: childRoute.data.includeInSideNavigation,
                 title: childRoute.data.title
-              });
+              };
+              if (!flat) {
+                parentItem.children = parentItem.children || [];
+                parentItem.children.push(childMenuItem);
+              } else {
+                childMenuItem.position = parentItem.position;
+                res.push(childMenuItem);
+              }
             }
           }
 
-          if (parentItem.children) {
+          if (!flat && parentItem.children) {
             parentItem.children.sort((a, b) => a.position - b.position );
           }
         }
@@ -61,8 +67,6 @@ export class NavigationService {
         res.push(parentItem);
       }
     }
-
-    console.log(res);
 
     return res.sort((a, b) => a.position - b.position );
   }

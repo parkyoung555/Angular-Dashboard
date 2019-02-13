@@ -165,14 +165,6 @@ button {
 
                 &.cdk-drag-handle {
                     display: unset;
-
-                    &:hover {
-                        //color: $navigation__secondary-text__color;
-                    }
-
-                    &:active {
-                        //color: $navigation__primary-text__color;
-                    }
                 }
             }
         }
@@ -181,22 +173,35 @@ button {
 
 .cdk-drag-placeholder,
 .drag-placeholder {
-    //background-color: $navigation__border__color;
-    //border: 1px dashed $navigation__border__color;
     border-radius: $roundness;
-    display: block;
-    height: 36px;
-    margin: $layout-unit__xs $layout-unit__base;
+    // display: block;
+    margin: $layout-unit__xs (($navigation__collapsed__width - $navigation-item__collapsed__width) / 2);
 
-    * {
+    button[role="menuitem"] {
+        margin-left: 0;
+        margin-right: 0;
         opacity: 0;
     }
 }
 
 .cdk-drag-preview {
     @include mat-elevation(8);
-    //background-color: $navigation__background-color;
+    border-radius: $roundness;
     cursor: move;
+    height: auto !important;
+    margin: 0 0;
+
+    button[role="menuitem"] {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: unset;
+        min-height:0;
+        // width: 100%;
+    }
+
+    > button[role="menuitem"] {
+        margin: 0 0;
+    }
 
     .cdk-drag-handle {
         display: unset !important;
