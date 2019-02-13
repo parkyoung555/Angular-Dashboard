@@ -1,7 +1,7 @@
 import {Route} from '@angular/router';
 import {AccountSettingsComponent} from './account-settings.component';
 
-export const ACCOUNT_SETTINGS_ROUTES: Route = {
+export const accountSettingsRoute: Route = {
   path: 'account',
   component: AccountSettingsComponent,
   data: {
@@ -12,13 +12,3 @@ export const ACCOUNT_SETTINGS_ROUTES: Route = {
   }
 };
 
-
-// @NgModule({
-//   imports: [
-//     RouterModule.forChild(routes)
-//   ],
-//   exports: [
-//     RouterModule
-//   ]
-// })
-// export class AccountRouteModule { }

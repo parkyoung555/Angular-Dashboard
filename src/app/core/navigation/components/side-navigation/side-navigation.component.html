@@ -19,21 +19,49 @@
     <div class="links" fxLayout="column" fxFlex="1 1 auto" cdkDropList (cdkDropListDropped)="drop($event)">
         <!--<h4 class="empty-message mat-caption" *ngIf="!visibleMenuLinks.length">No menu items found.</h4>-->
         <app-empty-message icon="menu" *ngIf="!visibleMenuLinks.length">No menu items found.</app-empty-message>
-        <button *ngFor="let link of visibleMenuLinks"
-                mat-button
-                fxFlex="0 0 auto"
-                role="menuitem"
-                routerLinkActive="active"
-                #rla="routerLinkActive"
-                routerLink="{{link.path}}"
-                cdkDrag>
-        <span fxLayout="row" fxLayoutAlign="start center">
-            <mat-icon>{{link.icon}}</mat-icon>
-            <span fxFlex="1 1 auto">{{link.title}}</span>
-            <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag"></mat-icon>
-        </span>
-            <!--<span class="drag-placeholder" *cdkDragPlaceholder></span>-->
-        </button>
+        <ng-container *ngFor="let link of visibleMenuLinks">
+            <button (click)="menuitemClick(link)"
+                    *ngIf="!link.children"
+                    mat-button
+                    fxFlex="0 0 auto"
+                    role="menuitem"
+                    routerLinkActive="active"
+                    #rla="routerLinkActive"
+                    routerLink="{{link.path}}"
+                    cdkDrag>
+                <span fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>{{link.icon}}</mat-icon>
+                    <span fxFlex="1 1 auto">{{link.title}}</span>
+                    <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag"></mat-icon>
+                </span>
+            </button>
+            <div class="link-group" fxLayout="column" fxFlex="0 0 auto" *ngIf="link.children" cdkDrag>
+                <button (click)="toggleChildLinksVisibility(link)"
+                        mat-button
+                        fxFlex="0 0 auto"
+                        role="menuitem">
+                    <span fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon>{{link.icon}}</mat-icon>
+                        <span fxFlex="1 1 auto">{{link.title}}</span>
+                        <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag"></mat-icon>
+                    </span>
+                </button>
+                <div class="link-children" fxLayout="column" fxFlex="0 0 auto" *ngIf="link.expanded">
+                    <button *ngFor="let childLink of link.children"
+                            mat-button
+                            fxFlex="0 0 auto"
+                            role="menuitem"
+                            routerLinkActive="active"
+                            #rla="routerLinkActive"
+                            routerLink="{{childLink.path}}">
+                        <span fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon>{{childLink.icon}}</mat-icon>
+                            <span fxFlex="1 1 auto">{{childLink.title}}</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </ng-container>
     </div>
     <mat-toolbar class="footer">
         <mat-toolbar-row>

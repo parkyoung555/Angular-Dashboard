@@ -29,17 +29,40 @@ export class NavigationService {
   getMenuLinks() {
     const routes = this.router.config,
       res: NavigationItemModel[] = [];
+    let parentItem;
 
     for (const route of routes) {
       if (route.data && route.data.includeInSideNavigation !== void(0)) {
-        res.push({
+        parentItem = {
           icon: route.data.icon || defaultIcon,
           path: route.path,
           position: route.data.includeInSideNavigation,
           title: route.data.title
-        });
+        };
+
+        if (route.children) {
+          for (const childRoute of route.children) {
+            if (childRoute.data && childRoute.data.includeInSideNavigation !== void(0)) {
+              parentItem.children = parentItem.children || [];
+              parentItem.children.push({
+                icon: childRoute.data.icon || defaultIcon,
+                path: `${route.path}/${childRoute.path}`,
+                position: childRoute.data.includeInSideNavigation,
+                title: childRoute.data.title
+              });
+            }
+          }
+
+          if (parentItem.children) {
+            parentItem.children.sort((a, b) => a.position - b.position );
+          }
+        }
+
+        res.push(parentItem);
       }
     }
+
+    console.log(res);
 
     return res.sort((a, b) => a.position - b.position );
   }

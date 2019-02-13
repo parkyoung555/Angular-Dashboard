@@ -6,6 +6,7 @@ import {NavigationService} from '../../services/navigation.service';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {Subscription} from 'rxjs';
 import {NavigationItemModel} from '../../models/navigation-item.model';
+import {Router} from '@angular/router';
 
 const navigationBreakpoints = {
   large: 1400,
@@ -42,6 +43,7 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
   private navigationServiceLockedOpenSubscription: Subscription;
 
   constructor(
+    private router: Router,
     private breakpointObserver: BreakpointObserver,
     private navigationService: NavigationService,
     private iconRegistry: MatIconRegistry,
@@ -81,6 +83,12 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 
   drop(event: CdkDragDrop<object[]>) {
     moveItemInArray(this.menuLinks, event.previousIndex, event.currentIndex);
+  }
+
+  toggleChildLinksVisibility(link) {
+    if (link.children) {
+      link.expanded = !link.expanded;
+    }
   }
 
   updateVisibleMenuItems(query) {
