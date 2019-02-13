@@ -39,8 +39,8 @@ export class AppearanceService {
 
   constructor() {
     this.storage = window.localStorage;
-    const data = JSON.parse(this.storage.getItem(STORAGE_KEY));
-    this.storage.setItem(STORAGE_KEY, JSON.stringify(data || {}));
+    const data = JSON.parse(this.storage.getItem(STORAGE_KEY)) || {};
+    this.storage.setItem(STORAGE_KEY, JSON.stringify(data));
     this.currentTheme.next(data && data.currentTheme ? data.currentTheme : this.currentTheme.getValue());
     this.darkMode.next(data.darkMode);
     this.themeClass.next(this.getThemeClass());
