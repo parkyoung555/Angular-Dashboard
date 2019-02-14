@@ -7,8 +7,15 @@
         color: map-get($_theme-foreground, text);
     }
 
-    .cdk-drag-placeholder,
-    .drag-placeholder {
-        background-color: map-get($_theme-foreground, divider);
+    section {
+
+        &.expanded {
+            box-shadow: inset 0 0 0 1px map-get($_theme-foreground, divider);
+            color: map-get($_theme-foreground, text);
+        }
+    }
+
+    .mat-sidenav {
+        //color: map-get($_theme-foreground, secondary-text);
     }
 }

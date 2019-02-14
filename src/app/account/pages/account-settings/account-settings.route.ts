@@ -7,7 +7,7 @@ export const accountSettingsRoute: Route = {
   data: {
     title: 'Personal info',
     icon: 'person',
-    includeInSideNavigation: 1,
+    // includeInSideNavigation: 1,
     includeInUserMenu: 1
   }
 };

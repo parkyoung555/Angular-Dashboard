@@ -7,7 +7,7 @@ export const appearanceSettingsRoute: Route = {
   data: {
     title: 'Appearance',
     icon: 'visibility',
-    includeInSideNavigation: 1,
+    // includeInSideNavigation: 1,
     includeInUserMenu: 2
   }
 };
