@@ -89,11 +89,18 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.currentBaseRoute = event.urlAfterRedirects.replace(/^\/|\/$/g, '').split('/')[0];
+      for (let i = 0, len = this.visibleMenuLinks.length; i < len; i++) {
+        if (this.visibleMenuLinks[i].children && this.visibleMenuLinks[i].path === this.currentBaseRoute) {
+          this.visibleMenuLinks[i].expanded = true;
+          break;
+        }
+      }
     });
   }
 
   drop(event: CdkDragDrop<object[]>) {
-    moveItemInArray(this.menuLinks, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.visibleMenuLinks, event.previousIndex, event.currentIndex);
+    this.navigationService.setMenuItemPositions(this.visibleMenuLinks);
   }
 
   toggleChildLinksVisibility(link) {

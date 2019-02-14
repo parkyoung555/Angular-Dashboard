@@ -19,7 +19,7 @@
     <div class="links" fxLayout="column" fxFlex="1 1 auto" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-empty-message icon="menu" *ngIf="!visibleMenuLinks.length">No menu items found.</app-empty-message>
         <ng-container *ngFor="let link of visibleMenuLinks">
-            <section fxLayout="column" fxFlex="0 0 auto" [class.expanded]="link.children && (link.expanded || link.path === currentBaseRoute)" cdkDrag>
+            <section fxLayout="column" fxFlex="0 0 auto" [class.expanded]="link.expanded" cdkDrag>
                 <button *ngIf="!link.children; else noChildrenLink"
                     mat-button
                     fxFlex="1 0 auto"
@@ -45,7 +45,7 @@
                         </span>
                     </button>
                 </ng-template>
-                <section fxLayout="column" fxFlex="0 0 auto" *ngIf="link.children && (link.expanded || link.path === currentBaseRoute)">
+                <section fxLayout="column" fxFlex="0 0 auto" *ngIf="link.expanded">
                     <button *ngFor="let childLink of link.children"
                             mat-button
                             fxFlex="0 0 auto"

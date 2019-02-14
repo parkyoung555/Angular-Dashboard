@@ -28,7 +28,8 @@ export class NavigationService {
 
   getMenuLinks(flat = false) {
     const routes = this.router.config,
-      res: NavigationItemModel[] = [];
+      res: NavigationItemModel[] = [],
+      positions = this.getMenuItemPositions();
     let parentItem, childMenuItem;
 
     for (const route of routes) {
@@ -36,11 +37,12 @@ export class NavigationService {
         parentItem = {
           icon: route.data.icon || defaultIcon,
           path: route.path,
-          position: route.data.includeInSideNavigation,
+          position: positions[route.path] !== void(0) ? positions[route.path] : route.data.includeInSideNavigation,
           title: route.data.title
         };
 
         if (route.children) {
+          childMenuItem = void(0);
           for (const childRoute of route.children) {
             if (childRoute.data && childRoute.data.includeInSideNavigation !== void(0)) {
               childMenuItem = {
@@ -54,6 +56,7 @@ export class NavigationService {
                 parentItem.children.push(childMenuItem);
               } else {
                 childMenuItem.position = parentItem.position;
+                childMenuItem.title = `${route.data.title} / ${childMenuItem.title}`;
                 res.push(childMenuItem);
               }
             }
@@ -62,13 +65,32 @@ export class NavigationService {
           if (!flat && parentItem.children) {
             parentItem.children.sort((a, b) => a.position - b.position );
           }
+
+          if (flat && childMenuItem) {
+            parentItem = void(0);
+          }
         }
 
-        res.push(parentItem);
+        if (parentItem) {
+          res.push(parentItem);
+        }
       }
     }
 
     return res.sort((a, b) => a.position - b.position );
+  }
+
+  setMenuItemPositions(menuItems: Array<NavigationItemModel>) {
+    const data = JSON.parse(this.storage.getItem(storageKey));
+    data.sideNavigationOrder = data.sideNavigationOrder || {};
+    for (let i = 0, len = menuItems.length; i < len; i++) {
+      data.sideNavigationOrder[menuItems[i].path] = i;
+    }
+    localStorage.setItem(storageKey, JSON.stringify(data));
+  }
+
+  getMenuItemPositions() {
+    return JSON.parse(this.storage.getItem(storageKey)).sideNavigationOrder || {};
   }
 
   toggleLock() {

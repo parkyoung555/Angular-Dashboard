@@ -123,6 +123,7 @@
             margin: $layout-unit__base 0 0;
 
             > button[role="menuitem"] {
+                font-weight: 400;
 
                 &:not(:last-child) {
                     margin: 0 0 $layout-unit__base;

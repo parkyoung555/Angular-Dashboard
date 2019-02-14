@@ -13,6 +13,10 @@
             box-shadow: inset 0 0 0 1px map-get($_theme-foreground, divider);
             color: map-get($_theme-foreground, text);
         }
+
+        section {
+            color: map-get($_theme-foreground, secondary-text);
+        }
     }
 
     .mat-sidenav {
