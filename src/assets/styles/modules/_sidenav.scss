@@ -1,3 +1,5 @@
+@import "~src/assets/styles/modules/variables";
+
 @mixin sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
 
     .cdk-drag-preview {
@@ -5,10 +7,19 @@
         color: map-get($_theme-foreground, text);
     }
 
-    .mat-sidenav-container {
+    section {
 
-        .mat-sidenav {
-
+        &.expanded {
+            box-shadow: inset 0 0 0 1px map-get($_theme-foreground, divider);
+            color: map-get($_theme-foreground, text);
         }
+
+        section {
+            color: map-get($_theme-foreground, secondary-text);
+        }
+    }
+
+    .mat-sidenav {
+        //color: map-get($_theme-foreground, secondary-text);
     }
 }

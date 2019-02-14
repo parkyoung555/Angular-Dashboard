@@ -6,6 +6,8 @@ import {NavigationService} from '../../services/navigation.service';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {Subscription} from 'rxjs';
 import {NavigationItemModel} from '../../models/navigation-item.model';
+import {NavigationEnd, Router} from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 const navigationBreakpoints = {
   large: 1400,
@@ -26,8 +28,10 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 
   appName: string;
   brandLetter: string;
+  currentBaseRoute: string;
   menuItemSearchQuery: string;
   menuLinks: Array<NavigationItemModel>;
+  menuLinksFlat: Array<NavigationItemModel>;
   visibleMenuLinks: Array<NavigationItemModel>;
   navLockedOpen: boolean;
   searchFocused: boolean;
@@ -40,8 +44,10 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 
   private breakpointObserverSubscription: Subscription;
   private navigationServiceLockedOpenSubscription: Subscription;
+  private routerSubscription: Subscription;
 
   constructor(
+    private router: Router,
     private breakpointObserver: BreakpointObserver,
     private navigationService: NavigationService,
     private iconRegistry: MatIconRegistry,
@@ -70,6 +76,7 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.menuLinks = this.navigationService.getMenuLinks();
+    this.menuLinksFlat = this.navigationService.getMenuLinks(true);
     this.visibleMenuLinks = this.menuLinks;
 
     this.navLockedOpen = this.navigationService.isLocked();
@@ -77,17 +84,37 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
     this.navigationServiceLockedOpenSubscription = this.navigationService.lockedOpen.subscribe(lockedOpen => {
       this.navLockedOpen = lockedOpen;
     });
+
+    this.routerSubscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.currentBaseRoute = event.urlAfterRedirects.replace(/^\/|\/$/g, '').split('/')[0];
+      for (let i = 0, len = this.visibleMenuLinks.length; i < len; i++) {
+        if (this.visibleMenuLinks[i].children && this.visibleMenuLinks[i].path === this.currentBaseRoute) {
+          this.visibleMenuLinks[i].expanded = true;
+          break;
+        }
+      }
+    });
   }
 
   drop(event: CdkDragDrop<object[]>) {
-    moveItemInArray(this.menuLinks, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.visibleMenuLinks, event.previousIndex, event.currentIndex);
+    this.navigationService.setMenuItemPositions(this.visibleMenuLinks);
+  }
+
+  toggleChildLinksVisibility(link) {
+    if (link.children) {
+      link.expanded = !link.expanded;
+    }
   }
 
   updateVisibleMenuItems(query) {
     let links: Array<NavigationItemModel>;
-    if (query) {
-      links = this.menuLinks.filter(link => {
-        return link.title.toLowerCase().indexOf(query.toLowerCase()) > -1;
+
+    if (query && query.trim()) {
+      links = this.menuLinksFlat.filter(link => {
+        return link.title.toLowerCase().indexOf(query.trim().toLowerCase()) > -1;
       });
     } else {
       links = this.menuLinks;
@@ -110,6 +137,7 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     this.breakpointObserverSubscription.unsubscribe();
     this.navigationServiceLockedOpenSubscription.unsubscribe();
+    this.routerSubscription.unsubscribe();
   }
 
   private resetNavigationSearchInput() {

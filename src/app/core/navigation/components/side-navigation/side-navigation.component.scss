@@ -13,11 +13,6 @@
     height: 100%;
 }
 
-.links {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
 .mat-sidenav-container {
 
     &.#{$navigation__hovered__class},
@@ -114,8 +109,40 @@
     }
 }
 
+.links {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: $layout-unit__base 0;
+
+    > section {
+        border-radius: $roundness;
+        display: flex;
+        margin: 0 (($navigation__collapsed__width - $navigation-item__collapsed__width) / 2) $layout-unit__base;
+
+        > section {
+            margin: $layout-unit__base 0 0;
+
+            > button[role="menuitem"] {
+                font-weight: 400;
+
+                &:not(:last-child) {
+                    margin: 0 0 $layout-unit__base;
+                }
+            }
+        }
+
+        &.expanded {
+            //border-style: solid;
+            //border-width: 1px;
+        }
+    }
+
+    &.cdk-drop-list-dragging section:not(.cdk-drag-placeholder) {
+        transition: $swift-ease-out;
+    }
+}
+
 button {
-    //color: $navigation__primary-text__color;
 
     &[role="menuitem"] {
         height: $navigation-item__height;
@@ -124,12 +151,7 @@ button {
         text-align: left;
 
         &:not(.cdk-drag-preview) {
-            margin: $layout-unit__xs (($navigation__collapsed__width - $navigation-item__collapsed__width) / 2);
             max-width: $navigation-item__collapsed__width;
-        }
-
-        &.active {
-            //color: $navigation__accent__color;
         }
 
         .mat-icon {
@@ -140,7 +162,6 @@ button {
             }
 
             &.cdk-drag-handle {
-                //color: $navigation__disabled-text__color;
                 display: none;
                 overflow: hidden;
                 transition: $swift-ease-out;
@@ -148,7 +169,6 @@ button {
 
             &:first-child:not(.cdk-drag-handle)::before {
                 @include mat-elevation(4);
-                //background-color: $navigation__warn__color;
                 border-radius: 50%;
                 content: '';
                 height: 8px;
@@ -165,14 +185,6 @@ button {
 
                 &.cdk-drag-handle {
                     display: unset;
-
-                    &:hover {
-                        //color: $navigation__secondary-text__color;
-                    }
-
-                    &:active {
-                        //color: $navigation__primary-text__color;
-                    }
                 }
             }
         }
@@ -181,22 +193,29 @@ button {
 
 .cdk-drag-placeholder,
 .drag-placeholder {
-    //background-color: $navigation__border__color;
-    //border: 1px dashed $navigation__border__color;
-    border-radius: $roundness;
-    display: block;
-    height: 36px;
-    margin: $layout-unit__xs $layout-unit__base;
 
-    * {
-        opacity: 0;
+    button[role="menuitem"] {
+        opacity: .4;
     }
 }
 
 .cdk-drag-preview {
     @include mat-elevation(8);
-    //background-color: $navigation__background-color;
+    border-radius: $roundness;
     cursor: move;
+    display: flex;
+    height: auto !important;
+
+    button[role="menuitem"] {
+        max-width: unset;
+
+        + section {
+
+            > button[role="menuitem"] {
+                margin: $layout-unit__base 0 0;
+            }
+        }
+    }
 
     .cdk-drag-handle {
         display: unset !important;
@@ -205,12 +224,4 @@ button {
 
 .cdk-drag-animating {
     transition: $swift-ease-out;
-}
-
-.links {
-    padding: $layout-unit__xs 0;
-
-    &.cdk-drop-list-dragging button[role="menuitem"]:not(.cdk-drag-placeholder) {
-        transition: $swift-ease-out;
-    }
 }

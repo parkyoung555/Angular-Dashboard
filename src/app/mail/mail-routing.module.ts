@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MailComponent} from './pages/mail.component';
+import {inboxMailRoute} from './pages/inbox-mail/inbox-mail.route';
+import {trashMailRoute} from './pages/trash-mail/trash-mail.route';
+import {flaggedMailRoute} from './pages/flagged-mail/flagged-mail.route';
 
 const routes: Routes = [
   {
@@ -10,7 +13,12 @@ const routes: Routes = [
       title: 'Mail',
       icon: 'mail',
       includeInSideNavigation: 1
-    }
+    },
+    children: [
+      flaggedMailRoute,
+      inboxMailRoute,
+      trashMailRoute
+    ]
   }
 ];
 
