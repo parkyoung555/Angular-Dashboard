@@ -30,7 +30,7 @@
                     <span fxLayout="row" fxLayoutAlign="start center">
                         <mat-icon>{{link.icon}}</mat-icon>
                         <span fxFlex="1 1 auto">{{link.title}}</span>
-                        <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag"></mat-icon>
+                        <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
                     </span>
                 </button>
                 <ng-template #noChildrenLink>
@@ -41,7 +41,7 @@
                         <span fxLayout="row" fxLayoutAlign="start center">
                             <mat-icon>{{link.icon}}</mat-icon>
                             <span fxFlex="1 1 auto">{{link.title}}</span>
-                            <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag"></mat-icon>
+                            <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
                         </span>
                     </button>
                 </ng-template>

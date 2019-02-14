@@ -111,9 +111,10 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 
   updateVisibleMenuItems(query) {
     let links: Array<NavigationItemModel>;
-    if (query) {
+
+    if (query && query.trim()) {
       links = this.menuLinksFlat.filter(link => {
-        return link.title.toLowerCase().indexOf(query.toLowerCase()) > -1;
+        return link.title.toLowerCase().indexOf(query.trim().toLowerCase()) > -1;
       });
     } else {
       links = this.menuLinks;

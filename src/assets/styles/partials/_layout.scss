@@ -9,3 +9,8 @@
     margin-right: auto;
     max-width: $layout__max-width;
 }
+
+[hidden] {
+    display: none !important;
+    pointer-events: none;
+}
