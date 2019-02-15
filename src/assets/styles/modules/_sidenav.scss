@@ -19,6 +19,13 @@
         }
     }
 
+    .mat-icon {
+
+        &.dropdown-arrow {
+            color: map-get($_theme-foreground, secondary-text);
+        }
+    }
+
     .mat-sidenav {
         //color: map-get($_theme-foreground, secondary-text);
     }

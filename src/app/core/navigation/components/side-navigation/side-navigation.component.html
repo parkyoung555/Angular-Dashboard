@@ -20,7 +20,7 @@
         <app-empty-message icon="menu" *ngIf="!visibleMenuLinks.length">No menu items found.</app-empty-message>
         <ng-container *ngFor="let link of visibleMenuLinks">
             <section fxLayout="column" fxFlex="0 0 auto" [class.expanded]="link.expanded" cdkDrag>
-                <button *ngIf="!link.children; else noChildrenLink"
+                <button *ngIf="!link.children; else hasChildrenLink"
                     mat-button
                     fxFlex="1 0 auto"
                     role="menuitem"
@@ -33,14 +33,16 @@
                         <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
                     </span>
                 </button>
-                <ng-template #noChildrenLink>
+                <ng-template #hasChildrenLink>
                     <button (click)="toggleChildLinksVisibility(link)"
                             mat-button
                             fxFlex="1 0 auto"
                             role="menuitem">
                         <span fxLayout="row" fxLayoutAlign="start center">
                             <mat-icon>{{link.icon}}</mat-icon>
-                            <span fxFlex="1 1 auto">{{link.title}}</span>
+                            <span>{{link.title}}</span>
+                            <mat-icon class="dropdown-arrow">arrow_drop_down</mat-icon>
+                            <span fxFlex="1 1 auto"></span>
                             <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
                         </span>
                     </button>
@@ -62,7 +64,7 @@
             </section>
         </ng-container>
     </div>
-    <mat-toolbar class="footer">
+    <mat-toolbar class="footer" [hidden]="_sideNavMode === 'side' && !navHovered && !navLockedOpen">
         <mat-toolbar-row>
             <div class="outline search mat-body-1" fxLayout="row" fxLayoutAlign="start center" [class.focused]="searchFocused">
                 <mat-icon>search</mat-icon>
