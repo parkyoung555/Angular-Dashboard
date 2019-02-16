@@ -50,8 +50,16 @@
     width: 100%;
 
     .mat-icon {
-        @include center-vertically-absolute();
-        margin: 0 $layout-unit__base;
+
+        &:first-child {
+            @include center-vertically-absolute();
+            margin: 0 $layout-unit__base;
+        }
+
+        &:last-child {
+            cursor: pointer;
+            margin: 0 $layout-unit__base 0 0;
+        }
     }
 
     input {

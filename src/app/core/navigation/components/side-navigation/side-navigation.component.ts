@@ -112,6 +112,11 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
+  clearMenuSearch() {
+    this.menuItemSearchQuery = void(0);
+    this.updateVisibleMenuItems(this.menuItemSearchQuery);
+  }
+
   drop(event: CdkDragDrop<object[]>) {
     moveItemInArray(this.visibleMenuLinks, event.previousIndex, event.currentIndex);
     this.navigationService.setMenuItemPositions(this.visibleMenuLinks);
@@ -155,8 +160,7 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private resetNavigationSearchInput() {
-    this.menuItemSearchQuery = void(0);
-    this.updateVisibleMenuItems(this.menuItemSearchQuery);
+    this.clearMenuSearch();
     this.navigationItemSearchInput.nativeElement.blur();
   }
 }

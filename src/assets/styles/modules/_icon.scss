@@ -1,0 +1,9 @@
+@mixin icon-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .mat-icon {
+
+        &.signifier {
+            //color: map-get($_theme-foreground, disabled-text);
+        }
+    }
+}

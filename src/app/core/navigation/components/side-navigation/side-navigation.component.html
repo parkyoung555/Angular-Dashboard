@@ -67,10 +67,11 @@
     <mat-toolbar class="footer" [hidden]="_sideNavMode === 'side' && !navHovered && !navLockedOpen">
         <mat-toolbar-row>
             <div class="outline search mat-body-1" fxLayout="row" fxLayoutAlign="start center" [class.focused]="searchFocused">
-                <mat-icon>search</mat-icon>
+                <mat-icon class="signifier">search</mat-icon>
                 <input #navigationItemSearchInput fxFlex="1 1 auto" type="text" placeholder="Search for menu item"
                        (ngModelChange)="updateVisibleMenuItems($event)"
                        [(ngModel)]="menuItemSearchQuery" (focus)="searchFocused = true" (blur)="searchFocused = false" />
+                <mat-icon (click)="clearMenuSearch()" *ngIf="menuItemSearchQuery">close</mat-icon>
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
