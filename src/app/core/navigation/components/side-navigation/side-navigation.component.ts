@@ -8,6 +8,7 @@ import {Subscription} from 'rxjs';
 import {NavigationItemModel} from '../../models/navigation-item.model';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 const navigationBreakpoints = {
   large: 1400,
@@ -22,7 +23,20 @@ const sideNavModes = {
 @Component({
   selector: 'app-side-navigation',
   templateUrl: './side-navigation.component.html',
-  styleUrls: ['./side-navigation.component.scss']
+  styleUrls: ['./side-navigation.component.scss'],
+  animations: [
+    trigger('accordion', [
+      state('expand', style({
+        overflow: 'hidden',
+        height: '*'
+      })),
+      state('collapse', style({
+        overflow: 'hidden',
+        height: 0
+      })),
+      transition('collapse <=> expand', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
+    ])
+  ]
 })
 export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 

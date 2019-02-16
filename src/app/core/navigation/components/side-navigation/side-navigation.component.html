@@ -47,7 +47,7 @@
                         </span>
                     </button>
                 </ng-template>
-                <section fxLayout="column" fxFlex="0 0 auto" *ngIf="link.expanded">
+                <section fxLayout="column" fxFlex="0 0 auto" [@accordion]="link.expanded ? 'expand' : 'collapse'">
                     <button *ngFor="let childLink of link.children"
                             mat-button
                             fxFlex="0 0 auto"
