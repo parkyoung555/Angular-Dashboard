@@ -5,7 +5,7 @@ import {RouteNavigationData} from '../../../core/navigation/models/navigation-it
 const routeNavigationData = new RouteNavigationData({
   title: 'Trash',
   icon: 'delete',
-  showInNavigation: 1
+  showInNavigation: 3
 });
 
 export const trashMailRoute: Route = {

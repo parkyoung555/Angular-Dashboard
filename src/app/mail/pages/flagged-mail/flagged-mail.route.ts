@@ -5,7 +5,7 @@ import {RouteNavigationData} from '../../../core/navigation/models/navigation-it
 const routeNavigationData = new RouteNavigationData({
   title: 'Flagged',
   icon: 'flag',
-  showInNavigation: 1
+  showInNavigation: 2
 });
 
 export const flaggedMailRoute: Route = {
