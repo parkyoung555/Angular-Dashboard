@@ -23,7 +23,9 @@ const routes: Routes = [
     children: [
       flaggedMailRoute,
       inboxMailRoute,
-      trashMailRoute
+      trashMailRoute,
+
+      { path: '**', redirectTo: inboxMailRoute.path, pathMatch: 'full' }
     ]
   }
 ];

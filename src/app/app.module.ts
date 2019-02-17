@@ -12,6 +12,7 @@ import {AccountModule} from './account/account.module';
 import {MailModule} from './mail/mail.module';
 import {InlineNavigationModule} from './core/navigation/components/inline-navigation/inline-navigation.module';
 import {PageTitleModule} from './core/title/components/page-title/page-title.module';
+import {TasksModule} from './tasks/tasks.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {PageTitleModule} from './core/title/components/page-title/page-title.mod
     MailModule,
     PageTitleModule,
     SettingsModule,
+    TasksModule,
 
     AppRoutingModule // Must be last since it contains "Catch All" route
   ],
