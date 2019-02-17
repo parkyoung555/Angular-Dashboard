@@ -1,5 +1,5 @@
 <button mat-button class="account-button" fxLayout="row" fxLayoutAlign="start center" [matMenuTriggerFor]="accountMenu">
-    <mat-icon>arrow_drop_down</mat-icon>
+    <mat-icon *ngIf="menuItems.length">arrow_drop_down</mat-icon>
     <span class="mat-body-2">{{name}}</span>
     <img alt="Profile picture" [src]="profileImageUrl" />
 </button>

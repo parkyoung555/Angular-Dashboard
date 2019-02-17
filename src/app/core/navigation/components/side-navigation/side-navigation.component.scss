@@ -137,26 +137,16 @@
         margin: 0 (($navigation__collapsed__width - $navigation-item__collapsed__width) / 2) $layout-unit__base;
 
         > section {
-            margin: $layout-unit__base 0 0;
+            //margin: $layout-unit__base 0 0;
 
             > button[role="menuitem"] {
-                font-weight: 400;
 
                 &:not(:last-child) {
                     margin: 0 0 $layout-unit__base;
                 }
-            }
-        }
 
-        &.expanded {
-
-            > button[role="menuitem"] {
-
-                .mat-icon {
-
-                    &.dropdown-arrow {
-                        transform: rotateX(-180deg);
-                    }
+                &:first-child {
+                    margin-top: $layout-unit__base;
                 }
             }
         }
@@ -164,6 +154,29 @@
 
     &.cdk-drop-list-dragging section:not(.cdk-drag-placeholder) {
         transition: $swift-ease-out;
+    }
+}
+
+section {
+
+    &.expanded {
+
+        > button[role="menuitem"] {
+
+            .mat-icon {
+
+                &.dropdown-arrow {
+                    transform: rotateX(-180deg);
+                }
+            }
+        }
+    }
+
+    > section {
+
+        > button[role="menuitem"] {
+            font-weight: 400;
+        }
     }
 }
 

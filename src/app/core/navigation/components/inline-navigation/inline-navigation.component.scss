@@ -1,0 +1,22 @@
+@import "~src/assets/styles/modules/variables";
+
+:host {
+    min-width: 200px;
+    padding: $layout-unit__md 0;
+    position: sticky;
+}
+
+.mat-nav-list {
+    padding: 0 0;
+
+    .mat-list-item {
+        border-radius: 0 $roundness $roundness 0;
+        height: $navigation-item__height;
+        margin: $layout-unit__base 0 0;
+        overflow: hidden;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}

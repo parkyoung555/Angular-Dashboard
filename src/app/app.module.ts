@@ -10,6 +10,8 @@ import { SettingsModule } from './settings/settings.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AccountModule} from './account/account.module';
 import {MailModule} from './mail/mail.module';
+import {InlineNavigationModule} from './core/navigation/components/inline-navigation/inline-navigation.module';
+import {PageTitleModule} from './core/title/components/page-title/page-title.module';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import {MailModule} from './mail/mail.module';
     CoreModule,
     FlexLayoutModule,
     DashboardModule,
+    InlineNavigationModule,
     MatSidenavModule,
     MailModule,
+    PageTitleModule,
     SettingsModule,
 
     AppRoutingModule // Must be last since it contains "Catch All" route

@@ -17,27 +17,14 @@
         </mat-toolbar-row>
     </mat-toolbar>
     <div class="links" fxLayout="column" fxFlex="1 1 auto" cdkDropList (cdkDropListDropped)="drop($event)">
-        <app-empty-message icon="menu" *ngIf="!visibleMenuLinks.length">No menu items found.</app-empty-message>
+        <app-empty-message icon="menu" *ngIf="!visibleMenuLinks.length && menuLinks.length">No menu items found.</app-empty-message>
         <ng-container *ngFor="let link of visibleMenuLinks">
             <section fxLayout="column" fxFlex="0 0 auto" [class.expanded]="link.expanded" cdkDrag>
-                <button *ngIf="!link.children; else hasChildrenLink"
-                    mat-button
-                    fxFlex="1 0 auto"
-                    role="menuitem"
-                    routerLinkActive="active"
-                    #rla="routerLinkActive"
-                    [routerLink]="link.path">
-                    <span fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>{{link.icon}}</mat-icon>
-                        <span fxFlex="1 1 auto">{{link.title}}</span>
-                        <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
-                    </span>
-                </button>
-                <ng-template #hasChildrenLink>
-                    <button (click)="toggleChildLinksVisibility(link)"
-                            mat-button
-                            fxFlex="1 0 auto"
-                            role="menuitem">
+                <button *ngIf="link.displayChildrenAs === 'ACCORDION' && link.children?.length ; else linkButton"
+                        (click)="toggleChildLinksVisibility(link)"
+                        mat-button
+                        fxFlex="1 0 auto"
+                        role="menuitem">
                         <span fxLayout="row" fxLayoutAlign="start center">
                             <mat-icon>{{link.icon}}</mat-icon>
                             <span>{{link.title}}</span>
@@ -45,26 +32,41 @@
                             <span fxFlex="1 1 auto"></span>
                             <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
                         </span>
-                    </button>
-                </ng-template>
-                <section fxLayout="column" fxFlex="0 0 auto" [@accordion]="link.expanded ? 'expand' : 'collapse'">
-                    <button *ngFor="let childLink of link.children"
-                            mat-button
-                            fxFlex="0 0 auto"
+                </button>
+                <ng-template #linkButton>
+                    <button mat-button
+                            fxFlex="1 0 auto"
                             role="menuitem"
                             routerLinkActive="active"
                             #rla="routerLinkActive"
-                            [routerLink]="childLink.path">
+                            [routerLink]="link.path">
+                    <span fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon>{{link.icon}}</mat-icon>
+                        <span fxFlex="1 1 auto" [innerHTML]="link.title | highlightText: menuItemSearchQuery"></span>
+                        <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" [hidden]="menuItemSearchQuery"></mat-icon>
+                    </span>
+                    </button>
+                </ng-template>
+                <ng-container *ngIf="link.children?.length && link.displayChildrenAs === 'ACCORDION'">
+                    <section fxLayout="column" fxFlex="0 0 auto" [@accordion]="link.expanded ? 'expand' : 'collapse'">
+                        <button *ngFor="let childLink of link.children"
+                                mat-button
+                                fxFlex="0 0 auto"
+                                role="menuitem"
+                                routerLinkActive="active"
+                                #rla="routerLinkActive"
+                                [routerLink]="childLink.path">
                         <span fxLayout="row" fxLayoutAlign="start center">
                             <mat-icon>{{childLink.icon}}</mat-icon>
                             <span fxFlex="1 1 auto">{{childLink.title}}</span>
                         </span>
-                    </button>
-                </section>
+                        </button>
+                    </section>
+                </ng-container>
             </section>
         </ng-container>
     </div>
-    <mat-toolbar class="footer" [hidden]="_sideNavMode === 'side' && !navHovered && !navLockedOpen">
+    <mat-toolbar class="footer" [hidden]="!menuLinks.length || (_sideNavMode === 'side' && !navHovered && !navLockedOpen)">
         <mat-toolbar-row>
             <div class="outline search mat-body-1" fxLayout="row" fxLayoutAlign="start center" [class.focused]="searchFocused">
                 <mat-icon class="signifier">search</mat-icon>

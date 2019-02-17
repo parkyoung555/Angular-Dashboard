@@ -2,6 +2,6 @@ export interface RouteDataModel {
   title: string;
   icon: string;
   includeInHeader: number;
-  includeInSideNavigation: number;
+  showInNavigation: number;
   theme: string;
 }

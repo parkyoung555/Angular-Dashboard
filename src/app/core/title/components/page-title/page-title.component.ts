@@ -23,7 +23,7 @@ export class PageTitleComponent implements OnInit, OnDestroy {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       const activeRouteData = this.route.snapshot.firstChild ? this.route.snapshot.firstChild.data : this.route.snapshot.data;
-      this.title = activeRouteData.title;
+      this.title = activeRouteData.navigation ? activeRouteData.navigation.title : 'Page';
     });
   }
 

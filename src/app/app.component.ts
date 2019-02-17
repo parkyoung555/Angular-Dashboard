@@ -1,19 +1,22 @@
-import {Component, OnInit, OnDestroy, Renderer2} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {NavigationService} from './core/navigation/services/navigation.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {NavigationStart, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {AppearanceService} from './core/appearance/services/appearance.service';
 import {Subscription} from 'rxjs';
+import {NavigationItemModel} from './core/navigation/models/navigation-item.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  inlineNavLinks: Array<NavigationItemModel>;
   sideNavClosed: boolean;
   navHovered: boolean;
   navLockedOpen: boolean;
@@ -23,7 +26,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private appearanceServiceThemeClassSubscription: Subscription;
   private navigationServiceIsLockedSubscription: Subscription;
-  private routerSubscription: Subscription;
+  private previousRouteEvent: NavigationEnd;
+  private routerSubscriptionNavStart: Subscription;
+  private routerSubscriptionNavEnd: Subscription;
 
   constructor(
     private renderer: Renderer2,
@@ -31,7 +36,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private navigationService: NavigationService,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     iconRegistry.addSvgIcon(
@@ -50,12 +56,30 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.routerSubscription = this.router.events.pipe(
+    this.routerSubscriptionNavStart = this.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(() => {
       if (!this.navigationService.isLocked()) {
         this.navHovered = false;
       }
+    });
+
+    this.routerSubscriptionNavEnd = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const route = this.route.snapshot.firstChild,
+        lastParentPath = this.previousRouteEvent ? this.navigationService.getParentRoutePath(this.previousRouteEvent) : '',
+        currentParentPath = this.navigationService.getParentRoutePath(event);
+
+      if (route.data && route.data.navigation && route.data.navigation.displayChildrenAs === 'INLINE') {
+        if (lastParentPath !== currentParentPath) {
+          this.inlineNavLinks = this.navigationService.getChildMenuLinks(currentParentPath);
+        }
+      } else {
+        this.inlineNavLinks = [];
+      }
+
+      this.previousRouteEvent = event;
     });
 
     // Theme classes
@@ -67,16 +91,15 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.appearanceServiceThemeClassSubscription.unsubscribe();
     this.navigationServiceIsLockedSubscription.unsubscribe();
-    this.routerSubscription.unsubscribe();
+    this.routerSubscriptionNavStart.unsubscribe();
+    this.routerSubscriptionNavEnd.unsubscribe();
   }
 
   private updateBodyThemeClass(themeClass: string) {
     if (this.themeClass) {
       this.renderer.removeClass(document.body, this.themeClass);
     }
-    
     this.themeClass = themeClass;
-
     if (this.themeClass) {
       this.renderer.addClass(document.body, this.themeClass);
     }

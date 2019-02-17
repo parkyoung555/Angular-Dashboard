@@ -29,4 +29,9 @@
     .mat-sidenav {
         //color: map-get($_theme-foreground, secondary-text);
     }
+
+    mark {
+        background-color: transparent;
+        color: map-get($_theme-foreground, disabled-text);
+    }
 }

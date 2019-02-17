@@ -1,4 +1,16 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -34,9 +46,10 @@ const sideNavModes = {
         overflow: 'hidden',
         height: 0
       })),
-      transition('collapse <=> expand', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
+      transition('expand <=> collapse', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -102,9 +115,14 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
     this.routerSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.currentBaseRoute = event.urlAfterRedirects.replace(/^\/|\/$/g, '').split('/')[0];
+      this.currentBaseRoute = this.navigationService.getParentRoutePath(event);
+
       for (let i = 0, len = this.visibleMenuLinks.length; i < len; i++) {
-        if (this.visibleMenuLinks[i].children && this.visibleMenuLinks[i].path === this.currentBaseRoute) {
+        if (
+          this.visibleMenuLinks[i].displayChildrenAs === 'ACCORDION' &&
+          this.visibleMenuLinks[i].children &&
+          this.visibleMenuLinks[i].path === this.currentBaseRoute
+        ) {
           this.visibleMenuLinks[i].expanded = true;
           break;
         }

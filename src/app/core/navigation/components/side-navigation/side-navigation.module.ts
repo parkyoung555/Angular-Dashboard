@@ -8,9 +8,13 @@ import {RouterModule} from '@angular/router';
 import {DynamicLogoIconModule} from '../../../logo/components/dynamic-logo-icon/dynamic-logo-icon.module';
 import {FormsModule} from '@angular/forms';
 import {EmptyMessageModule} from '../../../empty-message/components/empty-message/empty-message.module';
+import {HighlightTextPipe} from '../../pipes/highlight-text.pipe';
 
 @NgModule({
-  declarations: [SideNavigationComponent],
+  declarations: [
+    SideNavigationComponent,
+    HighlightTextPipe
+  ],
   imports: [
     CommonModule,
     DragDropModule,

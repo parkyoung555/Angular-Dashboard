@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {Router} from '@angular/router';
-import {NavigationItemModel} from '../models/navigation-item.model';
+import {PRIMARY_OUTLET, Route, Router, RouterEvent} from '@angular/router';
+import {NavigationItemModel, RouteNavigationDataModel} from '../models/navigation-item.model';
 
 const storageKey = 'navigation';
 const defaultIcon = 'pageview';
@@ -26,37 +26,49 @@ export class NavigationService {
     }
   }
 
+  getParentRoutePath(route: RouterEvent) {
+    return this.router.parseUrl(route.url).root.children[PRIMARY_OUTLET].segments[0].path;
+  }
+
   getMenuLinks(flat = false) {
     const routes = this.router.config,
       res: NavigationItemModel[] = [],
       positions = this.getMenuItemPositions();
-    let parentItem, childMenuItem;
+    let parentItem: NavigationItemModel,
+      childMenuItem: NavigationItemModel,
+      routeNavigationData: RouteNavigationDataModel,
+      childRouteNavigationData: RouteNavigationDataModel;
 
     for (const route of routes) {
-      if (route.data && route.data.includeInSideNavigation !== void(0)) {
+      if (route.data && route.data.navigation && route.data.navigation.showInNavigation !== void(0)) {
+        routeNavigationData = route.data.navigation;
+
         parentItem = {
-          icon: route.data.icon || defaultIcon,
+          icon: routeNavigationData.icon || defaultIcon,
           path: route.path,
-          position: positions[route.path] !== void(0) ? positions[route.path] : route.data.includeInSideNavigation,
-          title: route.data.title
+          position: positions[route.path] !== void(0) ? positions[route.path] : routeNavigationData.showInNavigation,
+          title: routeNavigationData.title,
+          displayChildrenAs: routeNavigationData.displayChildrenAs
         };
 
         if (route.children) {
           childMenuItem = void(0);
           for (const childRoute of route.children) {
-            if (childRoute.data && childRoute.data.includeInSideNavigation !== void(0)) {
+            if (childRoute.data && childRoute.data.navigation && childRoute.data.navigation.showInNavigation !== void(0)) {
+              childRouteNavigationData = childRoute.data.navigation;
+
               childMenuItem = {
-                icon: childRoute.data.icon || defaultIcon,
+                icon: childRouteNavigationData.icon || defaultIcon,
                 path: `${route.path}/${childRoute.path}`,
-                position: childRoute.data.includeInSideNavigation,
-                title: childRoute.data.title
+                position: childRouteNavigationData.showInNavigation,
+                title: childRouteNavigationData.title
               };
               if (!flat) {
                 parentItem.children = parentItem.children || [];
                 parentItem.children.push(childMenuItem);
               } else {
                 childMenuItem.position = parentItem.position;
-                childMenuItem.title = `${route.data.title} / ${childMenuItem.title}`;
+                childMenuItem.title = `${routeNavigationData.title} / ${childMenuItem.title}`;
                 res.push(childMenuItem);
               }
             }
@@ -77,6 +89,34 @@ export class NavigationService {
       }
     }
 
+    return res.sort((a, b) => a.position - b.position );
+  }
+
+  getChildMenuLinks(pathName: string) {
+    const routes = this.router.config,
+      res: NavigationItemModel[] = [];
+    let parent: Route,
+      childRouteNavigationData: RouteNavigationDataModel;
+
+    for (const route of routes) {
+      if (route.path === pathName) {
+        parent = route;
+        break;
+      }
+    }
+    if (parent.children) {
+      for (const children of parent.children) {
+        if (children.data && children.data.navigation && children.data.navigation.showInNavigation !== void(0)) {
+          childRouteNavigationData = children.data.navigation;
+          res.push({
+            icon: childRouteNavigationData.icon || defaultIcon,
+            path: `${parent.path}/${children.path}`,
+            position: childRouteNavigationData.showInNavigation,
+            title: childRouteNavigationData.title
+          });
+        }
+      }
+    }
     return res.sort((a, b) => a.position - b.position );
   }
 

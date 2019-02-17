@@ -20,6 +20,7 @@ $account-menu__image-size: 24px;
     img {
         border-radius: 50%;
         height: $account-menu__image-size;
+        margin: 0 0 0 $layout-unit__base;
         min-height: $account-menu__image-size;
         min-width: $account-menu__image-size;
         width: $account-menu__image-size;
@@ -30,10 +31,6 @@ $account-menu__image-size: 24px;
 
         + span {
             margin: 0 0 0 $layout-unit__sm;
-
-            + img {
-                margin: 0 0 0 $layout-unit__base;
-            }
         }
     }
 }
