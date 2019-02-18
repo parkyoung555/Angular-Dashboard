@@ -27,7 +27,11 @@ export class NavigationService {
   }
 
   getParentRoutePath(route: RouterEvent) {
-    return this.router.parseUrl(route.url).root.children[PRIMARY_OUTLET].segments[0].path;
+    const parsedUrl = this.router.parseUrl(route.url);
+    if (!parsedUrl.root.numberOfChildren) {
+      return '';
+    }
+    return parsedUrl.root.children[PRIMARY_OUTLET].segments[0].path;
   }
 
   getMenuLinks(flat = false) {
