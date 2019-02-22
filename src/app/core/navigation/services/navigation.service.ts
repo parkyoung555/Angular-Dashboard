@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {PRIMARY_OUTLET, Route, Router, RouterEvent} from '@angular/router';
 import {NavigationItemModel, RouteNavigationDataModel} from '../models/navigation-item.model';
+import {StorageService} from '../../storage/services/storage.service';
 
 const storageKey = 'navigation';
 const defaultIcon = 'pageview';
@@ -13,14 +14,12 @@ export class NavigationService {
 
   lockedOpen = new BehaviorSubject(false);
 
-  private storage: Storage;
-
   constructor(
-    private router: Router
+    private router: Router,
+    private storage: StorageService
   ) {
-    this.storage = window.localStorage;
-    this.storage.setItem(storageKey, JSON.stringify(JSON.parse(this.storage.getItem(storageKey)) || {}));
-    const data = JSON.parse(this.storage.getItem(storageKey));
+    const data = this.storage.getData(storageKey) || {};
+    this.storage.setData(storageKey, data);
     if (data.lockedOpen !== void(0)) {
       this.lockedOpen.next(data.lockedOpen);
     }
@@ -125,27 +124,26 @@ export class NavigationService {
   }
 
   setMenuItemPositions(menuItems: Array<NavigationItemModel>) {
-    const data = JSON.parse(this.storage.getItem(storageKey));
+    const data = this.storage.getData(storageKey);
     data.sideNavigationOrder = data.sideNavigationOrder || {};
     for (let i = 0, len = menuItems.length; i < len; i++) {
       data.sideNavigationOrder[menuItems[i].path] = i;
     }
-    localStorage.setItem(storageKey, JSON.stringify(data));
+    this.storage.setData(storageKey, data);
   }
 
   getMenuItemPositions() {
-    return JSON.parse(this.storage.getItem(storageKey)).sideNavigationOrder || {};
+    return this.storage.getData(storageKey).sideNavigationOrder || {};
   }
 
   toggleLock() {
-    // this.lockedOpen = !this.lockedOpen;
-    const data = JSON.parse(this.storage.getItem(storageKey)),
+    const data = this.storage.getData(storageKey),
       lockedOpen = !data.lockedOpen;
 
     this.lockedOpen.next(lockedOpen);
 
     data.lockedOpen = lockedOpen;
-    this.storage.setItem(storageKey, JSON.stringify(data));
+    this.storage.setData(storageKey, data);
 
     return this.lockedOpen.getValue();
   }
