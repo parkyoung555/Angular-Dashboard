@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {APP_THEMES, AppearanceService} from '../../services/appearance.service';
+import {appThemes, AppearanceService} from '../../services/appearance.service';
 import {AppTheme} from '../../models/appearance.models';
 import {Subscription} from 'rxjs';
 
@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs';
 })
 export class AppearanceSettingsComponent implements OnInit, OnDestroy {
 
-  themes = APP_THEMES;
+  themes = appThemes;
   currentTheme: string;
   darkMode: boolean;
 
