@@ -10,8 +10,7 @@ import {settingsHomeRoute} from './pages/settings-home/settings-home.route';
 const routeNavigationData = new RouteNavigationData({
   title: 'Settings',
   icon: 'settings',
-  showInNavigation: 10,
-  displayChildrenAs: 'INLINE'
+  showInNavigation: 10
 });
 
 const routes: Routes = [

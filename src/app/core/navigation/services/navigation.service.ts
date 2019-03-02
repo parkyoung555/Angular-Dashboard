@@ -113,7 +113,8 @@ export class NavigationService {
           childRouteNavigationData = children.data.navigation;
           res.push({
             icon: childRouteNavigationData.icon || defaultIcon,
-            path: `${parent.path}/${children.path}`,
+            // path: `${parent.path}/${children.path}`,
+            path: children.path,
             position: childRouteNavigationData.showInNavigation,
             title: childRouteNavigationData.title
           });

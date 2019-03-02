@@ -1,11 +1,15 @@
-<mat-nav-list *ngIf="inlineNavLinks?.length">
-    <a mat-list-item
-       *ngFor="let link of inlineNavLinks"
-       routerLinkActive="active"
-       #rla="routerLinkActive"
-       [routerLinkActiveOptions]="{exact: true}"
-       [routerLink]="link.path">
-        <mat-icon mat-list-icon>{{link.icon}}</mat-icon>
-        <h4 mat-line><span class="mat-body-2">{{link.title}}</span></h4>
-    </a>
-</mat-nav-list>
+<div class="nav-content">
+    <!-- TODO: Need to figure out implementation for main page action -->
+    <ng-content></ng-content>
+    <mat-nav-list *ngIf="inlineNavLinks?.length">
+        <a mat-list-item
+           *ngFor="let link of inlineNavLinks"
+           routerLinkActive="active"
+           #rla="routerLinkActive"
+           [routerLinkActiveOptions]="{exact: true}"
+           [routerLink]="link.path">
+            <mat-icon mat-list-icon>{{link.icon}}</mat-icon>
+            <h4 mat-line><span class="mat-body-2">{{link.title}}</span></h4>
+        </a>
+    </mat-nav-list>
+</div>

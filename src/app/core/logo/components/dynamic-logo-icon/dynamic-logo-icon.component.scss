@@ -1,4 +1,5 @@
 @import "~src/assets/styles/modules/theme";
+@import "~src/assets/styles/modules/typography";
 @import "~src/assets/styles/modules/variables";
 
 $logo__size: 24px;
@@ -8,7 +9,7 @@ i {
     border-radius: $roundness;
     //color: $navigation__background-color;
     display: inline-block;
-    font-family: 'Noto serif', serif;
+    font-family: #{$display-font-family};
     font-size: .95em;
     font-style: normal;
     font-weight: 700;

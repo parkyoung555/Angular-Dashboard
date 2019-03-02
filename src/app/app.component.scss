@@ -9,10 +9,10 @@
     .mat-sidenav {
         max-width: calc(100% - 54px);
 
-        /deep/ .mat-drawer-inner-container {
-            flex-direction: column;
-            overflow: hidden;
-        }
+        //::ng-deep .mat-drawer-inner-container {
+        //    flex-direction: column;
+        //    overflow: hidden;
+        //}
     }
 
     &.#{$navigation__visible__class} {

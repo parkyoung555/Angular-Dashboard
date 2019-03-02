@@ -6,7 +6,7 @@ import {ActivatedRoute, NavigationEnd, NavigationStart, Router} from '@angular/r
 import {filter} from 'rxjs/operators';
 import {AppearanceService} from './core/appearance/services/appearance.service';
 import {Subscription} from 'rxjs';
-import {NavigationItemModel} from './core/navigation/models/navigation-item.model';
+// import {NavigationItemModel} from './core/navigation/models/navigation-item.model';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ import {NavigationItemModel} from './core/navigation/models/navigation-item.mode
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  inlineNavLinks: Array<NavigationItemModel>;
+  // inlineNavLinks: Array<NavigationItemModel>;
   sideNavClosed: boolean;
   navHovered: boolean;
   navLockedOpen: boolean;
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private appearanceServiceThemeClassSubscription: Subscription;
   private navigationServiceIsLockedSubscription: Subscription;
-  private previousRouteEvent: NavigationEnd;
+  // private previousRouteEvent: NavigationEnd;
   private routerSubscriptionNavStart: Subscription;
   private routerSubscriptionNavEnd: Subscription;
 
@@ -64,23 +64,23 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.routerSubscriptionNavEnd = this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      const route = this.route.snapshot.firstChild,
-        lastParentPath = this.previousRouteEvent ? this.navigationService.getParentRoutePath(this.previousRouteEvent) : '',
-        currentParentPath = this.navigationService.getParentRoutePath(event);
-
-      if (route.data && route.data.navigation && route.data.navigation.displayChildrenAs === 'INLINE') {
-        if (lastParentPath !== currentParentPath) {
-          this.inlineNavLinks = this.navigationService.getChildMenuLinks(currentParentPath);
-        }
-      } else {
-        this.inlineNavLinks = [];
-      }
-
-      this.previousRouteEvent = event;
-    });
+    // this.routerSubscriptionNavEnd = this.router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
+    //   const route = this.route.snapshot.firstChild,
+    //     lastParentPath = this.previousRouteEvent ? this.navigationService.getParentRoutePath(this.previousRouteEvent) : '',
+    //     currentParentPath = this.navigationService.getParentRoutePath(event);
+    //
+    //   if (route.data && route.data.navigation && route.data.navigation.displayChildrenAs === 'INLINE') {
+    //     if (lastParentPath !== currentParentPath) {
+    //       this.inlineNavLinks = this.navigationService.getChildMenuLinks(currentParentPath);
+    //     }
+    //   } else {
+    //     this.inlineNavLinks = [];
+    //   }
+    //
+    //   this.previousRouteEvent = event;
+    // });
 
     // Theme classes
     this.appearanceServiceThemeClassSubscription = this.appearanceService.themeClass.subscribe(themeClass => {

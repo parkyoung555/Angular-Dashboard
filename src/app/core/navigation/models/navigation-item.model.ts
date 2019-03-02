@@ -1,4 +1,4 @@
-type navigationChildrenDisplay = 'ACCORDION' | 'INLINE';
+type navigationChildrenDisplay = 'ACCORDION';
 
 export interface RouteNavigationDataModel {
   title: string;
@@ -36,7 +36,7 @@ export class RouteNavigationData implements RouteNavigationDataModel {
     this.showInNavigation = data.showInNavigation;
     this.showInUserMenu = data.showInUserMenu;
     this.userMenuTitle = data.userMenuTitle;
-    this.displayChildrenAs = data.displayChildrenAs || 'ACCORDION';
+    this.displayChildrenAs = data.displayChildrenAs;
     this.theme = data.theme;
   }
 }

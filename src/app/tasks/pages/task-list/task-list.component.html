@@ -1,3 +1,17 @@
-<p>
-  task-list works!
-</p>
+<app-empty-message icon="sentiment_very_satisfied" *ngIf="!tasks.length">
+    You've got no tasks.
+</app-empty-message>
+<mat-list class="tasks" @preventInitialChildAnimations>
+    <ng-container *ngFor="let task of tasks; last as isLast">
+        <mat-list-item @slideInOut>
+            <mat-icon color="accent" mat-list-icon>{{task.type.icon}}</mat-icon>
+            <h3 fxLayoutAlign="start center" mat-line>
+                <span class="title" fxFlex="1 1 auto">{{task.title}}</span>
+                <span class="due-date mat-overline" *ngIf="task.dueDate">{{task.dueDateDisplay}}</span>
+                <mat-icon class="priority mat-18 mat-disabled-text" [matTooltip]="task.priority.label + ' priority'" *ngIf="task.priority.icon">{{task.priority.icon}}</mat-icon>
+                <mat-icon class="priority mat-18 mat-disabled-text" [matTooltip]="task.priority.label + ' priority'" *ngIf="task.priority.svgIcon" [svgIcon]="task.priority.svgIcon"></mat-icon>
+            </h3>
+        </mat-list-item>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+    </ng-container>
+</mat-list>

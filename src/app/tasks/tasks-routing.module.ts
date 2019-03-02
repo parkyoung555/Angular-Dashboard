@@ -8,8 +8,7 @@ import {taskBoardRoute} from './pages/task-board/task-board.route';
 const routeNavigationData = new RouteNavigationData({
   title: 'Tasks',
   icon: 'assignment_turned_in',
-  showInNavigation: 4,
-  displayChildrenAs: 'INLINE'
+  showInNavigation: 4
 });
 
 const route: Routes = [

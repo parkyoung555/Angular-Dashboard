@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<div fxLayout="row">
+    <app-inline-navigation [inlineNavLinks]="inlineNavLinks"></app-inline-navigation>
+    <div class="layout-padding layout-container">
+        <app-page-title class="align-center"></app-page-title>
+        <router-outlet></router-outlet>
+    </div>
+</div>

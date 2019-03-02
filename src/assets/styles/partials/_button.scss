@@ -1,8 +1,33 @@
-@import "../modules/variables";
+@import "~src/assets/styles/modules/typography";
+@import "~src/assets/styles/modules/variables";
 
 .mat-button,
 .mat-flat-button,
 .mat-icon-button,
-.mat-stroked-button {
+.mat-stroked-button,
+.mat-raised-button {
     border-radius: $roundness;
+
+    &.mega-button {
+
+        border-radius: 100px;
+        font-family: #{$display-font-family};
+        font-size: 16px;
+        font-weight: 500;
+        height: 56px;
+        margin: 0 0 $layout-unit__md $layout-unit__base;
+        padding: 0 $layout-unit__md 0 $layout-unit__sm;
+        width: unset;
+
+        .mat-icon {
+            margin: 0 $layout-unit__sm 0 0;
+        }
+
+        .mat-button-wrapper {
+            align-items: center;
+            display: flex;
+            padding: 0 0;
+        }
+    }
+
 }

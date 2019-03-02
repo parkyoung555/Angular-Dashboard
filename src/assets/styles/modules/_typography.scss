@@ -17,3 +17,14 @@ $header-typography: mat-typography-config(
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
+
+@mixin typography-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .mat-secondary-text {
+        color: map-get($_theme-foreground, secondary-text);
+    }
+
+    .mat-disabled-text {
+        color: map-get($_theme-foreground, disabled-text);
+    }
+}

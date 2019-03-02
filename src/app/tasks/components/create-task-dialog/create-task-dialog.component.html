@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Create task</h1>
+<div mat-dialog-content>
+    <app-create-task-form [newTaskForm]="newTaskForm" fxLayout="column"></app-create-task-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-button color="primary" [disabled]="!newTaskForm.valid" (click)="addTask()">Create</button>
+</div>

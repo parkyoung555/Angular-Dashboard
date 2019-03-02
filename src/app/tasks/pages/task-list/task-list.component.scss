@@ -1,0 +1,18 @@
+@import "~src/assets/styles/modules/variables";
+
+.tasks {
+
+    .mat-list-item {
+
+        .title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 0;
+        }
+
+        .priority,
+        .due-date {
+            margin: 0 0 0 $layout-unit__sm;
+        }
+    }
+}

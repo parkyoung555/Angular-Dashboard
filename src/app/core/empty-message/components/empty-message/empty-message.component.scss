@@ -3,6 +3,7 @@
 $_empty-message__icon-size: 48px;
 
 :host {
+    display: block;
     padding: $layout-unit__sm;
     text-align: center;
 }
@@ -12,5 +13,6 @@ $_empty-message__icon-size: 48px;
     height: $_empty-message__icon-size;
     min-height: $_empty-message__icon-size;
     min-width: $_empty-message__icon-size;
+    opacity: .5;
     width: $_empty-message__icon-size;
 }

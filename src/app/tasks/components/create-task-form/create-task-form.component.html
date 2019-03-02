@@ -1,0 +1,36 @@
+<ng-container [formGroup]="newTaskForm">
+    <mat-form-field appearance="fill" fxLayout="row" fxFlex="0 0 50%">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" required>
+            <mat-select-trigger>{{newTaskForm.controls.type.value?.label}}</mat-select-trigger>
+            <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
+                <mat-icon>{{taskType.icon}}</mat-icon>{{taskType.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <textarea matInput formControlName="title" placeholder="Title" cdkAutosizeMinRows="1" cdkTextareaAutosize required></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Description" cdkAutosizeMinRows="3" cdkTextareaAutosize></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill" fxLayout="row" fxFlex="0 0 50%">
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority" required>
+            <mat-select-trigger>{{newTaskForm.controls.priority.value?.label}}</mat-select-trigger>
+            <mat-option *ngFor="let taskPriority of taskPriorities" [value]="taskPriority">
+                <mat-icon *ngIf="taskPriority.icon">{{taskPriority.icon}}</mat-icon>
+                <mat-icon *ngIf="taskPriority.svgIcon" [svgIcon]="taskPriority.svgIcon"></mat-icon>
+                {{taskPriority.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Due date</mat-label>
+        <input matInput formControlName="dueDate" [matDatepicker]="dueDatePicker" placeholder="Due date">
+        <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #dueDatePicker></mat-datepicker>
+    </mat-form-field>
+</ng-container>

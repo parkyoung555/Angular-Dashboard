@@ -1,0 +1,16 @@
+@import "~src/assets/styles/modules/typography";
+@import "~src/assets/styles/modules/variables";
+
+.mat-dialog-container {
+    border-radius: $roundness;
+
+    .mat-dialog-title {
+        @include mat-typography-level-to-styles($header-typography, title);
+    }
+
+    .mat-dialog-actions {
+        box-sizing: border-box;
+        margin: 0 (-$layout-unit__md) (-$layout-unit__md);
+        padding: $layout-unit__base;
+    }
+}

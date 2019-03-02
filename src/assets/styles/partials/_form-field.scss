@@ -1,0 +1,14 @@
+@import "~src/assets/styles/modules/variables";
+
+.mat-form-field {
+
+    &.mat-form-field-appearance-fill {
+
+        .mat-datepicker-toggle {
+
+            >  button {
+                margin-right: -$layout-unit__base;
+            }
+        }
+    }
+}

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {NavigationService} from '../../core/navigation/services/navigation.service';
+import {NavigationItemModel} from '../../core/navigation/models/navigation-item.model';
+import {CreateTaskDialogComponent} from '../components/create-task-dialog/create-task-dialog.component';
+import {MatDialog, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-tasks',
@@ -7,9 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasksComponent implements OnInit {
 
-  constructor() { }
+  inlineNavLinks: Array<NavigationItemModel>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private navigationService: NavigationService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
+    this.inlineNavLinks = this.navigationService.getChildMenuLinks(this.route.snapshot.url[0].path);
   }
 
+  openAddTaskDialog() {
+    const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
+      width: `${8 * 60}px`
+    });
+    dialogRef.afterClosed().subscribe(task => {
+      if (task) {
+        this.snackBar.open('Task created.', 'Ok');
+      }
+    });
+  }
 }

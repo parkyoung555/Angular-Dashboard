@@ -6,6 +6,7 @@
 @import "../modules/sidenav";
 @import "../modules/variables";
 @import "../modules/theme";
+@import "../modules/typography";
 @import "../modules/border";
 
 @include mat-core();
@@ -23,6 +24,7 @@
     @include link-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include typography-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
 }
 
 @each $_theme in $app-themes {

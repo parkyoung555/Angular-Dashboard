@@ -1,22 +1,28 @@
 @import "~src/assets/styles/modules/variables";
+@import "~src/assets/styles/modules/typography";
 
 :host {
-    min-width: 200px;
-    padding: $layout-unit__md 0;
-    position: sticky;
+    min-width: $navigation__expanded__width - $navigation__collapsed__width;
 }
 
-.mat-nav-list {
-    padding: 0 0;
+.nav-content {
+    margin: 0 $layout-unit__md 0 0;
+    padding: $layout-unit__md 0;
+    position: sticky;
+    top: 0;
 
-    .mat-list-item {
-        border-radius: 0 $roundness $roundness 0;
-        height: $navigation-item__height;
-        margin: $layout-unit__base 0 0;
-        overflow: hidden;
+    .mat-nav-list {
+        padding: 0 0;
 
-        &:first-child {
-            margin-top: 0;
+        .mat-list-item {
+            border-radius: 0 $roundness $roundness 0;
+            height: $navigation-item__height;
+            margin: $layout-unit__base 0 0;
+            overflow: hidden;
+
+            &:first-child {
+                margin-top: 0;
+            }
         }
     }
 }

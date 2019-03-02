@@ -16,12 +16,12 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <app-header [mainNav]="mainNav" [showNavLockAction]="showNavLockAction"></app-header>
-        <div fxLayout="row">
-            <app-inline-navigation *ngIf="inlineNavLinks?.length" [inlineNavLinks]="inlineNavLinks"></app-inline-navigation>
-            <div class="layout-padding layout-container">
-                <app-page-title class="align-center"></app-page-title>
+        <!--<div fxLayout="row">-->
+            <!--<app-inline-navigation *ngIf="inlineNavLinks?.length" [inlineNavLinks]="inlineNavLinks"></app-inline-navigation>-->
+            <!--<div class="layout-padding layout-container">-->
+                <!--<app-page-title class="layout-padding layout-container align-center"></app-page-title>-->
                 <router-outlet></router-outlet>
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
     </mat-sidenav-content>
 </mat-sidenav-container>
