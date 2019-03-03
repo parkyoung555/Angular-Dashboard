@@ -10,7 +10,7 @@
             <!--<h5>{{description}}</h5>-->
             <!--</div>-->
             <div class="actions">
-                <button mat-icon-button matTooltip="{{navLockedOpen ? 'Collapse menu' : 'Lock menu open'}}" (click)="toggleMenuLock()" *ngIf="showNavLockAction | async">
+                <button tabindex="-1" mat-icon-button matTooltip="{{navLockedOpen ? 'Collapse menu' : 'Lock menu open'}}" (click)="toggleMenuLock()" *ngIf="showNavLockAction | async">
                     <mat-icon>{{navLockedOpen ? 'chevron_left' : 'last_page'}}</mat-icon>
                 </button>
             </div>

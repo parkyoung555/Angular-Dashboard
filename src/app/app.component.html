@@ -1,4 +1,5 @@
 <mat-sidenav-container
+        fxLayout="column"
         [class.nav-hovered]="navHovered"
         [class.nav-locked-open]="navLockedOpen"
         [class.nav-side]="sideNavMode === 'side'">
@@ -14,7 +15,7 @@
                              (sideNavMode)="sideNavMode = $event"
                              (showNavLockAction)="showNavLockAction = $event" [navHovered]="navHovered"></app-side-navigation>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content fxLayout="column">
         <app-header [mainNav]="mainNav" [showNavLockAction]="showNavLockAction"></app-header>
         <!--<div fxLayout="row">-->
             <!--<app-inline-navigation *ngIf="inlineNavLinks?.length" [inlineNavLinks]="inlineNavLinks"></app-inline-navigation>-->

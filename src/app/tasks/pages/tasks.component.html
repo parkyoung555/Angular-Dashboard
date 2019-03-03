@@ -1,11 +1,11 @@
-<div fxLayout="row">
+<div fxLayout="row" fxFlex="1 1 100%">
     <app-inline-navigation [inlineNavLinks]="inlineNavLinks">
         <button class="mega-button" (click)="openAddTaskDialog()" mat-raised-button>
             <mat-icon>add</mat-icon>
             Create Task
         </button>
     </app-inline-navigation>
-    <div class="layout-padding" fxFlex="1 1 auto">
+    <div fxFlex="1 1 auto">
         <router-outlet></router-outlet>
     </div>
 </div>

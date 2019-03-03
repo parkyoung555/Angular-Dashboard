@@ -4,7 +4,7 @@ $_empty-message__icon-size: 48px;
 
 :host {
     display: block;
-    padding: $layout-unit__sm;
+    padding: $layout-unit__lg $layout-unit__sm;
     text-align: center;
 }
 

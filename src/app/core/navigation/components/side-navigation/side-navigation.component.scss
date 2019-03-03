@@ -185,7 +185,7 @@ button[role="menuitem"] .mat-icon {
     + span,
     &.dropdown-arrow {
         opacity: 0;
-        transition: $swift-ease-out;
+        //transition: $swift-ease-out;
         visibility: hidden;
     }
 }

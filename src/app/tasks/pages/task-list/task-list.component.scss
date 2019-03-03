@@ -1,8 +1,25 @@
 @import "~src/assets/styles/modules/variables";
 
-.tasks {
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.mat-nav-list.tasks {
+    overflow-y: auto;
+    padding: $layout-unit__md 0;
 
     .mat-list-item {
+        overflow: hidden;
+
+        &:first-child {
+            border-top-left-radius: $roundness;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: $roundness;
+        }
 
         .title {
             overflow: hidden;
@@ -15,4 +32,8 @@
             margin: 0 0 0 $layout-unit__sm;
         }
     }
+}
+
+.mat-sidenav {
+    width: $navigation__expanded__width;
 }

@@ -16,7 +16,7 @@
         font-weight: 500;
         height: 56px;
         margin: 0 0 $layout-unit__md $layout-unit__base;
-        padding: 0 $layout-unit__md 0 $layout-unit__sm;
+        padding: 0 $layout-unit__md 0 12px;
         width: unset;
 
         .mat-icon {
@@ -29,5 +29,4 @@
             padding: 0 0;
         }
     }
-
 }

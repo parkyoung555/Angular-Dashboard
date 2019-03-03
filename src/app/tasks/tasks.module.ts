@@ -13,19 +13,21 @@ import {
   MatButtonModule,
   MatDialogModule,
   MatIconModule,
-  MatListModule,
+  MatListModule, MatSidenavModule,
   MatSnackBarModule, MatTooltipModule
 } from '@angular/material';
 import {InlineNavigationModule} from '../core/navigation/components/inline-navigation/inline-navigation.module';
 import {CommonModule} from '@angular/common';
 import {EmptyMessageModule} from '../core/empty-message/components/empty-message/empty-message.module';
+import { TaskDetailsComponent } from './components/task-details/task-details.component';
 
 @NgModule({
   declarations: [
     CreateTaskDialogComponent,
     TasksComponent,
     TaskListComponent,
-    TaskBoardComponent
+    TaskBoardComponent,
+    TaskDetailsComponent
   ],
   entryComponents: [
     CreateTaskDialogComponent
@@ -40,6 +42,7 @@ import {EmptyMessageModule} from '../core/empty-message/components/empty-message
     MatDialogModule,
     MatIconModule,
     MatListModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatTooltipModule,
     ReactiveFormsModule,

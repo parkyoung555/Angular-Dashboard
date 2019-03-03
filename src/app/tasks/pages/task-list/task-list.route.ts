@@ -1,6 +1,7 @@
 import {Route} from '@angular/router';
 import {RouteNavigationData} from '../../../core/navigation/models/navigation-item.model';
 import {TaskListComponent} from './task-list.component';
+import {TaskDetailsComponent} from '../../components/task-details/task-details.component';
 
 const routeNavigationData = new RouteNavigationData({
   title: 'All tasks & issues',
@@ -13,5 +14,11 @@ export const taskListRoute: Route = {
   component: TaskListComponent,
   data: {
     navigation: routeNavigationData
-  }
+  },
+  children: [
+    {
+      path: ':taskId',
+      component: TaskDetailsComponent
+    }
+  ]
 };

@@ -2,9 +2,10 @@ import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {TaskModel} from '../../models/tasks.model';
 import {TasksService} from '../../services/tasks.service';
 import {Subscription} from 'rxjs';
-import {animate, query, state, style, transition, trigger} from '@angular/animations';
+import {animate, query, style, transition, trigger} from '@angular/animations';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -38,14 +39,17 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class TaskListComponent implements OnInit, OnDestroy {
 
   tasks: Array<TaskModel>;
+  taskDetailDrawerOpened: boolean;
 
-  addedTaskSubscription: Subscription;
+  private addedTaskSubscription: Subscription;
 
   constructor(
     private tasksService: TasksService,
     private changeDetectorRef: ChangeDetectorRef,
     private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.tasks = this.tasksService.getTasks().map(task => {
       task.dueDateDisplay = this.tasksService.getDueDateString(new Date(task.dueDate));
@@ -68,6 +72,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.taskDetailDrawerOpened = this.route.firstChild ? !!this.route.firstChild.snapshot.paramMap.get('taskId') : false;
   }
 
   ngOnDestroy(): void {

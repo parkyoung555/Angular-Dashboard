@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {taskPriorities, TasksService, taskTypes} from '../../services/tasks.service';
+import {taskPriorities, taskTypes} from '../../models/tasks.model';
 import {TaskPriority, TaskType} from '../../models/tasks.model';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {TasksService} from '../../services/tasks.service';
 
 @Component({
   selector: 'app-create-task-form',

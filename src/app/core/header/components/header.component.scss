@@ -1,8 +1,10 @@
-@import "../../../../assets/styles/modules/variables";
+@import "~src/assets/styles/modules/variables";
 
 .mat-toolbar {
     //background-color: $header__background-color;
     //color: $header__primary-text__color;
+    position: relative;
+    z-index: 10;
 
     .mat-toolbar-row {
 

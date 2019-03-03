@@ -12,18 +12,6 @@ const baseStatuses = [
   new TaskStatus({ label: 'Done', value: 'done' })
 ];
 
-export const taskPriorities: Array<TaskPriority> = [
-  new TaskPriority({ label: 'Low', value: 'low', icon: 'arrow_downward' }),
-  new TaskPriority({ label: 'Medium', value: 'medium', icon: 'arrow_upward' }),
-  new TaskPriority({ label: 'High', value: 'high', svgIcon: 'priority_high' }),
-  new TaskPriority({ label: 'Critical', value: 'critical', svgIcon: 'priority_critical' })
-];
-export const taskTypes: Array<TaskType> = [
-  new TaskType({ label: 'Task', value: 'task', icon: 'check_circle' }),
-  new TaskType({ label: 'Story', value: 'story', icon: 'book' }),
-  new TaskType({ label: 'Bug', value: 'bug', icon: 'bug_report' }),
-];
-
 @Injectable({
   providedIn: 'root'
 })
