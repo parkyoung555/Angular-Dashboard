@@ -11,9 +11,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatButtonModule,
-  MatDialogModule,
+  MatDialogModule, MatFormFieldModule,
   MatIconModule,
-  MatListModule, MatSidenavModule,
+  MatListModule, MatMenuModule, MatSidenavModule,
   MatSnackBarModule, MatTooltipModule
 } from '@angular/material';
 import {InlineNavigationModule} from '../core/navigation/components/inline-navigation/inline-navigation.module';
@@ -40,8 +40,10 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
     InlineNavigationModule,
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatTooltipModule,

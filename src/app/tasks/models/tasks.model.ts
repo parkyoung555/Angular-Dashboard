@@ -37,7 +37,7 @@ export interface TaskModel {
   dueDate: Date;
   dueDateDisplay?: string;
   modifiedDate: Date;
-  status?: any;
+  status?: TaskStatusModel;
   type?: TaskTypeModel;
   subTasks?: Array<SubTaskModel>;
 }
@@ -120,7 +120,7 @@ export class Task implements TaskModel {
   dueDate: Date;
   dueDateDisplay?: string;
   modifiedDate = new Date();
-  status?: any;
+  status?: TaskStatusModel;
   type?: TaskTypeModel;
   subTasks?: Array<SubTaskModel>;
 
@@ -149,4 +149,10 @@ export const taskTypes: Array<TaskType> = [
   new TaskType({ label: 'Task', value: 'task', icon: 'check_circle' }),
   new TaskType({ label: 'Story', value: 'story', icon: 'book' }),
   new TaskType({ label: 'Bug', value: 'bug', icon: 'bug_report' }),
+];
+
+export const taskStatuses = [
+  new TaskStatus({ label: 'To do', value: 'todo' }),
+  new TaskStatus({ label: 'In progress', value: 'inprogress' }),
+  new TaskStatus({ label: 'Done', value: 'done' })
 ];

@@ -1,0 +1,12 @@
+
+@mixin button-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .mega-button {
+
+        .mat-icon {
+            background: -webkit-linear-gradient(45deg, $_theme-primary-color, $_theme-accent-color);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}

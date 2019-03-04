@@ -1,0 +1,20 @@
+@import "~src/assets/styles/modules/variables";
+
+.pre-header {
+    margin: 0 0 $layout-unit__sm;
+}
+
+.type {
+    cursor: pointer;
+
+    .mat-icon {
+
+        &:first-of-type {
+            margin: 0 $layout-unit__base 0 (-$layout-unit__xs);
+        }
+
+        &:last-of-type {
+            margin: 0 (-$layout-unit__xs) 0 $layout-unit__base;
+        }
+    }
+}

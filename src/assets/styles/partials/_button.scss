@@ -20,13 +20,30 @@
         width: unset;
 
         .mat-icon {
-            margin: 0 $layout-unit__sm 0 0;
+            @extend .mat-36;
+            margin: 0 $layout-unit__base 0 (-$layout-unit__xs);
         }
 
         .mat-button-wrapper {
             align-items: center;
             display: flex;
             padding: 0 0;
+        }
+    }
+}
+
+.mat-stroked-button,
+.mat-raised-button,
+.mat-button {
+
+    .mat-button-wrapper {
+
+        .mat-icon {
+
+            &.end {
+                @extend .mat-18;
+                margin: 0 (-$layout-unit__xs) 0 $layout-unit__base;
+            }
         }
     }
 }

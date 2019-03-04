@@ -1,3 +1,4 @@
+@import "../modules/button";
 @import "../modules/color-swatch";
 @import "../modules/empty-message";
 @import "../modules/icon";
@@ -18,6 +19,7 @@
     $_theme-primary-color: mat-color(map-get($_theme, primary));
     $_theme-accent-color: mat-color(map-get($_theme, accent));
 
+    @include button-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include border-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include empty-message-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include icon-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);

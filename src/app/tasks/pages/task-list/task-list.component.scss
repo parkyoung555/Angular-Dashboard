@@ -6,6 +6,19 @@
     height: 100%;
 }
 
+.close-tab {
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-width: 0 1px 0 0;
+    left: -40px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: $swift-ease-out;
+    visibility: hidden;
+}
+
 .mat-nav-list.tasks {
     overflow-y: auto;
     padding: $layout-unit__md 0;
@@ -35,5 +48,14 @@
 }
 
 .mat-sidenav {
+    overflow: visible; // need this to see close tab
     width: $navigation__expanded__width;
+
+    &:hover {
+
+        .close-tab {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }

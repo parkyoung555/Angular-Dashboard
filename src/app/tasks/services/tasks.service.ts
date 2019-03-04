@@ -1,16 +1,10 @@
 import {Inject, Injectable, LOCALE_ID} from '@angular/core';
 import {StorageService} from '../../core/storage/services/storage.service';
-import {TaskModel, TaskPriority, TasksResponseModel, TaskStatus, TaskType} from '../models/tasks.model';
+import {TaskModel, TaskPriority, TasksResponseModel, TaskStatus, taskStatuses, TaskStatusModel, TaskType} from '../models/tasks.model';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {formatDate} from '@angular/common';
 
 const storageKey = 'tasks';
-
-const baseStatuses = [
-  new TaskStatus({ label: 'Todo', value: 'todo' }),
-  new TaskStatus({ label: 'In progress', value: 'inprogress' }),
-  new TaskStatus({ label: 'Done', value: 'done' })
-];
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +56,7 @@ export class TasksService {
       tasks = TasksService.getTasksFromData(data),
       tasksIndices = TasksService.getIndicesFromData(data, 'tasks');
 
-    task.status = this.getStatuses()[0].value;
+    task.status = this.getStatuses()[0];
 
     tasks.push(task);
     tasksIndices[task._id] = tasks.length - 1;
@@ -83,7 +77,7 @@ export class TasksService {
   }
 
   getStatuses() {
-    return (this.getData().statuses || baseStatuses).sort((a, b) => a.position - b.position );
+    return (this.getData().statuses || taskStatuses).sort((a, b) => a.position - b.position );
   }
 
   getStatus(statusValue: string) {
@@ -107,7 +101,7 @@ export class TasksService {
 
   getAllTasksInStatus(statusValue: string) {
     return this.getTasks().filter(task => {
-      return task.status === statusValue;
+      return task.status.value === statusValue;
     });
   }
 
@@ -131,12 +125,12 @@ export class TasksService {
     this.save(data);
   }
 
-  moveTaskToStatus(taskId: string, statusValue: string) {
+  moveTaskToStatus(taskId: string, status: TaskStatusModel) {
     const data = this.getData(),
       tasks = TasksService.getTasksFromData(data),
       tasksIndices = TasksService.getIndicesFromData(data, 'tasks');
 
-    tasks[tasksIndices[taskId]].status = statusValue;
+    tasks[tasksIndices[taskId]].status = status;
 
     this.save(data);
   }
