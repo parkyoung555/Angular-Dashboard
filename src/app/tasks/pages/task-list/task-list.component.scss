@@ -10,13 +10,19 @@
     border-bottom-right-radius: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    border-width: 0 1px 0 0;
-    left: -40px;
-    opacity: 0;
+    right: 0;
     position: absolute;
     top: 0;
+    transform: translateX(100%);
     transition: $swift-ease-out;
-    visibility: hidden;
+
+    &.show {
+        transform: translateX(0);
+    }
+}
+
+.mat-sidenav-content {
+    overflow: hidden auto;
 }
 
 .mat-nav-list.tasks {
@@ -50,12 +56,4 @@
 .mat-sidenav {
     overflow: visible; // need this to see close tab
     width: $navigation__expanded__width;
-
-    &:hover {
-
-        .close-tab {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
 }

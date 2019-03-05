@@ -1,26 +1,25 @@
 <app-empty-message icon="sentiment_dissatisfied" *ngIf="!task">
     This task does not exist.
 </app-empty-message>
-<div class="layout-padding" *ngIf="task">
-    <div class="pre-header mat-overline" fxLayout="row" fxLayoutAlign="start center">
-        <div class="type" fxLayout="row" fxLayoutAlign="start center" matTooltip="Change task type" [matMenuTriggerFor]="taskTypeMenu">
-            <mat-icon color="accent" class="mat-18" *ngIf="task.type.icon">{{task.type.icon}}</mat-icon>
-            <mat-icon color="accent" class="mat-18" *ngIf="task.type.svgIcon" [svgIcon]="task.type.svgIcon"></mat-icon>
-            {{task.type.label}}
-            <mat-icon class="mat-18">arrow_drop_down</mat-icon>
+<mat-toolbar>
+    <mat-toolbar-row>
+        <div class="header">
+            <div class="mat-overline mat-disabled-text" *ngIf="task.dueDate">Due {{task.dueDate | date: 'longDate'}}</div>
+            <div class="type" fxLayout="row" fxLayoutAlign="start center" matTooltip="Change task type" [matMenuTriggerFor]="taskTypeMenu">
+                <mat-icon color="accent" class="mat-18" *ngIf="task.type.icon">{{task.type.icon}}</mat-icon>
+                <mat-icon color="accent" class="mat-18" *ngIf="task.type.svgIcon" [svgIcon]="task.type.svgIcon"></mat-icon>
+                <span class="mat-secondary-text mat-subheading-2">{{task.type.label}}</span>
+                <mat-icon class="mat-18">arrow_drop_down</mat-icon>
+            </div>
         </div>
         <span fxFlex="1 1 auto"></span>
-        <div class="due-date mat-secondary-text" *ngIf="task.dueDate">Due {{task.dueDate | date: 'longDate'}}</div>
-    </div>
+        <button mat-icon-button [routerLink]="['../']" matTooltip="Close detail">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="details" *ngIf="task">
     <h3 class="mat-title display-font" contenteditable="true">{{task.title}}</h3>
-    <!--<mat-form-field appearance="fill">-->
-        <!--<mat-label>Status</mat-label>-->
-        <!--<mat-select [(ngModel)]="taskStatus">-->
-            <!--<mat-option *ngFor="let status of taskStatuses">-->
-                <!--{{status.label}}-->
-            <!--</mat-option>-->
-        <!--</mat-select>-->
-    <!--</mat-form-field>-->
     <button mat-stroked-button color="accent" matTooltip="Update task status" [matMenuTriggerFor]="taskStatusMenu">{{task.status.label}}<mat-icon class="end">arrow_drop_down</mat-icon></button>
     <h4 class="mat-body-1" contenteditable="true">{{task.description}}</h4>
     <p class="mat-body-1">FILLER TEXT TO DEMONSTRATE OVERFLOW BEHAVIOR: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla velit in eros cursus, ut facilisis augue pulvinar. Sed eleifend nec sem sit amet auctor. Praesent et tristique purus. In tristique rhoncus enim. Sed eu egestas quam. Cras tincidunt molestie turpis a vulputate. Etiam ut nibh aliquet, ornare nisl ut, iaculis dolor.</p>

@@ -14,7 +14,7 @@ import {
   MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatListModule, MatMenuModule, MatSidenavModule,
-  MatSnackBarModule, MatTooltipModule
+  MatSnackBarModule, MatTooltipModule, MatToolbarModule
 } from '@angular/material';
 import {InlineNavigationModule} from '../core/navigation/components/inline-navigation/inline-navigation.module';
 import {CommonModule} from '@angular/common';
@@ -46,6 +46,7 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
     MatMenuModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatToolbarModule,
     MatTooltipModule,
     ReactiveFormsModule,
     RouterModule,

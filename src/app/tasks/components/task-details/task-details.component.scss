@@ -1,11 +1,43 @@
+@import "~src/assets/styles/modules/typography";
 @import "~src/assets/styles/modules/variables";
+
+.mat-toolbar {
+
+    .mat-toolbar-row {
+
+        .mat-icon-button {
+
+            &:last-child {
+                margin-right: -$layout-unit__base;
+            }
+        }
+
+        .header {
+            line-height: normal;
+
+            .type {
+                margin: $layout-unit__xs 0 0;
+
+                > span {
+                    line-height: normal;
+                    margin: 0 0;
+                }
+            }
+        }
+    }
+}
 
 .pre-header {
     margin: 0 0 $layout-unit__sm;
 }
 
+.details {
+    padding: 0 $layout-unit__sm $layout-unit__sm;
+}
+
 .type {
     cursor: pointer;
+    line-height: normal;
 
     .mat-icon {
 

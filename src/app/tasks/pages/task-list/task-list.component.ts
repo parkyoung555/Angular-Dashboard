@@ -1,11 +1,12 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {TaskModel} from '../../models/tasks.model';
 import {TasksService} from '../../services/tasks.service';
-import {Subscription} from 'rxjs';
+import {Subscription, pipe} from 'rxjs';
 import {animate, query, style, transition, trigger} from '@angular/animations';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-list',
@@ -42,6 +43,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   taskDetailDrawerOpened: boolean;
 
   private addedTaskSubscription: Subscription;
+  private routeEventSubscription: Subscription;
 
   constructor(
     private tasksService: TasksService,
@@ -61,22 +63,27 @@ export class TaskListComponent implements OnInit, OnDestroy {
       this.changeDetectorRef.detectChanges();
     });
 
-    iconRegistry.addSvgIcon(
+    this.iconRegistry.addSvgIcon(
       'priority_high',
       sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-double-up.svg')
     );
-    iconRegistry.addSvgIcon(
+    this.iconRegistry.addSvgIcon(
       'priority_critical',
       sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-triple-up.svg')
     );
+
+    this.routeEventSubscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.taskDetailDrawerOpened = !!this.route.snapshot.firstChild;
+    });
   }
 
-  ngOnInit() {
-    this.taskDetailDrawerOpened = this.route.firstChild ? !!this.route.firstChild.snapshot.paramMap.get('taskId') : false;
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
    this.addedTaskSubscription.unsubscribe();
+   this.routeEventSubscription.unsubscribe();
   }
 
 }

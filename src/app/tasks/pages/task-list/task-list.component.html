@@ -24,14 +24,9 @@
             </ng-container>
         </mat-nav-list>
     </mat-sidenav-content>
-    <mat-sidenav position="end" mode="side" [opened]="taskDetailDrawerOpened" #taskDetailsDrawer>
-        <button class="close-tab"
-                matTooltip="Hide task details"
-                (click)="taskDetailsDrawer.close()"
-                [routerLink]="['./']"
-                mat-icon-button mat-raised-button mat-stroked-button>
-            <mat-icon>keyboard_arrow_right</mat-icon>
-        </button>
+    <mat-sidenav position="end" mode="side"
+        [opened]="taskDetailDrawerOpened"
+        #taskDetailsDrawer>
         <router-outlet></router-outlet>
     </mat-sidenav>
 </mat-sidenav-container>
