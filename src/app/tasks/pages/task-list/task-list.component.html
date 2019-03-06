@@ -1,8 +1,5 @@
 <mat-sidenav-container hasBackdrop="false" fxLayout="row" fxFlex="1 1 100%">
     <mat-sidenav-content fxLayout="column" fxFlex="1 1 auto">
-        <app-empty-message icon="sentiment_very_satisfied" *ngIf="!tasks.length">
-            You've got no tasks.
-        </app-empty-message>
         <mat-nav-list class="tasks" dense @preventInitialChildAnimations>
             <ng-container *ngFor="let task of tasks; last as isLast">
                 <a mat-list-item
@@ -23,6 +20,9 @@
                 <mat-divider *ngIf="!isLast"></mat-divider>
             </ng-container>
         </mat-nav-list>
+        <app-empty-message icon="sentiment_very_satisfied" *ngIf="!tasks.length">
+            You've got no tasks.
+        </app-empty-message>
     </mat-sidenav-content>
     <mat-sidenav position="end" mode="side"
         [opened]="taskDetailDrawerOpened"

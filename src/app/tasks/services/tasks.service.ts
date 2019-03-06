@@ -12,6 +12,7 @@ const storageKey = 'tasks';
 export class TasksService {
 
   addedTask = new Subject<TaskModel>();
+  removedTask = new Subject<string>();
 
   static getIndicesFromData(data: TasksResponseModel, key: string) {
     data.indices = data.indices || {};
@@ -27,6 +28,14 @@ export class TasksService {
   static getStatusesFromData(data: TasksResponseModel) {
     data.statuses = data.statuses || [];
     return data.statuses;
+  }
+
+  static rebuildIndices(data: Array<any>) {
+    const indices = {};
+    for (let i = 0, len = data.length; i < len; i++) {
+      indices[data[i]._id] = i;
+    }
+    return indices;
   }
 
   constructor(
@@ -70,10 +79,11 @@ export class TasksService {
       tasks = TasksService.getTasksFromData(data),
       tasksIndices = TasksService.getIndicesFromData(data, 'tasks');
 
-    tasks.splice(tasksIndices[taskId]);
-    delete tasksIndices[taskId];
+    tasks.splice(tasksIndices[taskId], 1);
+    data.indices.tasks = TasksService.rebuildIndices(tasks);
 
     this.save(data);
+    this.removedTask.next(taskId);
   }
 
   getStatuses() {
@@ -93,8 +103,8 @@ export class TasksService {
       statuses = TasksService.getStatusesFromData(data),
       statusIndices = TasksService.getIndicesFromData(data, 'statuses');
 
-    statuses.splice(statusIndices[statusValue]);
-    delete statusIndices[statusValue];
+    statuses.splice(statusIndices[statusValue], 1);
+    data.indices.statuses = TasksService.rebuildIndices(statuses);
 
     this.save(data);
   }

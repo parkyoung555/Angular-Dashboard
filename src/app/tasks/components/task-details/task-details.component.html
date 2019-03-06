@@ -1,9 +1,6 @@
-<app-empty-message icon="sentiment_dissatisfied" *ngIf="!task">
-    This task does not exist.
-</app-empty-message>
 <mat-toolbar>
     <mat-toolbar-row>
-        <div class="header">
+        <div class="header" *ngIf="task">
             <div class="mat-overline mat-disabled-text" *ngIf="task.dueDate">Due {{task.dueDate | date: 'longDate'}}</div>
             <div class="type" fxLayout="row" fxLayoutAlign="start center" matTooltip="Change task type" [matMenuTriggerFor]="taskTypeMenu">
                 <mat-icon color="accent" class="mat-18" *ngIf="task.type.icon">{{task.type.icon}}</mat-icon>
@@ -13,11 +10,17 @@
             </div>
         </div>
         <span fxFlex="1 1 auto"></span>
+        <button *ngIf="task" mat-icon-button [matMenuTriggerFor]="taskActionsMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
         <button mat-icon-button [routerLink]="['../']" matTooltip="Close detail">
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
+<app-empty-message icon="sentiment_dissatisfied" *ngIf="!task">
+    This task does not exist.
+</app-empty-message>
 <div class="details" *ngIf="task">
     <h3 class="mat-title display-font" contenteditable="true">{{task.title}}</h3>
     <button mat-stroked-button color="accent" matTooltip="Update task status" [matMenuTriggerFor]="taskStatusMenu">{{task.status.label}}<mat-icon class="end">arrow_drop_down</mat-icon></button>
@@ -27,6 +30,10 @@
     <p class="mat-body-1">Donec commodo elementum nulla, non imperdiet libero laoreet et. Morbi congue sodales odio nec ornare. Sed suscipit turpis vitae magna sagittis, sodales scelerisque ligula tempus. Suspendisse vitae risus ultricies, tincidunt risus sed, accumsan eros. Etiam finibus sem id erat malesuada vulputate. Nunc quis enim lectus. Nam eu nibh vitae dui scelerisque fringilla. Sed facilisis urna lacus, sit amet eleifend metus lacinia dictum. Pellentesque aliquet diam magna, lacinia mattis nisl facilisis vel. Nam a odio mattis, egestas turpis id, condimentum diam. Donec at lobortis nibh. Curabitur varius venenatis diam elementum tristique.</p>
     <p class="mat-body-1">Pellentesque lobortis odio pharetra, malesuada augue in, cursus augue. Proin vitae leo aliquam, euismod justo vitae, placerat lorem. Fusce sit amet ultricies justo, eget scelerisque velit. Integer sodales felis ut tincidunt tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque convallis nec risus imperdiet mollis. Vestibulum gravida, felis id facilisis suscipit, quam arcu scelerisque libero, vel rhoncus felis ex nec est. Pellentesque id suscipit mauris. Morbi condimentum vehicula elit, sit amet aliquet arcu vulputate nec. Mauris ipsum enim, volutpat at magna sed, ornare dapibus risus. Vivamus placerat tellus purus, in eleifend ligula ullamcorper eget. Phasellus dapibus mi sit amet arcu efficitur, non varius mi semper. Fusce cursus sed metus id venenatis. Proin porttitor sapien at nunc laoreet, in tempor ligula pellentesque. Praesent eu orci in tortor lacinia tempor quis id purus.</p>
 </div>
+
+<mat-menu #taskActionsMenu="matMenu">
+    <button (click)="deleteTask()" mat-menu-item>Delete</button>
+</mat-menu>
 
 <mat-menu #taskStatusMenu="matMenu">
     <button *ngFor="let status of taskStatuses" (click)="updateStatus(status)" mat-menu-item>{{status.label}}</button>

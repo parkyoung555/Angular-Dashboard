@@ -59,19 +59,22 @@ export interface TaskTypeModel {
   _id?: string;
   label: string;
   value: string;
-  icon: string;
+  icon?: string;
+  svgIcon?: string;
 }
 
 export class TaskType implements TaskTypeModel {
   _id = StorageService.getObjectId();
   label: string;
   value: string;
-  icon: string;
+  icon?: string;
+  svgIcon?: string;
 
   constructor(data: TaskTypeModel) {
     this.label = data.label;
     this.value = data.label;
     this.icon = data.icon;
+    this.svgIcon = data.svgIcon;
   }
 }
 

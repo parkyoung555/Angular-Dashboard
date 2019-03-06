@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {TaskModel} from '../../models/tasks.model';
 import {TasksService} from '../../services/tasks.service';
 import {Subscription, pipe} from 'rxjs';
-import {animate, query, style, transition, trigger} from '@angular/animations';
-import {MatIconRegistry} from '@angular/material';
+import {animate, query, state, style, transition, trigger} from '@angular/animations';
+import {MatDrawer, MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -26,13 +26,21 @@ import { filter } from 'rxjs/operators';
           overflow: 'hidden',
           transform: 'translateX(-100%)'
         }),
-        animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+        animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({
+          height: '*',
+          opacity: 1,
+          transform: 'translateX(0)'
+        }))
       ]),
       transition(':leave', [
         style({
-          transform: 'translateX(100%)'
+          overflow: 'hidden'
         }),
-        animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+        animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({
+          height: 0,
+          opacity: 0,
+          transform: 'translateX(100%)'
+        }))
       ])
     ])
   ],
@@ -43,7 +51,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
   taskDetailDrawerOpened: boolean;
 
   private addedTaskSubscription: Subscription;
+  private removedTaskSubscription: Subscription;
   private routeEventSubscription: Subscription;
+  @ViewChild('taskDetailsDrawer') private taskDetailsDrawer: MatDrawer;
 
   constructor(
     private tasksService: TasksService,
@@ -62,6 +72,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
       this.tasks.unshift(task);
       this.changeDetectorRef.detectChanges();
     });
+    this.removedTaskSubscription = this.tasksService.removedTask.subscribe(deletedTaskId => {
+      for (let i = 0, len = this.tasks.length; i < len; i++) {
+        if (this.tasks[i]._id === deletedTaskId) {
+          this.tasks.splice(i, 1);
+          this.changeDetectorRef.detectChanges();
+          break;
+        }
+      }
+    });
 
     this.iconRegistry.addSvgIcon(
       'priority_high',
@@ -76,6 +95,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.taskDetailDrawerOpened = !!this.route.snapshot.firstChild;
+      this.changeDetectorRef.detectChanges();
     });
   }
 

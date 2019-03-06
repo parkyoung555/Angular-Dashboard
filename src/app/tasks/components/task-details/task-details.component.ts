@@ -1,8 +1,10 @@
 import {Component, ElementRef, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {TasksService} from '../../services/tasks.service';
 import {TaskModel, taskStatuses, TaskStatusModel, TaskTypeModel, taskTypes} from '../../models/tasks.model';
+import {MatDialog} from '@angular/material';
+import {ConfirmDialogComponent} from '../../../core/confirm-dialog/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-task-details',
@@ -19,20 +21,24 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private tasksService: TasksService,
     private elementRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private dialog: MatDialog
   ) {
     this.routeSubscription = this.route.paramMap.subscribe(params => {
       this.task = this.tasksService.getTask(params.get('taskId'));
+      if (this.task) {
+        this.taskStatuses = this.getTransitionableStatuses(this.task.status);
+        this.taskTypes = this.getTransitionableTypes(this.task.type);
+      }
       // console.log(this.elementRef);
       const parentElement = this.renderer.parentNode(this.elementRef.nativeElement);
       if (parentElement) {
         parentElement.scrollTop = 0;
       }
     });
-    this.taskStatuses = this.getTransitionableStatuses(this.task.status);
-    this.taskTypes = this.getTransitionableTypes(this.task.type);
   }
 
   ngOnInit() {
@@ -40,6 +46,23 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
+  }
+
+  deleteTask() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'Are you sure you want to delete this task?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.tasksService.removeTask(this.task._id);
+        this.router.navigate(['../'], {
+          relativeTo: this.route
+        });
+      }
+    });
   }
 
   updateStatus(status: TaskStatusModel) {

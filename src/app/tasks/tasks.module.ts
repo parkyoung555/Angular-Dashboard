@@ -20,6 +20,7 @@ import {InlineNavigationModule} from '../core/navigation/components/inline-navig
 import {CommonModule} from '@angular/common';
 import {EmptyMessageModule} from '../core/empty-message/components/empty-message/empty-message.module';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
+import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
   ],
   imports: [
     CommonModule,
+    ConfirmDialogModule,
     CreateTaskFormModule,
     EmptyMessageModule,
     FlexLayoutModule,
