@@ -21,6 +21,7 @@ import {CommonModule} from '@angular/common';
 import {EmptyMessageModule} from '../core/empty-message/components/empty-message/empty-message.module';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
 import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module'
     CommonModule,
     ConfirmDialogModule,
     CreateTaskFormModule,
+    DragDropModule,
     EmptyMessageModule,
     FlexLayoutModule,
     InlineNavigationModule,

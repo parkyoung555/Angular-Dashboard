@@ -68,11 +68,17 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   updateStatus(status: TaskStatusModel) {
     this.task.status = status;
     this.taskStatuses = this.getTransitionableStatuses(status);
+    this.updateTask();
   }
 
   updateType(type: TaskTypeModel) {
     this.task.type = type;
     this.taskTypes = this.getTransitionableTypes(type);
+    this.updateTask();
+  }
+
+  private updateTask() {
+    this.tasksService.updateTask(this.task);
   }
 
   private getTransitionableStatuses(currentStatus: TaskStatusModel) {

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 import {TaskModel} from '../../models/tasks.model';
 import {TasksService} from '../../services/tasks.service';
 import {Subscription, pipe} from 'rxjs';
@@ -7,6 +7,7 @@ import {MatDrawer, MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-list',
@@ -52,6 +53,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   private addedTaskSubscription: Subscription;
   private removedTaskSubscription: Subscription;
+  private updatedTaskSubscription: Subscription;
   private routeEventSubscription: Subscription;
   @ViewChild('taskDetailsDrawer') private taskDetailsDrawer: MatDrawer;
 
@@ -67,16 +69,27 @@ export class TaskListComponent implements OnInit, OnDestroy {
       task.dueDateDisplay = this.tasksService.getDueDateString(new Date(task.dueDate));
       return task;
     });
+
     this.addedTaskSubscription = this.tasksService.addedTask.subscribe(task => {
       task.dueDateDisplay = this.tasksService.getDueDateString(new Date(task.dueDate));
       this.tasks.unshift(task);
       this.changeDetectorRef.detectChanges();
     });
+
     this.removedTaskSubscription = this.tasksService.removedTask.subscribe(deletedTaskId => {
       for (let i = 0, len = this.tasks.length; i < len; i++) {
         if (this.tasks[i]._id === deletedTaskId) {
           this.tasks.splice(i, 1);
-          this.changeDetectorRef.detectChanges();
+          break;
+        }
+      }
+    });
+
+    this.updatedTaskSubscription = this.tasksService.updatedTask.subscribe(updatedTask => {
+      updatedTask.dueDateDisplay = this.tasksService.getDueDateString(new Date(updatedTask.dueDate));
+      for (let i = 0, len = this.tasks.length; i < len; i++) {
+        if (this.tasks[i]._id === updatedTask._id) {
+          Object.assign(this.tasks[i], updatedTask);
           break;
         }
       }
@@ -86,6 +99,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       'priority_high',
       sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-double-up.svg')
     );
+
     this.iconRegistry.addSvgIcon(
       'priority_critical',
       sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-triple-up.svg')
@@ -103,7 +117,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
    this.addedTaskSubscription.unsubscribe();
+   this.removedTaskSubscription.unsubscribe();
+   this.updatedTaskSubscription.unsubscribe();
    this.routeEventSubscription.unsubscribe();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+      moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
   }
 
 }

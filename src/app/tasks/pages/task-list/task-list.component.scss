@@ -1,3 +1,4 @@
+@import "~@angular/material/theming";
 @import "~src/assets/styles/modules/variables";
 
 :host {
@@ -49,6 +50,72 @@
         .priority,
         .due-date {
             margin: 0 0 0 $layout-unit__sm;
+        }
+    }
+
+    &.cdk-drop-list-dragging .mat-list-item:not(.cdk-drag-placeholder) {
+        transition: $swift-ease-out;
+    }
+
+    .cdk-drag-placeholder {
+        opacity: .4;
+    }
+}
+
+.cdk-drag-preview {
+    @include mat-elevation(8);
+    border-radius: $roundness;
+    cursor: move;
+    display: flex;
+
+    &.mat-list-item {
+        text-decoration: none;
+        
+        ::ng-deep.mat-list-item-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0 $layout-unit__sm;
+            position: relative;
+            height: inherit;
+
+            .mat-list-icon {
+                flex-shrink: 0;
+                width: 20px;
+                height: 20px;
+                font-size: 20px;
+                box-sizing: content-box;
+                border-radius: 50%;
+                padding: $layout-unit__xs;
+            }
+
+            .mat-list-text {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                box-sizing: border-box;
+                overflow: hidden;
+                padding: 0;
+                padding-right: 0;
+                padding-left: $layout-unit__sm;
+
+                .mat-line {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: flex;
+                    box-sizing: border-box;
+                    align-items: center;
+                    flex-direction: row;
+
+                    .title {
+                        flex: 1 1 auto;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
         }
     }
 }

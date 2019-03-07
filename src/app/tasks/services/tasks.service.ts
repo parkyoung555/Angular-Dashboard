@@ -13,6 +13,7 @@ export class TasksService {
 
   addedTask = new Subject<TaskModel>();
   removedTask = new Subject<string>();
+  updatedTask = new Subject<TaskModel>();
 
   static getIndicesFromData(data: TasksResponseModel, key: string) {
     data.indices = data.indices || {};
@@ -58,6 +59,17 @@ export class TasksService {
       tasksIndices = TasksService.getIndicesFromData(data, 'tasks');
 
     return tasks[tasksIndices[taskId]];
+  }
+
+  updateTask(task: TaskModel) {
+    const data = this.getData(),
+      tasks = TasksService.getTasksFromData(data),
+      tasksIndices = TasksService.getIndicesFromData(data, 'tasks');
+
+    tasks[tasksIndices[task._id]] = task;
+
+    this.save(data);
+    this.updatedTask.next(task);
   }
 
   addTask(task: TaskModel) {
