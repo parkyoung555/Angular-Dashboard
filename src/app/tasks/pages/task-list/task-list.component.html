@@ -1,15 +1,17 @@
 <mat-sidenav-container hasBackdrop="false" fxLayout="row" fxFlex="1 1 100%">
     <mat-sidenav-content fxLayout="column" fxFlex="1 1 auto">
-        <mat-nav-list class="tasks" dense cdkDropList (cdkDropListDropped)="drop($event)" @preventInitialChildAnimations>
+        <mat-nav-list class="tasks" dense cdkDropList (cdkDropListDropped)="listDropped($event)" @preventInitialChildAnimations>
             <ng-container *ngFor="let task of tasks; last as isLast">
-                <a mat-list-item
+                <a mat-list-item draggable="false"
                    (click)="taskDetailsDrawer.open()"
                    routerLinkActive="active"
                    #rla="routerLinkActive"
                    [replaceUrl]="true"
                    [routerLink]="task._id"
+                   (cdkDragDropped)="itemDropped(task._id, $event)"
                    cdkDrag
                    @slideInOut>
+                    <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" class="mat-24" mat-list-icon></mat-icon>
                     <mat-icon color="accent" mat-list-icon>{{task.type.icon}}</mat-icon>
                     <h2 fxLayoutAlign="start center" mat-line>
                         <span class="title mat-body-1" fxFlex="1 1 auto">{{task.title}}</span>

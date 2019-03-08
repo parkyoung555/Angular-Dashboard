@@ -1,0 +1,35 @@
+
+@mixin list-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .cdk-drag-preview {
+
+        &.mat-list-item {
+
+            &.active {
+                background-color: map-get($_theme-background, card);
+
+                .mat-list-item-content {
+                    background-color: transparentize($_theme-accent-color, .88);
+                }
+            }
+
+            .cdk-drag-handle {
+                color: map-get($_theme-foreground, text);
+            }
+        }
+    }
+
+    .mat-list-item {
+
+        .cdk-drag-handle {
+            color: map-get($_theme-foreground, disabled-text);
+        }
+
+        &:hover {
+
+            .cdk-drag-handle {
+                color: map-get($_theme-foreground, text);
+            }
+        }
+    }
+}

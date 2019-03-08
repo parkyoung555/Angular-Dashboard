@@ -3,6 +3,7 @@
 @import "../modules/empty-message";
 @import "../modules/icon";
 @import "../modules/link";
+@import "../modules/list";
 @import "../modules/logo";
 @import "../modules/sidenav";
 @import "../modules/variables";
@@ -24,6 +25,7 @@
     @include empty-message-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include icon-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include link-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include list-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include typography-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);

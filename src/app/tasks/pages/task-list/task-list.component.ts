@@ -105,6 +105,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
       sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-triple-up.svg')
     );
 
+    iconRegistry.addSvgIcon(
+      'drag',
+      sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/drag.svg')
+    );
+
     this.routeEventSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -122,8 +127,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
    this.routeEventSubscription.unsubscribe();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-      moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  listDropped(event) {
+    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  }
+
+  itemDropped(taskId: string, event: CdkDragDrop<string[]>) {
+      this.tasksService.setTaskPosition(taskId, event.currentIndex);
   }
 
 }

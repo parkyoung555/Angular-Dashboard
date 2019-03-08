@@ -30,36 +30,42 @@
     overflow-y: auto;
     padding: $layout-unit__md 0;
 
-    .mat-list-item {
-        overflow: hidden;
-
-        &:first-child {
-            border-top-left-radius: $roundness;
-        }
-
-        &:last-child {
-            border-bottom-left-radius: $roundness;
-        }
-
-        .title {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 0;
-        }
-
-        .priority,
-        .due-date {
-            margin: 0 0 0 $layout-unit__sm;
-        }
-    }
-
     &.cdk-drop-list-dragging .mat-list-item:not(.cdk-drag-placeholder) {
         transition: $swift-ease-out;
     }
+}
 
-    .cdk-drag-placeholder {
-        opacity: .4;
+.mat-list-item {
+    overflow: hidden;
+
+    &:first-child {
+        border-top-left-radius: $roundness;
     }
+
+    &:last-child {
+        border-bottom-left-radius: $roundness;
+    }
+
+    .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 0;
+    }
+
+    .priority,
+    .due-date {
+        margin: 0 0 0 $layout-unit__sm;
+    }
+
+    .cdk-drag-handle {
+        cursor: move;
+        margin-right: $layout-unit__xs;
+        padding-left: 0 !important;
+    }
+}
+
+.cdk-drag-placeholder {
+    opacity: .4;
 }
 
 .cdk-drag-preview {
@@ -72,47 +78,48 @@
         text-decoration: none;
         
         ::ng-deep.mat-list-item-content {
-            display: flex;
-            flex-direction: row;
             align-items: center;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            height: inherit;
             padding: 0 $layout-unit__sm;
             position: relative;
-            height: inherit;
+            width: 100%;
 
             .mat-list-icon {
-                flex-shrink: 0;
-                width: 20px;
-                height: 20px;
-                font-size: 20px;
-                box-sizing: content-box;
                 border-radius: 50%;
+                box-sizing: content-box;
+                flex-shrink: 0;
+                font-size: 20px;
+                height: 20px;
                 padding: $layout-unit__xs;
+                width: 20px;
             }
 
             .mat-list-text {
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
-                width: 100%;
-                box-sizing: border-box;
                 overflow: hidden;
-                padding: 0;
-                padding-right: 0;
-                padding-left: $layout-unit__sm;
+                padding: 0 0 0 $layout-unit__sm;
+                width: 100%;
 
                 .mat-line {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: flex;
-                    box-sizing: border-box;
                     align-items: center;
                     flex-direction: row;
+                    display: flex;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
 
                     .title {
                         flex: 1 1 auto;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
+                    }
+
+                    .mat-icon:not(.material-icons) {
+                        line-height: 0;
                     }
                 }
             }
@@ -121,6 +128,5 @@
 }
 
 .mat-sidenav {
-    overflow: visible; // need this to see close tab
     width: $navigation__expanded__width;
 }
