@@ -1,0 +1,7 @@
+@mixin tag-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .tag {
+        border: 1px solid map-get($_theme-foreground, divider);
+        color: $_theme-accent-color;
+    }
+}

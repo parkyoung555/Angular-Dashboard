@@ -31,6 +31,11 @@ export class TasksService {
     return data.statuses;
   }
 
+  static getTaskListPositionsFromData(data: TasksResponseModel) {
+    data.positions = data.positions || {};
+    return data.positions;
+  }
+
   static rebuildIndices(data: Array<any>) {
     const indices = {};
     for (let i = 0, len = data.length; i < len; i++) {
@@ -47,10 +52,16 @@ export class TasksService {
   }
 
   getTasks() {
-    return (this.getData().tasks || []).sort((a, b) => {
-      // Sort by position then by creation date
-      return a.position - b.position || new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime();
-    });
+    const data = this.getData(),
+    taskPositions = TasksService.getTaskListPositionsFromData(data);
+    return TasksService.getTasksFromData(data)
+      .map(task => {
+        task.position = taskPositions[task._id];
+        return task;
+      })
+      .sort((a, b) => {
+        return a.position - b.position || new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime();
+      });
   }
 
   getTask(taskId: string) {
@@ -174,6 +185,19 @@ export class TasksService {
     }
 
     return dateString;
+  }
+
+  setTaskListPositions(tasks: Array<TaskModel>) {
+    const data = this.getData(),
+      positions = {};
+
+    tasks.forEach((task, index) => {
+      positions[task._id] = index;
+    });
+
+    data.positions = positions;
+
+    this.save(data);
   }
 
   private getData(): TasksResponseModel {

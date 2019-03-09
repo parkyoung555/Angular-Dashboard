@@ -8,7 +8,6 @@
                    #rla="routerLinkActive"
                    [replaceUrl]="true"
                    [routerLink]="task._id"
-                   (cdkDragDropped)="itemDropped(task._id, $event)"
                    cdkDrag
                    @slideInOut>
                     <mat-icon cdkDragHandle matTooltip="Click and drag to reorder" svgIcon="drag" class="mat-24" mat-list-icon></mat-icon>
@@ -16,6 +15,7 @@
                     <h2 fxLayoutAlign="start center" mat-line>
                         <span class="title mat-body-1" fxFlex="1 1 auto">{{task.title}}</span>
                         <span class="due-date mat-overline" *ngIf="task.dueDate">{{task.dueDateDisplay}}</span>
+                        <span class="tag">{{task.status.label}}</span>
                         <mat-icon class="priority mat-18 mat-disabled-text" [matTooltip]="task.priority.label + ' priority'" *ngIf="task.priority.icon">{{task.priority.icon}}</mat-icon>
                         <mat-icon class="priority mat-18 mat-disabled-text" [matTooltip]="task.priority.label + ' priority'" *ngIf="task.priority.svgIcon" [svgIcon]="task.priority.svgIcon"></mat-icon>
                     </h2>

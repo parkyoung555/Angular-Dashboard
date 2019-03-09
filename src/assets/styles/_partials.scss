@@ -4,6 +4,8 @@
 
 // All angular material specific overrides need to go here to increase specificity of style selector
 :root {
+    @import "partials/typography";
+
     @import "partials/button";
     @import "partials/card";
     @import "partials/dialog";
@@ -11,7 +13,7 @@
     @import "partials/form-field";
     @import "partials/list";
     @import "partials/sidenav";
-    @import "partials/typography";
+    @import "partials/tag";
 
     @import "partials/theme";
 }

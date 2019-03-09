@@ -4,13 +4,9 @@
 @import "~src/assets/styles/modules/typography";
 @import "~src/assets/styles/modules/variables";
 
-:host {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
 .sidenav-content {
     height: 100%;
+    overflow: hidden;
 }
 
 .mat-sidenav-container {

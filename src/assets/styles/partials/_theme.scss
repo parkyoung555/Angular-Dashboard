@@ -7,6 +7,7 @@
 @import "../modules/logo";
 @import "../modules/sidenav";
 @import "../modules/variables";
+@import "../modules/tag";
 @import "../modules/theme";
 @import "../modules/typography";
 @import "../modules/border";
@@ -28,6 +29,7 @@
     @include list-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include tag-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include typography-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
 }
 

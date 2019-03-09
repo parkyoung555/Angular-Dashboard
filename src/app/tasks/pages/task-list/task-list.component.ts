@@ -129,10 +129,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   listDropped(event) {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
-  }
-
-  itemDropped(taskId: string, event: CdkDragDrop<string[]>) {
-      this.tasksService.setTaskPosition(taskId, event.currentIndex);
+    this.tasksService.setTaskListPositions(this.tasks);
   }
 
 }

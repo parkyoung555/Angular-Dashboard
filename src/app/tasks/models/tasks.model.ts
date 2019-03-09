@@ -30,7 +30,7 @@ export interface TaskModel {
   title: string;
   description?: string;
   priority: TaskPriority;
-  position: number;
+  position?: number;
   assignee?: string;
   reporter?: string;
   creationDate: Date;
@@ -100,6 +100,9 @@ export class TaskStatus implements TaskStatusModel {
 
 export interface TasksResponseModel {
   tasks: Array<TaskModel>;
+  positions: {
+    [_id: string]: number;
+  };
   indices: {
     tasks?: IndicesModel;
     statuses?: IndicesModel;
@@ -116,7 +119,7 @@ export class Task implements TaskModel {
   title: string;
   description?: string;
   priority: TaskPriority;
-  position: number;
+  position?: number;
   assignee?: string;
   reporter?: string;
   creationDate = new Date();
@@ -131,7 +134,7 @@ export class Task implements TaskModel {
     this.title = data.title;
     this.description = data.description;
     this.priority = data.priority || taskPriorities[1];
-    this.position = data.position || 0;
+    this.position = data.position;
     this.assignee = data.assignee;
     this.reporter = data.reporter;
     this.dueDate = data.dueDate;

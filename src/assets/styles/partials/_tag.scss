@@ -1,0 +1,9 @@
+@import "../modules/variables";
+
+.tag {
+    @extend .mat-overline;
+
+    border-radius: $roundness;
+    display: inline-block;
+    padding: $layout-unit__xs ($layout-unit__xs + 2px);
+}

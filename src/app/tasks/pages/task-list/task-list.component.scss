@@ -23,11 +23,11 @@
 }
 
 .mat-sidenav-content {
-    overflow: hidden auto;
+    overflow: hidden;
 }
 
 .mat-nav-list.tasks {
-    overflow-y: auto;
+    overflow: hidden auto;
     padding: $layout-unit__md 0;
 
     &.cdk-drop-list-dragging .mat-list-item:not(.cdk-drag-placeholder) {
@@ -52,6 +52,7 @@
         width: 0;
     }
 
+    .tag,
     .priority,
     .due-date {
         margin: 0 0 0 $layout-unit__sm;
