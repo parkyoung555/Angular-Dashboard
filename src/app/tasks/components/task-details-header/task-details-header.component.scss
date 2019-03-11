@@ -4,6 +4,10 @@
     position: relative;
 }
 
+h3 {
+    word-break: break-all;
+}
+
 .content-editable {
     margin-left: -$layout-unit__base;
     margin-right: -$layout-unit__base;

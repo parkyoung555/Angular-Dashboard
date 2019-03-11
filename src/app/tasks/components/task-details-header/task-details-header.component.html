@@ -9,10 +9,10 @@
         (keydown)="keydown($event)"
         #editableHeader></h3>
     <div class="mat-button-group mat-elevation-z5" *ngIf="editActive"><!-- TODO: Figure out focus issue. Can't click buttons -->
-        <button color="accent" (click)="cancel()" mat-icon-button mat-raised-button mat-stroked-button>
+        <button color="primary" (click)="cancel()" mat-icon-button mat-raised-button mat-stroked-button>
             <mat-icon>close</mat-icon>
         </button>
-        <button color="accent" (click)="save()" mat-icon-button mat-raised-button mat-stroked-button>
+        <button color="primary" (click)="save()" mat-icon-button mat-raised-button mat-stroked-button>
             <mat-icon>check</mat-icon>
         </button>
     </div>

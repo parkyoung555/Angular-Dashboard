@@ -131,7 +131,7 @@ export class Task implements TaskModel {
   subTasks?: Array<SubTaskModel>;
 
   constructor(data: TaskModel) {
-    this.title = data.title;
+    this.title = (data.title || '').trim();
     this.description = data.description;
     this.priority = data.priority || taskPriorities[1];
     this.position = data.position;

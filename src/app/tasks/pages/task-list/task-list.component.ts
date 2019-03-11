@@ -1,13 +1,13 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {TaskModel} from '../../models/tasks.model';
 import {TasksService} from '../../services/tasks.service';
-import {Subscription, pipe} from 'rxjs';
-import {animate, query, state, style, transition, trigger} from '@angular/animations';
+import {Subscription} from 'rxjs';
+import {animate, query, style, transition, trigger} from '@angular/animations';
 import {MatDrawer, MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-list',
