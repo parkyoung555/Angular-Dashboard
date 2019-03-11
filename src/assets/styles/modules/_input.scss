@@ -1,0 +1,17 @@
+@import "~@angular/material/theming";
+
+@mixin input-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    *[contenteditable="true"] {
+        transition: $swift-ease-out;
+        transition-property: background-color;
+
+        &:hover,
+        &:focus,
+        &.focused {
+            background-color: map-get($_theme-foreground, divider);
+            border-radius: $roundness;
+            outline: none;
+        }
+    }
+}

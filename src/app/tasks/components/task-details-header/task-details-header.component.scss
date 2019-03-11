@@ -1,0 +1,18 @@
+@import "~src/assets/styles/modules/variables";
+
+.header-wrapper {
+    position: relative;
+}
+
+[contenteditable="true"] {
+    margin-left: -$layout-unit__base;
+    margin-right: -$layout-unit__base;
+    padding: $layout-unit__xs $layout-unit__base;
+}
+
+.mat-button-group {
+    bottom: calc(-100% - #{$layout-unit__base});
+    position: absolute;
+    right: -$layout-unit__base;
+    z-index: 1;
+}

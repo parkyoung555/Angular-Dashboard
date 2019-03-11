@@ -6,7 +6,7 @@ import {RouterModule} from '@angular/router';
 import { TaskBoardComponent } from './pages/task-board/task-board.component';
 import {CreateTaskDialogComponent} from './components/create-task-dialog/create-task-dialog.component';
 import {CreateTaskFormModule} from './components/create-task-form/create-task-form.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
@@ -22,6 +22,7 @@ import {EmptyMessageModule} from '../core/empty-message/components/empty-message
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
 import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TaskDetailsHeaderComponent } from './components/task-details-header/task-details-header.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     TasksComponent,
     TaskListComponent,
     TaskBoardComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    TaskDetailsHeaderComponent
   ],
   entryComponents: [
     CreateTaskDialogComponent
@@ -41,6 +43,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule,
     EmptyMessageModule,
     FlexLayoutModule,
+    FormsModule,
     InlineNavigationModule,
     MatButtonModule,
     MatDialogModule,

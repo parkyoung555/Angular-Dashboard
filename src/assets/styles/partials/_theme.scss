@@ -2,6 +2,7 @@
 @import "../modules/color-swatch";
 @import "../modules/empty-message";
 @import "../modules/icon";
+@import "../modules/input";
 @import "../modules/link";
 @import "../modules/list";
 @import "../modules/logo";
@@ -25,6 +26,7 @@
     @include border-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include empty-message-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include icon-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include input-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include link-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include list-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);

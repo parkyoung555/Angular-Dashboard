@@ -1,0 +1,21 @@
+<div class="header-wrapper">
+    <ng-container *ngIf="titleEditable">
+        <h3 class="mat-title display-font"
+            contenteditable="true"
+            [textContent]="editedTitleValue"
+            (input)="editedTitleValue = $event.target.textContent"
+            (focus)="focus()"
+            (blur)="blur()"
+            (keydown)="keydown($event)"
+            #editableHeader></h3>
+        <div class="mat-button-group mat-elevation-z5" *ngIf="editActive"><!-- TODO: Figure out focus issue. Can't click buttons -->
+            <button color="accent" (click)="cancel()" mat-icon-button mat-raised-button mat-stroked-button>
+                <mat-icon>close</mat-icon>
+            </button>
+            <button color="accent" (click)="save()" mat-icon-button mat-raised-button mat-stroked-button>
+                <mat-icon>check</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+    <h3 class="mat-title display-font" *ngIf="!titleEditable">{{titleValue}}</h3>
+</div>
