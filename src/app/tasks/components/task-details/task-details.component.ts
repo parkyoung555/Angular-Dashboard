@@ -65,6 +65,11 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateTaskTitle(title: string) {
+    this.task.title = title;
+    this.updateTask();
+  }
+
   updateStatus(status: TaskStatusModel) {
     this.task.status = status;
     this.taskStatuses = this.getTransitionableStatuses(status);

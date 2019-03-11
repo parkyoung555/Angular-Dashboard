@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-task-details-header',
@@ -28,40 +28,58 @@ export class TaskDetailsHeaderComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  static clearSelection() {
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    }
+  }
+
+  constructor(
+    private componentElement: ElementRef
+  ) { }
 
   ngOnInit() {
     this.editedTitleValue = this.titleValue;
   }
 
-  blur() {
-    this.editActive = false;
-    this.editableHeaderElement.nativeElement.blur();
+  @HostListener('document:click', ['$event'])
+  blur(event) {
+    if (!this.componentElement.nativeElement.contains(event.target)) {
+      this.save();
+    }
   }
 
-  cancel() {alert(99);
+  cancel() {
     this.editedTitleValue = this.titleValue;
     this.onCancel.emit();
-    this.blur();
+    this.editActive = false;
+    this.editableHeaderElement.nativeElement.blur(); 
+    // TaskDetailsHeaderComponent.clearSelection();
   }
 
-  focus() {
+  editMode() {
     this.editActive = true;
-    // this.editableHeaderElement.nativeElement.select();
-    // document.execCommand('selectAll', false, null);
-    TaskDetailsHeaderComponent.selectText(this.editableHeaderElement.nativeElement);
+    // TaskDetailsHeaderComponent.selectText(this.editableHeaderElement.nativeElement);
   }
 
   keydown(event) {
     if (event.which === 13) {
       event.preventDefault();
-      this.save();
+      if (!this.editActive) {
+        this.editMode();
+      } else {
+        this.save();
+      }
     }
   }
 
   save() {
-    this.onSave.emit(this.editedTitleValue);
-    this.blur();
+     if (this.editActive) {
+      this.onSave.emit(this.editedTitleValue);
+      this.editActive = false;
+      // TaskDetailsHeaderComponent.clearSelection();
+      this.editableHeaderElement.nativeElement.blur(); 
+    }
   }
 
 }

@@ -4,14 +4,14 @@
     position: relative;
 }
 
-[contenteditable="true"] {
+.content-editable {
     margin-left: -$layout-unit__base;
     margin-right: -$layout-unit__base;
     padding: $layout-unit__xs $layout-unit__base;
 }
 
 .mat-button-group {
-    bottom: calc(-100% - #{$layout-unit__base});
+    bottom: -48px;
     position: absolute;
     right: -$layout-unit__base;
     z-index: 1;

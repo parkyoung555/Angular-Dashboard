@@ -2,16 +2,23 @@
 
 @mixin input-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
 
-    *[contenteditable="true"] {
+    .content-editable {
+        border-radius: $roundness;
+        display: block;
+        outline: none;
         transition: $swift-ease-out;
-        transition-property: background-color;
+        transition-property: background-color, box-shadow;
 
         &:hover,
-        &:focus,
-        &.focused {
-            background-color: map-get($_theme-foreground, divider);
-            border-radius: $roundness;
-            outline: none;
+        &:focus {
+            
+            &:not(.editing) {
+                background-color: map-get($_theme-foreground, divider);
+            }
+        }
+
+        &.editing {
+            box-shadow: inset 0 0 0 2px $_theme-accent-color;
         }
     }
 }
