@@ -24,6 +24,7 @@
 <div class="details" *ngIf="task">
     <app-task-details-header [titleValue]="task.title" (onSave)="updateTaskTitle($event)"></app-task-details-header>
     <button mat-stroked-button color="accent" matTooltip="Update task status" [matMenuTriggerFor]="taskStatusMenu">{{task.status.label}}<mat-icon class="end">arrow_drop_down</mat-icon></button>
+    <ckeditor [editor]="editor" [data]="task.description"></ckeditor>
     <h4 class="mat-body-1" contenteditable="true">{{task.description}}</h4>
     <p class="mat-body-1">FILLER TEXT TO DEMONSTRATE OVERFLOW BEHAVIOR: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla velit in eros cursus, ut facilisis augue pulvinar. Sed eleifend nec sem sit amet auctor. Praesent et tristique purus. In tristique rhoncus enim. Sed eu egestas quam. Cras tincidunt molestie turpis a vulputate. Etiam ut nibh aliquet, ornare nisl ut, iaculis dolor.</p>
     <p class="mat-body-1">Ut non massa orci. Phasellus quis porta felis. Donec dolor nisi, tincidunt sed suscipit in, pharetra sed arcu. Pellentesque gravida quam ut molestie venenatis. Nullam vestibulum pulvinar dui at aliquet. Pellentesque tincidunt pellentesque interdum. Phasellus lacinia risus nunc, rhoncus placerat quam porttitor quis.</p>

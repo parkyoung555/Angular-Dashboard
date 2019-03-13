@@ -1,4 +1,5 @@
 @import "../modules/button";
+@import "../modules/ckeditor";
 @import "../modules/color-swatch";
 @import "../modules/empty-message";
 @import "../modules/icon";
@@ -24,6 +25,7 @@
 
     @include button-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include border-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include ckeditor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include empty-message-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include icon-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include input-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);

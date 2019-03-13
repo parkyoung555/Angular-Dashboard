@@ -23,6 +23,7 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
 import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskDetailsHeaderComponent } from './components/task-details-header/task-details-header.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TaskDetailsHeaderComponent } from './components/task-details-header/tas
     CreateTaskDialogComponent
   ],
   imports: [
+    CKEditorModule,
     CommonModule,
     ConfirmDialogModule,
     CreateTaskFormModule,

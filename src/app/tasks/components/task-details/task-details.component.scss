@@ -50,3 +50,7 @@
         }
     }
 }
+
+ckeditor ::ng-deep .ck-editor {
+    margin: $layout-unit__sm 0 0;
+}
