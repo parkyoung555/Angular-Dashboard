@@ -24,8 +24,8 @@
 <div class="details" *ngIf="task">
     <app-task-details-header [titleValue]="task.title" (onSave)="updateTaskTitle($event)"></app-task-details-header>
     <button mat-stroked-button color="accent" matTooltip="Update task status" [matMenuTriggerFor]="taskStatusMenu">{{task.status.label}}<mat-icon class="end">arrow_drop_down</mat-icon></button>
-    <ckeditor [editor]="editor" [data]="task.description"></ckeditor>
-    <h4 class="mat-body-1" contenteditable="true">{{task.description}}</h4>
+    <app-rich-text-editor [data]="task.description"></app-rich-text-editor>
+    <!--<h4 class="mat-body-1" contenteditable="true">{{task.description}}</h4>-->
     <p class="mat-body-1">FILLER TEXT TO DEMONSTRATE OVERFLOW BEHAVIOR: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla velit in eros cursus, ut facilisis augue pulvinar. Sed eleifend nec sem sit amet auctor. Praesent et tristique purus. In tristique rhoncus enim. Sed eu egestas quam. Cras tincidunt molestie turpis a vulputate. Etiam ut nibh aliquet, ornare nisl ut, iaculis dolor.</p>
     <p class="mat-body-1">Ut non massa orci. Phasellus quis porta felis. Donec dolor nisi, tincidunt sed suscipit in, pharetra sed arcu. Pellentesque gravida quam ut molestie venenatis. Nullam vestibulum pulvinar dui at aliquet. Pellentesque tincidunt pellentesque interdum. Phasellus lacinia risus nunc, rhoncus placerat quam porttitor quis.</p>
     <p class="mat-body-1">Donec commodo elementum nulla, non imperdiet libero laoreet et. Morbi congue sodales odio nec ornare. Sed suscipit turpis vitae magna sagittis, sodales scelerisque ligula tempus. Suspendisse vitae risus ultricies, tincidunt risus sed, accumsan eros. Etiam finibus sem id erat malesuada vulputate. Nunc quis enim lectus. Nam eu nibh vitae dui scelerisque fringilla. Sed facilisis urna lacus, sit amet eleifend metus lacinia dictum. Pellentesque aliquet diam magna, lacinia mattis nisl facilisis vel. Nam a odio mattis, egestas turpis id, condimentum diam. Donec at lobortis nibh. Curabitur varius venenatis diam elementum tristique.</p>

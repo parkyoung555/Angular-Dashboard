@@ -5,7 +5,6 @@ import {TasksService} from '../../services/tasks.service';
 import {TaskModel, taskStatuses, TaskStatusModel, TaskTypeModel, taskTypes} from '../../models/tasks.model';
 import {MatDialog} from '@angular/material';
 import {ConfirmDialogComponent} from '../../../core/confirm-dialog/components/confirm-dialog/confirm-dialog.component';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-task-details',
@@ -14,7 +13,6 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class TaskDetailsComponent implements OnInit, OnDestroy {
 
-  editor = ClassicEditor;
   task: TaskModel;
   taskStatuses: Array<TaskStatusModel>;
   taskTypes: Array<TaskTypeModel>;

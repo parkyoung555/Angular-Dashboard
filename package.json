@@ -23,8 +23,6 @@
     "@angular/platform-browser": "^7.2.4",
     "@angular/platform-browser-dynamic": "^7.2.4",
     "@angular/router": "^7.2.4",
-    "@ckeditor/ckeditor5-angular": "^1.0.1",
-    "@ckeditor/ckeditor5-build-classic": "git://github.com/parkyoung555/ckeditor5-build-classic.git#material-icons",
     "core-js": "^2.6.4",
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",

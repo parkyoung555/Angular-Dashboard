@@ -1,0 +1,13 @@
+@import "~@angular/material/theming";
+@import "~src/assets/styles/modules/typography";
+@import "~src/assets/styles/modules/variables";
+
+@mixin rich-text-editor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    app-rich-text-editor {
+
+        .editor {
+            border: 1px solid map-get($_theme-foreground, divider);
+        }
+    }
+}

@@ -51,6 +51,7 @@
     }
 }
 
-ckeditor ::ng-deep .ck-editor {
+app-rich-text-editor {
+    display: block;
     margin: $layout-unit__sm 0 0;
 }

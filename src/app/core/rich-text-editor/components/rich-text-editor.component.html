@@ -1,0 +1,7 @@
+<div class="editor">
+  <div class="body mat-body-1"
+       [attr.contenteditable]="!disabled"
+       [textContent]="_value"
+       (input)="_value = $event.target.textContent"
+       (keydown)="keydown($event)" #textBody></div>
+</div>
