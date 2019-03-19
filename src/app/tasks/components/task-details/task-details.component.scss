@@ -51,7 +51,15 @@
     }
 }
 
-app-rich-text-editor {
+app-rich-text-editor,
+quill-editor{
     display: block;
     margin: $layout-unit__sm 0 0;
+}
+
+quill-editor {
+
+    &:not(.focused) .ql-toolbar {
+        display: none;
+    }
 }

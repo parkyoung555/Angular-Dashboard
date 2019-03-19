@@ -13,6 +13,8 @@ import {ConfirmDialogComponent} from '../../../core/confirm-dialog/components/co
 })
 export class TaskDetailsComponent implements OnInit, OnDestroy {
 
+  editorFocused: boolean;
+  editorCurrentData: string;
   task: TaskModel;
   taskStatuses: Array<TaskStatusModel>;
   taskTypes: Array<TaskTypeModel>;
@@ -28,10 +30,12 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     private dialog: MatDialog
   ) {
     this.routeSubscription = this.route.paramMap.subscribe(params => {
+      this.editorFocused = false;
       this.task = this.tasksService.getTask(params.get('taskId'));
       if (this.task) {
         this.taskStatuses = this.getTransitionableStatuses(this.task.status);
         this.taskTypes = this.getTransitionableTypes(this.task.type);
+        this.editorCurrentData = this.task.description;
       }
       // console.log(this.elementRef);
       const parentElement = this.renderer.parentNode(this.elementRef.nativeElement);
@@ -46,6 +50,20 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
+  }
+
+  editorChanged(event) {
+    if (event.range) {
+      this.editorFocused = true;
+    } else { // Save data on blur
+      this.editorFocused = false;
+      this.task.description = this.editorCurrentData;
+      this.updateTask();
+    }
+  }
+
+  editorContentChanged(event) {
+    this.editorCurrentData = event.html;
   }
 
   deleteTask() {

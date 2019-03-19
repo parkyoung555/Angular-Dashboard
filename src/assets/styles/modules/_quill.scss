@@ -1,0 +1,56 @@
+@import "~@angular/material/theming";
+@import "~src/assets/styles/modules/typography";
+@import "~src/assets/styles/modules/variables";
+
+@mixin quill-editor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    quill-editor {
+        //border: 1px solid map-get($_theme-foreground, divider);
+        transition: $swift-ease-out;
+        transition-property: background-color;
+
+        &.focused {
+            border: 1px solid map-get($_theme-foreground, divider);
+        }
+
+        &:not(.focused):hover {
+            background-color: map-get($_theme-foreground, divider);
+        }
+
+        .ql-toolbar,
+        .ql-formats {
+            border-color: map-get($_theme-foreground, divider);
+        }
+
+        button {
+
+            svg {
+
+                .ql-fill {
+                    fill: currentColor;
+                }
+
+                .ql-stroke {
+                    stroke: currentColor;
+                }
+            }
+
+            &:hover,
+            &:focus,
+            &.ql-active {
+                background-color: map-get($_theme-foreground, divider);
+
+                svg {
+
+                    .ql-fill {
+                        fill: $_theme-accent-color;
+                    }
+
+                    .ql-stroke {
+                        stroke: $_theme-accent-color;
+                    }
+                }
+            }
+        }
+    }
+}

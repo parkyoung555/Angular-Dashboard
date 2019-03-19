@@ -7,7 +7,7 @@
 @import "../modules/link";
 @import "../modules/list";
 @import "../modules/logo";
-@import "../modules/rich-text-editor";
+@import "../modules/quill";
 @import "../modules/sidenav";
 @import "../modules/variables";
 @import "../modules/tag";
@@ -33,7 +33,7 @@
     @include link-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include list-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
-    @include rich-text-editor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include quill-editor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include tag-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include typography-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);

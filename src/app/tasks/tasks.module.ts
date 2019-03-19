@@ -14,7 +14,7 @@ import {
   MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatListModule, MatMenuModule, MatSidenavModule,
-  MatSnackBarModule, MatTooltipModule, MatToolbarModule
+  MatSnackBarModule, MatTooltipModule, MatToolbarModule, MatSelectModule
 } from '@angular/material';
 import {InlineNavigationModule} from '../core/navigation/components/inline-navigation/inline-navigation.module';
 import {CommonModule} from '@angular/common';
@@ -23,7 +23,7 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
 import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskDetailsHeaderComponent } from './components/task-details-header/task-details-header.component';
-import {RichTextEditorModule} from '../core/rich-text-editor/rich-text-editor.module';
+import {QuillModule} from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -52,11 +52,12 @@ import {RichTextEditorModule} from '../core/rich-text-editor/rich-text-editor.mo
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    RichTextEditorModule,
+    QuillModule,
     ReactiveFormsModule,
     RouterModule,
     TasksRoutingModule
