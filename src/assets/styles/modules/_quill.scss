@@ -1,4 +1,5 @@
 @import "~@angular/material/theming";
+@import "~src/assets/styles/modules/mixins";
 @import "~src/assets/styles/modules/typography";
 @import "~src/assets/styles/modules/variables";
 
@@ -35,10 +36,40 @@
                 }
             }
 
+            &.ql-code-block {
+                position: relative;
+
+                &::before {
+                    @include center-absolute();
+                    background-color: map-get($_theme-foreground, text);
+                    border-radius: $roundness;
+                    content: '';
+                    height: 14px;
+                    position: absolute;
+                    width: 18px;
+                }
+
+                svg {
+                    z-index: 1;
+
+                    .ql-fill {
+                        fill: map-get($_theme-background, card) !important;
+                    }
+
+                    .ql-stroke {
+                        stroke: map-get($_theme-background, card) !important;
+                    }
+                }
+            }
+
             &:hover,
             &:focus,
             &.ql-active {
                 background-color: map-get($_theme-foreground, divider);
+
+                &::before {
+                    background-color: $_theme-accent-color;
+                }
 
                 svg {
 
@@ -49,6 +80,30 @@
                     .ql-stroke {
                         stroke: $_theme-accent-color;
                     }
+                }
+            }
+        }
+
+        .ql-container {
+
+            .ql-editor {
+
+                &.ql-blank::before {
+                    color: map-get($_theme-foreground, disabled-text);
+                }
+
+                pre {
+                    //background-color: darken(map-get($_theme-background, card), 12%);
+                    //color: inherit;
+
+                    .hljs-tag {
+                        //color: inherit;
+                    }
+                }
+
+                code {
+                    background-color: map-get($_theme-foreground, divider);
+                    color: $_theme-primary-color;
                 }
             }
         }

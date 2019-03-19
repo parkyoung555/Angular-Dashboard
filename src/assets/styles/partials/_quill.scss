@@ -1,3 +1,4 @@
+@import '~highlight.js/styles/monokai-sublime.css';
 @import "~quill/dist/quill.snow.css";
 @import "~src/assets/styles/modules/typography";
 @import "~src/assets/styles/modules/variables";
@@ -5,15 +6,6 @@
 quill-editor {
     border-radius: $roundness;
     display: block;
-
-    &:not(.focused) {
-        margin-left: -$layout-unit__base;
-        margin-right: -$layout-unit__base;
-
-        .ql-editor {
-            padding: $layout-unit__xs $layout-unit__base;
-        }
-    }
 
     .ql-toolbar {
         border-width: 0 0 1px;
@@ -52,5 +44,55 @@ quill-editor {
     .ql-container {
         @include mat-typography-level-to-styles($base-typography, body-1);
         border: none;
+
+        .ql-editor {
+            padding: $layout-unit__base;
+
+            &.ql-blank::before {
+                @include mat-typography-level-to-styles($base-typography, body-1);
+            }
+
+            ol, ul {
+                padding-bottom: $layout-unit__base;
+                padding-top: $layout-unit__base;
+            }
+
+            pre {
+                margin-bottom: $layout-unit__base;
+                margin-top: $layout-unit__base;
+                padding: $layout-unit__base;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+.mat-drawer {
+
+    quill-editor {
+
+        &:not(.focused) {
+            margin-left: -$layout-unit__base;
+            margin-right: -$layout-unit__base;
+
+            .ql-toolbar {
+                display: none;
+            }
+
+            .ql-container {
+
+                .ql-editor {
+                    padding: $layout-unit__xs $layout-unit__base;
+
+                    &.ql-blank::before {
+                        left: $layout-unit__base;
+                        right: $layout-unit__base;
+                    }
+                }
+            }
+        }
     }
 }

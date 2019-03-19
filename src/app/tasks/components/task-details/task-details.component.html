@@ -26,9 +26,10 @@
     <button mat-stroked-button color="accent" matTooltip="Update task status" [matMenuTriggerFor]="taskStatusMenu">{{task.status.label}}<mat-icon class="end">arrow_drop_down</mat-icon></button>
     <!--<h4 class="mat-body-1" contenteditable="true">{{task.description}}</h4>-->
     <quill-editor placeholder="Description"
-                  [ngModel]="task.description"
+                  [modules]="quillModules"
+                  [(ngModel)]="editorCurrentData"
                   (onSelectionChanged)="editorChanged($event)"
-                  (onContentChanged)="editorContentChanged($event)"
+                  (click)="editorFocused = true"
                   [class.focused]="editorFocused">
         <div quill-editor-toolbar>
             <span class="ql-formats">
@@ -46,6 +47,10 @@
             <span class="ql-formats">
                 <button class="ql-list" value="ordered" matTooltip="Ordered list"></button>
                 <button class="ql-list" value="bullet" matTooltip="Bullet list"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-code" matTooltip="Inline code"></button>
+                <button class="ql-code-block" matTooltip="Code block"></button>
             </span>
         </div>
     </quill-editor>

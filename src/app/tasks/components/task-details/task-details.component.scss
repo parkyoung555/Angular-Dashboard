@@ -59,7 +59,10 @@ quill-editor{
 
 quill-editor {
 
-    &:not(.focused) .ql-toolbar {
-        display: none;
+    &:not(.focused) {
+
+        .ql-toolbar {
+            display: none;
+        }
     }
 }

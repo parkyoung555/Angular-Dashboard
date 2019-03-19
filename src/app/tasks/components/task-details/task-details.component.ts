@@ -15,6 +15,12 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   editorFocused: boolean;
   editorCurrentData: string;
+  quillModules = {
+    clipboard: {
+      matchVisual: false
+    },
+    syntax: true
+  };
   task: TaskModel;
   taskStatuses: Array<TaskStatusModel>;
   taskTypes: Array<TaskTypeModel>;
@@ -37,7 +43,6 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
         this.taskTypes = this.getTransitionableTypes(this.task.type);
         this.editorCurrentData = this.task.description;
       }
-      // console.log(this.elementRef);
       const parentElement = this.renderer.parentNode(this.elementRef.nativeElement);
       if (parentElement) {
         parentElement.scrollTop = 0;
@@ -57,13 +62,13 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
       this.editorFocused = true;
     } else { // Save data on blur
       this.editorFocused = false;
+      this.editorCurrentData = (this.editorCurrentData || '')
+          .replace(/<p>\s*<\/p>/gi, '')
+          // .replace(/^(<p><br><\/p>)*|(<p><br><\/p>)*$/gim, '')
+          .replace(/<p><br><\/p>/gi, '');
       this.task.description = this.editorCurrentData;
       this.updateTask();
     }
-  }
-
-  editorContentChanged(event) {
-    this.editorCurrentData = event.html;
   }
 
   deleteTask() {
