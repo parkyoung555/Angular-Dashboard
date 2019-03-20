@@ -6,22 +6,22 @@
 @mixin quill-editor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
 
     quill-editor {
-        border: 1px solid map-get($_theme-foreground, divider);
+        box-shadow: inset 0 0 0 1px map-get($_theme-foreground, disabled);
         transition: $swift-ease-out;
         transition-property: background-color;
 
-        &:not(.focused) {
-            border: none;
+        &.nondisruptive:not(.focused) {
+            box-shadow: none;
 
             &:hover {
-                background-color: map-get($_theme-foreground, divider);
+                background-color: map-get($_theme-background, hover);
             }
         }
 
         &.form-field {
 
             &.filled {
-                background-color: map-get($_theme-foreground, divider);
+                background-color: map-get($_theme-background, hover);
             }
         }
 
@@ -64,7 +64,7 @@
             &:hover,
             &:focus,
             &.ql-active {
-                background-color: map-get($_theme-foreground, divider);
+                background-color: map-get($_theme-background, hover);
 
                 &::before {
                     background-color: $_theme-accent-color;

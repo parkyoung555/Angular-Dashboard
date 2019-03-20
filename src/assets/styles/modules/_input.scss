@@ -11,9 +11,9 @@
 
         &:hover,
         &:focus {
-            
+
             &:not(.editing) {
-                background-color: map-get($_theme-foreground, divider);
+                background-color: map-get($_theme-background, hover);
             }
         }
 
