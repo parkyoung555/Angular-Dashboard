@@ -12,10 +12,37 @@
         <mat-label>Title</mat-label>
         <textarea matInput formControlName="title" placeholder="Title" cdkAutosizeMinRows="1" cdkTextareaAutosize required></textarea>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description" placeholder="Description" cdkAutosizeMinRows="3" cdkTextareaAutosize></textarea>
-    </mat-form-field>
+    <!--<mat-form-field appearance="fill">-->
+        <!--<mat-label>Description</mat-label>-->
+        <!--<textarea matInput formControlName="description" placeholder="Description" cdkAutosizeMinRows="3" cdkTextareaAutosize></textarea>-->
+    <!--</mat-form-field>-->
+    <quill-editor class="form-field filled"
+                  formControlName="description"
+                  placeholder="Description"
+                  [modules]="quillModules">
+        <div quill-editor-toolbar>
+            <span class="ql-formats">
+                <button class="ql-bold" matTooltip="Bold"></button>
+                <button class="ql-italic" matTooltip="Italic"></button>
+                <button class="ql-underline" matTooltip="Underline"></button>
+                <button class="ql-strike" matTooltip="Strike"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-align" value="" matTooltip="Left align"></button>
+                <button class="ql-align" value="center" matTooltip="Center align"></button>
+                <button class="ql-align" value="right" matTooltip="Right align"></button>
+                <button class="ql-align" value="justify" matTooltip="Justify"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-list" value="ordered" matTooltip="Ordered list"></button>
+                <button class="ql-list" value="bullet" matTooltip="Bullet list"></button>
+            </span>
+            <span class="ql-formats">
+                <button class="ql-code" matTooltip="Inline code"></button>
+                <button class="ql-code-block" matTooltip="Code block"></button>
+            </span>
+        </div>
+    </quill-editor>
     <mat-form-field appearance="fill" fxLayout="row" fxFlex="0 0 50%">
         <mat-label>Priority</mat-label>
         <mat-select formControlName="priority" required>

@@ -28,6 +28,9 @@ export class CreateTaskDialogComponent implements OnInit {
     }
 
     const task = new Task(this.newTaskForm.value);
+    task.description = (task.description || '')
+      .replace(/<p>\s*<\/p>/gi, '')
+      .replace(/<p><br><\/p>/gi, '');
     this.tasksService.addTask(task);
     this.dialogRef.close(task);
   }

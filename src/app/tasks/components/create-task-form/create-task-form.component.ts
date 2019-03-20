@@ -14,6 +14,12 @@ import {TasksService} from '../../services/tasks.service';
 export class CreateTaskFormComponent implements OnInit {
 
   @Input() newTaskForm: FormGroup;
+  quillModules = {
+    clipboard: {
+      matchVisual: false
+    },
+    syntax: true
+  };
   taskPriorities: Array<TaskPriority>;
   taskTypes: Array<TaskType>;
 

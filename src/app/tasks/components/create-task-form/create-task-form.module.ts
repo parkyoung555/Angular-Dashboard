@@ -11,6 +11,7 @@ import {CreateTaskFormComponent} from './create-task-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CommonModule} from '@angular/common';
+import {QuillModule} from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {CommonModule} from '@angular/common';
     MatInputModule,
     MatNativeDateModule,
     MatSelectModule,
+    QuillModule,
     ReactiveFormsModule
   ],
   declarations: [

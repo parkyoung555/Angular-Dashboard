@@ -25,7 +25,8 @@
     <app-task-details-header [titleValue]="task.title" (onSave)="updateTaskTitle($event)"></app-task-details-header>
     <button mat-stroked-button color="accent" matTooltip="Update task status" [matMenuTriggerFor]="taskStatusMenu">{{task.status.label}}<mat-icon class="end">arrow_drop_down</mat-icon></button>
     <!--<h4 class="mat-body-1" contenteditable="true">{{task.description}}</h4>-->
-    <quill-editor placeholder="Description"
+    <quill-editor class="nondisruptive"
+                  placeholder="Description"
                   [modules]="quillModules"
                   [(ngModel)]="editorCurrentData"
                   (onSelectionChanged)="editorChanged($event)"

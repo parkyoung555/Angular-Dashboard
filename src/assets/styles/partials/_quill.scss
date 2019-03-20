@@ -1,11 +1,16 @@
 @import '~highlight.js/styles/monokai-sublime.css';
 @import "~quill/dist/quill.snow.css";
+@import "~src/assets/styles/modules/mixins";
 @import "~src/assets/styles/modules/typography";
 @import "~src/assets/styles/modules/variables";
 
 quill-editor {
     border-radius: $roundness;
     display: block;
+
+    &.form-field {
+        margin-bottom: 1.34375em;
+    }
 
     .ql-toolbar {
         border-width: 0 0 1px;
@@ -38,6 +43,22 @@ quill-editor {
                 height: 18px;
                 width: 18px;
             }
+
+            &.ql-code-block {
+                position: relative;
+
+                &::before {
+                    @include center-absolute();
+                    border-radius: $roundness;
+                    content: '';
+                    height: 14px;
+                    width: 18px;
+                }
+
+                svg {
+                    z-index: 1;
+                }
+            }
         }
     }
 
@@ -46,10 +67,12 @@ quill-editor {
         border: none;
 
         .ql-editor {
-            padding: $layout-unit__base;
+            padding: 12px;
 
             &.ql-blank::before {
                 @include mat-typography-level-to-styles($base-typography, body-1);
+                left: 12px;
+                right: 12px;
             }
 
             ol, ul {
@@ -65,18 +88,17 @@ quill-editor {
                 &:first-child {
                     margin-top: 0;
                 }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }
-}
 
-.mat-drawer {
-
-    quill-editor {
+    &.nondisruptive {
 
         &:not(.focused) {
-            margin-left: -$layout-unit__base;
-            margin-right: -$layout-unit__base;
 
             .ql-toolbar {
                 display: none;
@@ -85,7 +107,7 @@ quill-editor {
             .ql-container {
 
                 .ql-editor {
-                    padding: $layout-unit__xs $layout-unit__base;
+                    padding: $layout-unit__base;
 
                     &.ql-blank::before {
                         left: $layout-unit__base;
