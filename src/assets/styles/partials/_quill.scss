@@ -7,6 +7,8 @@
 quill-editor {
     border-radius: $roundness;
     display: block;
+    transition: $swift-ease-out;
+    transition-property: background-color;
 
     &.form-field {
         margin-bottom: 1.34375em;
