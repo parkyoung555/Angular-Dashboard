@@ -2,6 +2,7 @@
 @import "../modules/variables";
 
 .mat-card {
+    border-radius: $roundness;
 
     .mat-card-header-text {
         margin: 0 $layout-unit__base;

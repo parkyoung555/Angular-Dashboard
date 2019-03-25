@@ -1,3 +1,36 @@
-<p>
-  task-board works!
-</p>
+<div class="lanes" fxLayout="row" fxFlex="1 1 auto" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="laneDropped($event)">
+    <mat-card class="lane mat-elevation-z" *ngFor="let lane of lanes" fxFlex="0 0 auto" cdkDrag>
+        <div class="header">
+            <div class="row" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="drag" svgIcon="drag" matTooltip="Click and drag to reorder" cdkDragHandle></mat-icon>
+                <h3 class="mat-overline" fxFlex="1 1 auto">
+                    {{lane.label}}
+                    <span class="mat-secondary-text" *ngIf="tasks[lane.value]?.length">({{tasks[lane.value].length}})</span>
+                </h3>
+                <button mat-icon-button>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+        <div class="tasks"
+             cdkDropList
+             [cdkDropListData]="tasks[lane.value]"
+             (cdkDropListDropped)="taskDropped($event, lane)"
+             [cdkDropListConnectedTo]="getDraggableLanes(lane)"
+             [id]="lane.value">
+            <mat-card class="task" *ngFor="let task of tasks[lane.value]" cdkDrag>
+                <h3 class="mat-subheading-2">{{task.title}}</h3>
+                <mat-card-content>
+                    <div class="priority-type" fxLayout="row" fxLayoutAlign="start center">
+                        <span class="priority mat-disabled-text" [matTooltip]="task.priority.label" fxLayout="row">
+                            <mat-icon class="mat-18" *ngIf="task.priority.icon">{{task.priority.icon}}</mat-icon>
+                            <mat-icon class="mat-18" *ngIf="task.priority.svgIcon" [svgIcon]="task.priority.svgIcon"></mat-icon>
+                        </span>
+                        <span class="mat-overline">{{task.type.label}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-card>
+</div>

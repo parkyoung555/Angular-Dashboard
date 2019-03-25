@@ -14,7 +14,7 @@ import {
   MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatListModule, MatMenuModule, MatSidenavModule,
-  MatSnackBarModule, MatTooltipModule, MatToolbarModule, MatSelectModule
+  MatSnackBarModule, MatTooltipModule, MatToolbarModule, MatSelectModule, MatCardModule
 } from '@angular/material';
 import {InlineNavigationModule} from '../core/navigation/components/inline-navigation/inline-navigation.module';
 import {CommonModule} from '@angular/common';
@@ -47,6 +47,7 @@ import {QuillModule} from 'ngx-quill';
     FormsModule,
     InlineNavigationModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
     MatFormFieldModule,
     MatIconModule,

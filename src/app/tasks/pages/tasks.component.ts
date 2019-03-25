@@ -3,7 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {NavigationService} from '../../core/navigation/services/navigation.service';
 import {NavigationItemModel} from '../../core/navigation/models/navigation-item.model';
 import {CreateTaskDialogComponent} from '../components/create-task-dialog/create-task-dialog.component';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog, MatIconRegistry, MatSnackBar} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tasks',
@@ -18,8 +19,25 @@ export class TasksComponent implements OnInit {
     private route: ActivatedRoute,
     private navigationService: NavigationService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer
+  ) {
+    this.iconRegistry.addSvgIcon(
+      'priority_high',
+      this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-double-up.svg')
+    );
+
+    this.iconRegistry.addSvgIcon(
+      'priority_critical',
+      this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-triple-up.svg')
+    );
+
+    iconRegistry.addSvgIcon(
+      'drag',
+      this.sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/drag.svg')
+    );
+  }
 
   ngOnInit() {
     this.inlineNavLinks = this.navigationService.getChildMenuLinks(this.route.snapshot.url[0].path);

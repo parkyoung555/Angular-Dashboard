@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TasksService} from '../../services/tasks.service';
+import {TaskModel, TaskStatusModel} from '../../models/tasks.model';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-board',
@@ -7,9 +10,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskBoardComponent implements OnInit {
 
-  constructor() { }
+  lanes: Array<TaskStatusModel>;
+  tasks: { [statusValue: string]: Array<TaskModel> } = {};
+
+  constructor(
+    private tasksService: TasksService,
+  ) {
+    this.lanes = this.tasksService.getStatuses();
+
+    this.lanes.forEach(lane => {
+      this.tasks[lane.value] = this.tasksService.getAllTasksInStatus(lane.value);
+    });
+  }
 
   ngOnInit() {
+  }
+
+  laneDropped(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.lanes, event.previousIndex, event.currentIndex);
+  }
+
+  taskDropped(event: CdkDragDrop<string[]>, status: TaskStatusModel) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(this.tasks[status.value], event.previousIndex, event.currentIndex);
+    } else {
+      console.log(event);
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }
+
+  getDraggableLanes(lane: TaskStatusModel) {
+    return this.lanes
+      .filter(l => l.value !== lane.value)
+      .map(l => l.value);
   }
 
 }

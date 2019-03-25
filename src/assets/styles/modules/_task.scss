@@ -1,0 +1,14 @@
+@import "~src/assets/styles/modules/functions";
+@import "~src/assets/styles/modules/variables";
+
+@mixin task-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .lane {
+        border: 1px solid map-get($_theme-foreground, divider);
+
+        &.mat-card,
+        .header {
+            background-color: rgba-to-rgb(map-get($_theme-background, hover), map-get($_theme-background, background));
+        }
+    }
+}

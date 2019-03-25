@@ -1,0 +1,98 @@
+@import "~@angular/material/theming";
+@import "~src/assets/styles/modules/typography";
+@import "~src/assets/styles/modules/variables";
+
+$_lane-width: $layout-unit__base * 40;
+
+:host {
+    //display: flex;
+    //min-height: 100%;
+}
+
+.lanes {
+    //overflow: auto hidden;
+    padding: $layout-unit__md 0;
+    position: relative;
+    //width: 0;
+
+    .lane {
+        margin: 0 $layout-unit__md 0 0;
+    }
+}
+
+.cdk-drop-list-dragging *:not(.cdk-drag-placeholder) {
+    transition: $swift-ease-out;
+}
+
+.cdk-drag-placeholder {
+    opacity: .4;
+}
+
+.cdk-drag-preview {
+
+    &.mat-card {
+
+        &.task {
+            @include mat-elevation(8);
+        }
+    }
+}
+
+.lane {
+    padding: 0 0;
+    width: $_lane-width;
+
+    .header {
+        border-radius: $roundness $roundness 0 0;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+        > .row {
+            padding: $layout-unit__sm $layout-unit__sm $layout-unit__sm;
+        }
+
+        .drag {
+            cursor: move;
+            margin: 0 $layout-unit__sm 0 0;
+        }
+
+        button {
+
+            &:not(:first-child) {
+                margin: 0 0 0 $layout-unit__sm;
+            }
+
+            &:last-child {
+                margin-right: -$layout-unit__base;
+            }
+        }
+    }
+
+    .tasks {
+        min-height: 100%;
+        //padding: $layout-unit__sm;
+    }
+}
+
+.task {
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: $layout-unit__sm;
+    
+    &:active {
+        cursor: move;
+    }
+
+    h3 {
+        font-family: #{$display-font-family};
+        line-height: 24px;
+    }
+
+    .priority-type {
+
+        .priority {
+            margin: 0 $layout-unit__base 0 0;
+        }
+    }
+}

@@ -282,3 +282,7 @@ button {
 .cdk-drag-animating {
     transition: $swift-ease-out;
 }
+
+.cdk-drag-handle {
+    cursor: move;
+}

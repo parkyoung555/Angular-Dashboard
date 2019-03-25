@@ -3,8 +3,7 @@ import {TaskModel} from '../../models/tasks.model';
 import {TasksService} from '../../services/tasks.service';
 import {Subscription} from 'rxjs';
 import {animate, query, style, transition, trigger} from '@angular/animations';
-import {MatDrawer, MatIconRegistry} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
+import {MatDrawer} from '@angular/material';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
@@ -60,8 +59,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   constructor(
     private tasksService: TasksService,
     private changeDetectorRef: ChangeDetectorRef,
-    private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -94,21 +91,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
         }
       }
     });
-
-    this.iconRegistry.addSvgIcon(
-      'priority_high',
-      sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-double-up.svg')
-    );
-
-    this.iconRegistry.addSvgIcon(
-      'priority_critical',
-      sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/chevron-triple-up.svg')
-    );
-
-    iconRegistry.addSvgIcon(
-      'drag',
-      sanitizer.bypassSecurityTrustResourceUrl('/assets/images/icons/drag.svg')
-    );
 
     this.routeEventSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
