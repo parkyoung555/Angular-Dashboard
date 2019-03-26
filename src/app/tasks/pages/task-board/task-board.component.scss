@@ -47,6 +47,8 @@ $_lane-width: $layout-unit__base * 40;
 
     .header {
         border-radius: $roundness $roundness 0 0;
+        //border-style: solid;
+        //border-width: 1px;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -69,6 +71,21 @@ $_lane-width: $layout-unit__base * 40;
             &:last-child {
                 margin-right: -$layout-unit__base;
             }
+        }
+    }
+
+    &.mat-card {
+        background-color: transparent;
+    }
+
+    .tasks {
+
+        > .wrapper {
+            border-radius: 0 0 $roundness $roundness;
+            //border-style: solid;
+            //border-width: 0 1px 1px 1px;
+            overflow: hidden;
+            //margin: $layout-unit__sm;
         }
     }
 }

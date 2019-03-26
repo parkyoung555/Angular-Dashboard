@@ -4,11 +4,12 @@
 @mixin task-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
 
     .lane {
-        border: 1px solid map-get($_theme-foreground, divider);
+        //border: 1px solid map-get($_theme-foreground, divider);
 
-        &.mat-card,
+        &.mat-card .tasks > .wrapper,
         .header {
             background-color: rgba-to-rgb(map-get($_theme-background, hover), map-get($_theme-background, background));
+            border-color: map-get($_theme-foreground, divider);
         }
     }
 }
