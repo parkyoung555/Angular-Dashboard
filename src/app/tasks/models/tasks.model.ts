@@ -40,6 +40,7 @@ export interface TaskModel {
   status?: TaskStatusModel;
   type?: TaskTypeModel;
   subTasks?: Array<SubTaskModel>;
+  [key: string]: any;
 }
 
 // Not sure if this is needed

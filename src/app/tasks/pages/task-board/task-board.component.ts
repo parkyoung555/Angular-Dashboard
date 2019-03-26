@@ -16,7 +16,7 @@ import {animate, query, style, transition, trigger} from '@angular/animations';
       ])
     ]),
     trigger('pushDown', [
-      transition(':enter', [
+      transition('void => in', [
         style({
           height: 0,
           marginBottom: '0',
@@ -55,8 +55,8 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     });
 
     this.addedTaskSubscription = this.tasksService.addedTask.subscribe(task => {
+      task.isNew = 'in';
       this.tasks[task.status.value].unshift(task);
-      console.log(task);
       this.changeDetectorRef.detectChanges();
     });
   }
@@ -76,7 +76,6 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.tasks[status.value], event.previousIndex, event.currentIndex);
     } else {
-      console.log(event);
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
@@ -98,6 +97,10 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     }));
 
     this.tasks[statusValue] = [];
+  }
+
+  taskAddedAnimationDone(task: TaskModel) {
+    delete task.isNew;
   }
 
 }

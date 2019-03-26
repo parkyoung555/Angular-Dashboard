@@ -85,6 +85,7 @@ $_lane-width: $layout-unit__base * 40;
     h3 {
         font-family: #{$display-font-family};
         line-height: 24px;
+        word-break: break-word;
     }
 
     .priority-type {
