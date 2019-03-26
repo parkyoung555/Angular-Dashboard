@@ -12,7 +12,7 @@ $_lane-width: $layout-unit__base * 40;
 }
 
 .lanes {
-    overflow: auto hidden;
+    //overflow: auto hidden;
     padding: $layout-unit__md 0;
     position: relative;
     //width: 0;
