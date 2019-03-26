@@ -18,7 +18,7 @@
              (cdkDropListDropped)="taskDropped($event, lane)"
              [cdkDropListConnectedTo]="getDraggableLanes(lane)"
              [id]="lane.value" fxFlex="1 1 auto" @preventInitialChildAnimations>
-            <div class="wrapper" *ngIf="tasks[lane.value]?.length">
+            <div class="wrapper">
                 <mat-card class="task" *ngFor="let task of tasks[lane.value]" [@pushDown]="task.isNew" (@pushDown.done)="taskAddedAnimationDone(task)" cdkDrag>
                     <h3 class="mat-subheading-2">{{task.title}}</h3>
                     <mat-card-content>
