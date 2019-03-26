@@ -40,9 +40,17 @@
 
         .mat-icon {
 
-            &.end {
+            &.end,
+            &.start {
                 @extend .mat-18;
+            }
+
+            &.end {
                 margin: 0 (-$layout-unit__xs) 0 $layout-unit__base;
+            }
+
+            &.start {
+                margin: 0 $layout-unit__base 0 (-$layout-unit__xs);
             }
         }
     }

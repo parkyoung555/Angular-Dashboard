@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TasksService} from '../../services/tasks.service';
-import {TaskModel, TaskStatusModel} from '../../models/tasks.model';
+import {TaskModel, TaskStatus, TaskStatusModel} from '../../models/tasks.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
@@ -46,6 +46,16 @@ export class TaskBoardComponent implements OnInit {
     return this.lanes
       .filter(l => l.value !== lane.value)
       .map(l => l.value);
+  }
+
+  addStatus() {
+    const statusValue = 'status' + this.lanes.length;
+    this.lanes.push(new TaskStatus({
+      label: 'New Status ' + this.lanes.length,
+      value: statusValue
+    }));
+
+    this.tasks[statusValue] = [];
   }
 
 }

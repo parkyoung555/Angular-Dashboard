@@ -1,9 +1,13 @@
 :host {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
-    height: 100%;
 }
 
 .layout-padding {
     padding-right: 0;
+}
+
+.task-views {
+    overflow: hidden;
 }

@@ -7,10 +7,12 @@ $_lane-width: $layout-unit__base * 40;
 :host {
     //display: flex;
     //min-height: 100%;
+    flex: 1 1 auto;
+    //overflow-x: auto;
 }
 
 .lanes {
-    //overflow: auto hidden;
+    overflow: auto hidden;
     padding: $layout-unit__md 0;
     position: relative;
     //width: 0;
@@ -39,6 +41,7 @@ $_lane-width: $layout-unit__base * 40;
 }
 
 .lane {
+    display: flex;
     padding: 0 0;
     width: $_lane-width;
 
@@ -49,7 +52,7 @@ $_lane-width: $layout-unit__base * 40;
         z-index: 1;
 
         > .row {
-            padding: $layout-unit__sm $layout-unit__sm $layout-unit__sm;
+            padding: 12px $layout-unit__sm;
         }
 
         .drag {
@@ -68,18 +71,13 @@ $_lane-width: $layout-unit__base * 40;
             }
         }
     }
-
-    .tasks {
-        min-height: 100%;
-        //padding: $layout-unit__sm;
-    }
 }
 
 .task {
     box-sizing: border-box;
     cursor: pointer;
     margin: $layout-unit__sm;
-    
+
     &:active {
         cursor: move;
     }
@@ -95,4 +93,10 @@ $_lane-width: $layout-unit__base * 40;
             margin: 0 $layout-unit__base 0 0;
         }
     }
+}
+
+.add-status {
+    align-self: flex-start;
+    position: sticky;
+    top: 0;
 }
