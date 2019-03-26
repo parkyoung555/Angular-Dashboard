@@ -1,5 +1,5 @@
-<div class="lanes" fxLayout="row" fxFlex="1 1 auto" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="laneDropped($event)">
-    <mat-card class="lane mat-elevation-z" *ngFor="let lane of lanes" fxLayout="column" fxFlex="0 0 auto" cdkDrag>
+<div class="lanes" fxLayout="row" fxFlex="0 0 auto" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="laneDropped($event)">
+    <mat-card class="lane mat-elevation-z" *ngFor="let lane of lanes" fxLayout="column" fxFlex="0 0 auto" cdkDragBoundary=".lanes" cdkDragLockAxis="x" cdkDrag>
         <div class="header">
             <div class="row" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="drag" svgIcon="drag" matTooltip="Click and drag to reorder" cdkDragHandle></mat-icon>
@@ -34,10 +34,10 @@
             </div>
         </div>
     </mat-card>
-    <div class="add-status">
-        <button color="accent" (click)="addStatus()" mat-stroked-button>
-            <mat-icon class="start">add</mat-icon>
-            <span>Add Status</span>
-        </button>
-    </div>
+</div>
+<div class="add-status">
+    <button color="accent" (click)="addStatus()" mat-stroked-button>
+        <mat-icon class="start">add</mat-icon>
+        <span>Add Status</span>
+    </button>
 </div>

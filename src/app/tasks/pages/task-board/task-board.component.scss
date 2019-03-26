@@ -115,6 +115,8 @@ $_lane-width: $layout-unit__base * 40;
 
 .add-status {
     align-self: flex-start;
+    margin: $layout-unit__md 0;
+    padding: 0 $layout-unit__md 0 0;
     position: sticky;
     top: 0;
 }
