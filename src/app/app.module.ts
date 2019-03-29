@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
     AppComponent
   ],
   imports: [
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AccountModule,
     BrowserModule,
     CoreModule,
@@ -32,10 +33,7 @@ import { environment } from '../environments/environment';
     PageTitleModule,
     SettingsModule,
     TasksModule,
-
-    AppRoutingModule,
-
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) // Must be last since it contains "Catch All" route
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [

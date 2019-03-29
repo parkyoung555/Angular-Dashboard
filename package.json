@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
+    "start-ssl": "ng serve --ssl --ssl-key /Certificates/server.key --ssl-cert /Certificates/server.crt",
     "build": "ng build",
+    "deploy": "ng build --prod && cp ./dist/index.html ./dist/200.html && surge ./dist --domain https://angular-dashboard.surge.sh",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
