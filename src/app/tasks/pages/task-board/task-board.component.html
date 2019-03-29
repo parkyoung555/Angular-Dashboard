@@ -7,7 +7,7 @@
                     {{lane.label}}
                     <span class="mat-secondary-text" *ngIf="tasks[lane.value]?.length">({{tasks[lane.value].length}})</span>
                 </h3>
-                <button mat-icon-button>
+                <button mat-icon-button aria-label="More actions">
                     <mat-icon>more_vert</mat-icon>
                 </button>
             </div>

@@ -3,10 +3,11 @@
     <ng-content></ng-content>
     <mat-nav-list *ngIf="inlineNavLinks?.length">
         <a mat-list-item
+           role="menuitem"
            *ngFor="let link of inlineNavLinks"
+           [attr.aria-label]="link.title"
            routerLinkActive="active"
            #rla="routerLinkActive"
-        
            [routerLink]="link.path">
             <mat-icon mat-list-icon>{{link.icon}}</mat-icon>
             <h4 mat-line><span class="mat-body-2">{{link.title}}</span></h4>
