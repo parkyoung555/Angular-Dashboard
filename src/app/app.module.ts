@@ -13,6 +13,8 @@ import {MailModule} from './mail/mail.module';
 import {InlineNavigationModule} from './core/navigation/components/inline-navigation/inline-navigation.module';
 import {PageTitleModule} from './core/title/components/page-title/page-title.module';
 import {TasksModule} from './tasks/tasks.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {TasksModule} from './tasks/tasks.module';
     SettingsModule,
     TasksModule,
 
-    AppRoutingModule // Must be last since it contains "Catch All" route
+    AppRoutingModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) // Must be last since it contains "Catch All" route
   ],
   providers: [],
   bootstrap: [
