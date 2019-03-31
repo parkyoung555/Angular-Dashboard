@@ -9,7 +9,7 @@ import {NavigationItemModel} from '../../models/navigation-item.model';
 })
 export class InlineNavigationComponent implements OnInit {
 
-  @Input() inlineNavLinks: Array<NavigationItemModel>;
+  @Input() links: Array<NavigationItemModel>;
 
   constructor() {
 

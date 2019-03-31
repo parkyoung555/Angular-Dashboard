@@ -26,6 +26,7 @@ import { TaskDetailsHeaderComponent } from './components/task-details-header/tas
 import {QuillModule} from 'ngx-quill';
 import { TaskDetailsDialogComponent } from './components/task-details-dialog/task-details-dialog.component';
 import { TaskDetailsDrawerComponent } from './components/task-details-drawer/task-details-drawer.component';
+import {TopNavigationModule} from '../core/navigation/components/top-navigation/top-navigation.module';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { TaskDetailsDrawerComponent } from './components/task-details-drawer/tas
     QuillModule,
     ReactiveFormsModule,
     RouterModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    TopNavigationModule
   ],
   providers: [
     {

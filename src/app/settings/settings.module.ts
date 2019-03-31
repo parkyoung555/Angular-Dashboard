@@ -8,6 +8,7 @@ import {MatExpansionModule, MatIconModule, MatListModule} from '@angular/materia
 import {PageTitleModule} from '../core/title/components/page-title/page-title.module';
 import { SettingsHomeComponent } from './pages/settings-home/settings-home.component';
 import {InlineNavigationModule} from '../core/navigation/components/inline-navigation/inline-navigation.module';
+import {TopNavigationModule} from '../core/navigation/components/top-navigation/top-navigation.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {InlineNavigationModule} from '../core/navigation/components/inline-navig
     MatIconModule,
     MatListModule,
     PageTitleModule,
-    SettingsRoutingModule
+    SettingsRoutingModule,
+    TopNavigationModule
   ]
 })
 export class SettingsModule { }

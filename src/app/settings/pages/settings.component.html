@@ -1,5 +1,6 @@
+<app-top-navigation [links]="inlineNavLinks" class="responsive"></app-top-navigation>
 <div fxLayout="row">
-    <app-inline-navigation [inlineNavLinks]="inlineNavLinks"></app-inline-navigation>
+    <app-inline-navigation [links]="inlineNavLinks" class="responsive"></app-inline-navigation>
     <div class="layout-padding layout-container">
         <app-page-title class="align-center"></app-page-title>
         <router-outlet></router-outlet>

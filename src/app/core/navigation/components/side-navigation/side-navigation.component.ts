@@ -11,7 +11,7 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {MatIconRegistry} from '@angular/material';
+import {MatDrawer, MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {NavigationService} from '../../services/navigation.service';
@@ -62,6 +62,7 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
   visibleMenuLinks: Array<NavigationItemModel>;
   navLockedOpen: boolean;
   searchFocused: boolean;
+  @Input() mainNav: MatDrawer;
   @Input() navClosed: boolean;
   @Input() navHovered: boolean;
   @Output() showNavLockAction: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -133,6 +134,12 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
   clearMenuSearch() {
     this.menuItemSearchQuery = void(0);
     this.updateVisibleMenuItems(this.menuItemSearchQuery);
+  }
+
+  closeMenu() {
+    if (this._sideNavMode === 'over') {
+      this.mainNav.close();
+    }
   }
 
   drop(event: CdkDragDrop<object[]>) {

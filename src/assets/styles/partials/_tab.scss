@@ -1,0 +1,23 @@
+$_tab-thickness: 3px;
+
+.mat-tab-nav-bar {
+
+    .mat-tab-link {
+        font-family: #{$display-font-family};
+    }
+
+    .mat-ink-bar {
+        background-color: unset !important;
+        box-sizing: border-box;
+        height: $_tab-thickness;
+        padding: 0 $layout-unit__sm;
+
+        &::before {
+            border-radius: $_tab-thickness $_tab-thickness 0 0;
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

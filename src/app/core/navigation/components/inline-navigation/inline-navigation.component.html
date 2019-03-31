@@ -1,10 +1,10 @@
 <div class="nav-content">
     <!-- TODO: Need to figure out implementation for main page action -->
     <ng-content></ng-content>
-    <mat-nav-list *ngIf="inlineNavLinks?.length">
+    <mat-nav-list *ngIf="links?.length">
         <a mat-list-item
            role="menuitem"
-           *ngFor="let link of inlineNavLinks"
+           *ngFor="let link of links"
            [attr.aria-label]="link.title"
            routerLinkActive="active"
            #rla="routerLinkActive"

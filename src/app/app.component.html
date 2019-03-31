@@ -11,18 +11,13 @@
         (closed)="sideNavClosed = true"
         (mouseenter)="navHovered = true"
         (mouseleave)="navHovered = false">
-        <app-side-navigation [navClosed]="sideNavClosed"
+        <app-side-navigation [mainNav]="mainNav"
+                             [navClosed]="sideNavClosed"
                              (sideNavMode)="sideNavMode = $event"
                              (showNavLockAction)="showNavLockAction = $event" [navHovered]="navHovered"></app-side-navigation>
     </mat-sidenav>
     <mat-sidenav-content fxLayout="column">
         <app-header [mainNav]="mainNav" [showNavLockAction]="showNavLockAction"></app-header>
-        <!--<div fxLayout="row">-->
-            <!--<app-inline-navigation *ngIf="inlineNavLinks?.length" [inlineNavLinks]="inlineNavLinks"></app-inline-navigation>-->
-            <!--<div class="layout-padding layout-container">-->
-                <!--<app-page-title class="layout-padding layout-container align-center"></app-page-title>-->
-                <router-outlet></router-outlet>
-            <!--</div>-->
-        <!--</div>-->
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,28 +1,70 @@
 @import "~src/assets/styles/modules/variables";
 @import "~src/assets/styles/modules/typography";
 
-:host {
-    min-width: $navigation__expanded__width - $navigation__collapsed__width;
-}
+@mixin _nav-content-inline-styles() {
 
-.nav-content {
-    margin: 0 $layout-unit__md 0 0;
-    padding: $layout-unit__md 0;
-    position: sticky;
-    top: 0;
+    .nav-content {
+        margin: 0 $layout-unit__md 0 0;
+        padding: $layout-unit__md 0;
+        position: sticky;
+        top: 0;
 
-    .mat-nav-list {
-        padding: 0 0;
+        ::ng-deep > button {
+            margin: 0 0 $layout-unit__md $layout-unit__base;
+            position: unset;
+        }
 
-        .mat-list-item {
-            border-radius: 0 $roundness $roundness 0;
-            height: $navigation-item__height;
-            margin: $layout-unit__base 0 0;
-            overflow: hidden;
+        > .mat-nav-list {
+            min-width: $navigation__expanded__width - $navigation__collapsed__width;
+            padding: 0 0;
 
-            &:first-child {
-                margin-top: 0;
+            .mat-list-item {
+                border-radius: 0 $roundness $roundness 0;
+                height: $navigation-item__height;
+                margin: $layout-unit__base 0 0;
+                overflow: hidden;
+
+                &:first-child {
+                    margin-top: 0;
+                }
             }
         }
     }
 }
+
+:host {
+
+    &.responsive {
+
+        .nav-content {
+            position: relative;
+
+            ::ng-deep > button {
+                bottom: 0;
+                margin: $layout-unit__md;
+                position: fixed;
+                right: 0;
+                z-index: 2;
+            }
+        }
+
+        @media (min-width: $navigation__mobile-breakpoint) {
+            @include _nav-content-inline-styles();
+        }
+
+        @media (max-width: ($navigation__mobile-breakpoint - 1)) {
+
+            .nav-content {
+
+                > .mat-nav-list {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &:not(.responsive) {
+        @include _nav-content-inline-styles();
+    }
+}
+

@@ -1,0 +1,12 @@
+@mixin tab-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground) {
+
+    .mat-tab-nav-bar {
+
+        .mat-ink-bar {
+
+            &::before {
+                background-color: $_theme-primary-color;
+            }
+        }
+    }
+}

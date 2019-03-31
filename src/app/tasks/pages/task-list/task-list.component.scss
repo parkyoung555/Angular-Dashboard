@@ -30,6 +30,10 @@
     overflow: hidden auto;
     padding: $layout-unit__md 0;
 
+    @media (max-width: ($navigation__mobile-breakpoint - 1)) {
+        padding-bottom: 104px;
+    }
+
     &.cdk-drop-list-dragging .mat-list-item:not(.cdk-drag-placeholder) {
         transition: $swift-ease-out;
     }

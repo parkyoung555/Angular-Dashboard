@@ -1,0 +1,8 @@
+@import "~src/assets/styles/modules/variables";
+
+@media (min-width: $navigation__mobile-breakpoint) {
+
+    :host.responsive {
+        display: none;
+    }
+}

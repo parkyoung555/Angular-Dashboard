@@ -1,5 +1,6 @@
+<app-top-navigation [links]="inlineNavLinks" class="responsive"></app-top-navigation>
 <div fxLayout="row" fxFlex="1 1 100%">
-    <app-inline-navigation [inlineNavLinks]="inlineNavLinks">
+    <app-inline-navigation [links]="inlineNavLinks" class="responsive">
         <button class="mega-button" (click)="openAddTaskDialog()" mat-raised-button>
             <mat-icon>add</mat-icon>
             Create Task

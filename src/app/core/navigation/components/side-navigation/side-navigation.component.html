@@ -37,7 +37,7 @@
                 <ng-template #linkButton>
                     <button mat-button
                             [attr.aria-label]="link.title"
-                            (click)="clearMenuSearch()"
+                            (click)="clearMenuSearch();closeMenu()"
                             fxFlex="1 0 auto"
                             role="menuitem"
                             routerLinkActive="active"
@@ -54,6 +54,7 @@
                     <section fxLayout="column" fxFlex="0 0 auto" [@accordion]="link.expanded ? 'expand' : 'collapse'">
                         <button *ngFor="let childLink of link.children"
                                 [attr.aria-label]="link.title"
+                                (click)="closeMenu()"
                                 mat-button
                                 fxFlex="0 0 auto"
                                 role="menuitem"

@@ -5,10 +5,7 @@
 $_lane-width: $layout-unit__base * 40;
 
 :host {
-    //display: flex;
-    //min-height: 100%;
     flex: 1 1 auto;
-    //overflow-x: auto;
 }
 
 .lanes {
@@ -16,6 +13,10 @@ $_lane-width: $layout-unit__base * 40;
     padding: $layout-unit__md 0;
     position: relative;
     //width: 0;
+
+    @media (max-width: ($navigation__mobile-breakpoint - 1)) {
+        padding-left: $layout-unit__md;
+    }
 
     .lane {
         margin: 0 $layout-unit__md 0 0;
@@ -79,6 +80,10 @@ $_lane-width: $layout-unit__base * 40;
     }
 
     .tasks {
+
+        @media (max-width: ($navigation__mobile-breakpoint - 1)) {
+            padding-bottom: 104px;
+        }
 
         > .wrapper {
             border-radius: 0 0 $roundness $roundness;

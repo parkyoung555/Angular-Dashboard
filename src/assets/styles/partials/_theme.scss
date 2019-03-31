@@ -11,6 +11,7 @@
 @import "../modules/sidenav";
 @import "../modules/task";
 @import "../modules/variables";
+@import "../modules/tab";
 @import "../modules/tag";
 @import "../modules/theme";
 @import "../modules/typography";
@@ -36,6 +37,7 @@
     @include logo-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include quill-editor-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include sidenav-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
+    @include tab-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include task-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include tag-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
     @include typography-theme-styles($_theme-primary-color, $_theme-accent-color, $_theme-background, $_theme-foreground);
