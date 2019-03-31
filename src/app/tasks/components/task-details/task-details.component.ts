@@ -1,6 +1,5 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
 import {TasksService} from '../../services/tasks.service';
 import {TaskModel, taskStatuses, TaskStatusModel, TaskTypeModel, taskTypes} from '../../models/tasks.model';
 import {MatDialog} from '@angular/material';
@@ -11,7 +10,7 @@ import {ConfirmDialogComponent} from '../../../core/confirm-dialog/components/co
   templateUrl: './task-details.component.html',
   styleUrls: ['./task-details.component.scss']
 })
-export class TaskDetailsComponent implements OnInit, OnDestroy {
+export class TaskDetailsComponent implements OnInit, OnChanges {
 
   editorFocused: boolean;
   editorCurrentData: string;
@@ -21,40 +20,35 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     },
     syntax: true
   };
+  @Input() hideCloseAction: boolean;
+  @Input() taskId: string;
+  @Output() delete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() close: EventEmitter<any> = new EventEmitter<any>();
   task: TaskModel;
   taskStatuses: Array<TaskStatusModel>;
   taskTypes: Array<TaskTypeModel>;
-
-  private routeSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private tasksService: TasksService,
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
     private dialog: MatDialog
   ) {
-    this.routeSubscription = this.route.paramMap.subscribe(params => {
-      this.editorFocused = false;
-      this.task = this.tasksService.getTask(params.get('taskId'));
-      if (this.task) {
-        this.taskStatuses = this.getTransitionableStatuses(this.task.status);
-        this.taskTypes = this.getTransitionableTypes(this.task.type);
-        this.editorCurrentData = this.task.description;
-      }
-      const parentElement = this.renderer.parentNode(this.elementRef.nativeElement);
-      if (parentElement) {
-        parentElement.scrollTop = 0;
-      }
-    });
   }
 
   ngOnInit() {
   }
 
-  ngOnDestroy(): void {
-    this.routeSubscription.unsubscribe();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.taskId) {
+      this.editorFocused = false;
+      this.task = this.tasksService.getTask(this.taskId);
+      if (this.task) {
+        this.taskStatuses = this.getTransitionableStatuses(this.task.status);
+        this.taskTypes = this.getTransitionableTypes(this.task.type);
+        this.editorCurrentData = this.task.description;
+      }
+    }
   }
 
   editorChanged(event) {
@@ -81,9 +75,10 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this.tasksService.removeTask(this.task._id);
-        this.router.navigate(['../'], {
-          relativeTo: this.route
-        });
+        // this.router.navigate(['../'], {
+        //   relativeTo: this.route
+        // });
+        this.delete.emit();
       }
     });
   }

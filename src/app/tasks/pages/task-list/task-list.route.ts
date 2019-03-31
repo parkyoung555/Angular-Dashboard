@@ -1,6 +1,6 @@
 import {Route} from '@angular/router';
 import {TaskListComponent} from './task-list.component';
-import {TaskDetailsComponent} from '../../components/task-details/task-details.component';
+import {TaskDetailsDrawerComponent} from '../../components/task-details-drawer/task-details-drawer.component';
 
 export const taskListRoute: Route = {
   path: 'list',
@@ -15,7 +15,7 @@ export const taskListRoute: Route = {
   children: [
     {
       path: ':taskId',
-      component: TaskDetailsComponent
+      component: TaskDetailsDrawerComponent
     }
   ]
 };

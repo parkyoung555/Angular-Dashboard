@@ -13,4 +13,21 @@
         margin: 0 (-$layout-unit__md) (-$layout-unit__md);
         padding: $layout-unit__base;
     }
+
+    .mat-toolbar {
+        background-color: unset !important;
+    }
+}
+
+.task-details-dialog {
+
+    .mat-dialog-container {
+        padding-top: $layout-unit__xs;
+
+        app-task-details {
+            display: block;
+            margin-left: -$layout-unit__sm;
+            margin-right: -$layout-unit__sm;
+        }
+    }
 }

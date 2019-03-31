@@ -1,0 +1,6 @@
+@import "~src/assets/styles/modules/variables";
+
+:host {
+    display: block;
+    padding: 0 $layout-unit__xs;
+}

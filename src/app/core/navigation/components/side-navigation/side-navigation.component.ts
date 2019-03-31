@@ -80,7 +80,7 @@ export class SideNavigationComponent implements OnInit, OnChanges, OnDestroy {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
-    this.appName = 'Spring Board';
+    this.appName = 'Springboard';
     this.brandLetter = this.appName.slice(0, 1);
 
     iconRegistry.addSvgIcon(

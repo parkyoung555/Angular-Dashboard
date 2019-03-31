@@ -13,7 +13,7 @@
         <button *ngIf="task" mat-icon-button [matMenuTriggerFor]="taskActionsMenu">
             <mat-icon>more_vert</mat-icon>
         </button>
-        <button mat-icon-button [routerLink]="['../']" matTooltip="Close detail">
+        <button *ngIf="!hideCloseAction" (click)="close.emit()" mat-icon-button matTooltip="Close detail">
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar-row>

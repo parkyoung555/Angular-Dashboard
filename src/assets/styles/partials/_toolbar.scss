@@ -1,0 +1,13 @@
+
+.mat-toolbar {
+
+    .mat-toolbar-row {
+
+        button {
+
+            &:not(:first-child) {
+                margin: 0 0 0 $layout-unit__base;
+            }
+        }
+    }
+}

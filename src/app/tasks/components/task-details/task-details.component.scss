@@ -14,6 +14,7 @@
 
         .header {
             line-height: normal;
+            margin: 0 $layout-unit__md 0 0;
 
             .type {
                 margin: $layout-unit__xs 0 0;
@@ -51,7 +52,6 @@
     }
 }
 
-app-rich-text-editor,
 quill-editor{
     display: block;
     margin: $layout-unit__sm 0 0;

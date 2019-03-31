@@ -24,6 +24,8 @@ import {ConfirmDialogModule} from '../core/confirm-dialog/confirm-dialog.module'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskDetailsHeaderComponent } from './components/task-details-header/task-details-header.component';
 import {QuillModule} from 'ngx-quill';
+import { TaskDetailsDialogComponent } from './components/task-details-dialog/task-details-dialog.component';
+import { TaskDetailsDrawerComponent } from './components/task-details-drawer/task-details-drawer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import {QuillModule} from 'ngx-quill';
     TaskListComponent,
     TaskBoardComponent,
     TaskDetailsComponent,
-    TaskDetailsHeaderComponent
+    TaskDetailsHeaderComponent,
+    TaskDetailsDialogComponent,
+    TaskDetailsDrawerComponent
   ],
   entryComponents: [
     CreateTaskDialogComponent

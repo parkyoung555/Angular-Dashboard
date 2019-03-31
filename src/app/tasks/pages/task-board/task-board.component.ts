@@ -42,7 +42,9 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
 
   addedTaskSubscription: Subscription;
   lanes: Array<TaskStatusModel>;
+  removedTaskSubscription: Subscription;
   tasks: { [statusValue: string]: Array<TaskModel> } = {};
+  updatedTaskSubscription: Subscription;
 
   constructor(
     private tasksService: TasksService,
@@ -59,6 +61,20 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
       this.tasks[task.status.value].unshift(task);
       this.changeDetectorRef.detectChanges();
     });
+
+    this.updatedTaskSubscription = this.tasksService.updatedTask.subscribe(() => {
+      this.lanes.forEach(lane => {
+        this.tasks[lane.value] = this.tasksService.getAllTasksInStatus(lane.value);
+      });
+      this.changeDetectorRef.detectChanges();
+    });
+
+    this.removedTaskSubscription = this.tasksService.removedTask.subscribe(() => {
+      this.lanes.forEach(lane => {
+        this.tasks[lane.value] = this.tasksService.getAllTasksInStatus(lane.value);
+      });
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   ngOnInit() {
@@ -66,6 +82,8 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.addedTaskSubscription.unsubscribe();
+    this.removedTaskSubscription.unsubscribe();
+    this.updatedTaskSubscription.unsubscribe();
   }
 
   laneDropped(event: CdkDragDrop<string[]>) {
@@ -80,6 +98,9 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      const movedTask = <TaskModel><unknown>event.container.data[event.currentIndex];
+      movedTask.status = status;
+      this.tasksService.updateTask(movedTask);
     }
   }
 

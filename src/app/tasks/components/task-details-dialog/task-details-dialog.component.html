@@ -1,0 +1,6 @@
+<ng-template #dialogContent>
+    <app-task-details [taskId]="taskId" [hideCloseAction]="true" (delete)="taskDeleted()"></app-task-details>
+    <div mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close color="primary">Close</button>
+    </div>
+</ng-template>
